@@ -1,0 +1,226 @@
+\section*{Microeconomics Midterm 2011 / 12}
+
+{
+\subsection*{Schmidt}
+
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+Yes since
+
+\begin{align*}
+    x_k(\lambda p, \lambda w) & =\frac{\lambda w}{\sum_{e=1}^c \lambda p_e}=\frac{\lambda}{\lambda} \frac{w}{\sum_{l=1}^{\infty} p_e} \\
+    & =\frac{w}{\sum_{e=1}^l p_e}=x_k(p, w)
+\end{align*}
+}
+{\item 
+Yes since
+
+\begin{align*}
+\begin{aligned}
+    \sum_{k=1}^L x_k p_k & =\sum_{k=1}^L \frac{w}{\sum_{\ell=1}^w p_e} p_k=\frac{w}{\sum_{\ell=1}^L p_e} \sum_{k=1}^L p_k \\
+    & =w \frac{\sum_{k=1}^L p_k}{\sum_{\ell=1}^L p_e}=w
+\end{aligned}
+\end{align*}
+}
+{\item 
+Yes since WA says that
+
+\begin{align*}
+    p \times\left(p^{\prime}, w^{\prime}\right) \leqslant w \Longrightarrow p^{\prime} \times(p, w)>w^{\prime}
+\end{align*}
+
+In our case:
+
+\begin{align*}
+    \underbrace{w^{\prime} \frac{\sum_{\ell=1}^L p_l}{\sum_{\ell=1}^L p_l^{\prime}} \leqslant w}_{\text {(I) }} \Rightarrow \underbrace{w \frac{\sum_{\ell=1}^L p_e^{\prime}}{\sum_{\ell=1}^L p_e}>w^{\prime}}_{\text {(II) }}
+\end{align*}
+
+From (I) and $x(p, w) \neq x\left(p^{\prime}, w^{\prime}\right)$ implies (II). Thus, WA is satisfied!
+}
+{\item 
+\begin{align*}
+    s_{l k}(p, w) & =\frac{\partial x_k(p, w)}{\partial p_k}+\frac{\partial x_l(p, w)}{\partial w} x_k(p, w) \\
+    & =-\frac{w}{\left(\sum_{l=1}^L p_l\right)^2}+\frac{w}{\left(\sum_{l=1}^L p_l\right)^2}=0
+\end{align*}
+
+Since all entries are zero it is symmetric and negative semidefinite.
+}
+\end{enumerate}
+
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+This is immediate. Since preferences are represented by $f(x)=g(h(x))$, they are also represented by $h(x)$ as utility is only ordinal.
+
+\begin{align*}
+    x>y &\Longleftrightarrow f(x)>f(y) \quad \text{by utility function} \\
+    f(x)>f(y) &\Longleftrightarrow h(x)>h(y) \quad \text{by monotonic transformation}
+\end{align*}
+}
+{\item 
+$e(p, u)$ is the answer to
+
+\begin{align*}
+    \min_x p x \text{ s.t. } u(x)=u
+\end{align*}
+
+
+(1) Let $u(x)=1$, and $x^*$ the solution: 
+
+\begin{align*}
+    &\min_x p x \text{ s.t. } u(x)=1 \\
+    &\longrightarrow x^*=\operatorname{argmin}(p x) \\
+    &\longrightarrow u\left(x^*\right)=1
+\end{align*}
+}
+\end{enumerate}
+}
+
+{
+\subsection*{Gottardi}
+
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+\underline{Agent h:} 
+
+\begin{align*}
+    & \max _{x^h} \ln \left(x_1^h\right)+k^h \ln \left(x_2^h\right) \\
+    & \text { s.t. } p x_1^h+x_2^h=p w_1^h+w_2^h
+\end{align*}
+
+First order conditions:
+
+\begin{align*}
+    \frac{1}{x^\mu}-\lambda p &= 0 \\
+    \frac{k^n}{x_2^h}-\lambda &= 0 \\
+    \Rightarrow x_2^h &= k^h p x_1^h \tag{1}
+\end{align*}
+
+Plug (1) into $B C$ for $A$:
+
+\begin{align*}
+p x_1^A+3 p x_1^A=p 13 \Longleftrightarrow x_1^A=\frac{13}{4}
+\end{align*}
+
+Plug (1) into $B C$ for $B$:
+
+\begin{align*}
+p x_1^B+p x_1^B=14 \Longleftrightarrow x_1^3=\frac{7}{p}
+\end{align*}
+
+\underline{Market clearing:}
+
+\begin{align*}
+    x_1^B=13-x_1^A=\frac{3.13}{4}=\frac{39}{4} \rightarrow \frac{39}{4}&=\frac{7}{p} \\
+    \Longleftrightarrow p=\frac{4\cdot7}{39}&=\frac{28}{39} \\
+    x_2^A=3 \cdot p \cdot x_1^A=3 \frac{28}{35} \frac{13}{4}=\frac{7 \cdot 13}{13}&=7 \\
+    x_2^B&=7
+\end{align*}
+
+\underline{Competitive Equilibrium:}
+
+\begin{align*}
+    \left(x_1^A, x_2^A\right)&=(\frac{13}{4},7) \\
+    \left(x_1^B, x_2^B\right)&=(\frac{39}{4},7) \\
+    p &= \frac{28}{39}
+\end{align*}
+}
+{\item 
+Yes. 
+
+\begin{align*}
+    M R S^A &= \frac{x_2^A}{3 x_1^A}=\frac{7}{3\cdot \frac{13}{4}}=\frac{28}{39} \\
+    M R S^B &= \frac{x_2^B}{x_1^B}=\frac{7}{\frac{39}{4}}=\frac{28}{39}
+\end{align*}
+
+Also: markets are complete, there's free disposal, and LNS is satisfied.
+}
+{\item 
+Yes. 
+
+\begin{align*}
+    \operatorname{MRS}^A(4,8) &= \frac{8}{3 \cdot 4}=\frac{2}{3} \\
+    \operatorname{MRS}^B(9,6) &= \frac{6}{9}=\frac{2}{3}
+\end{align*}
+
+As preferences are convex, we can decentralize:
+
+\begin{align*}
+& T^A=\left[\begin{array}{l}
+x_1^A-w_1^A \\
+x_2^A-w_2^A
+\end{array}\right]=\left[\begin{array}{c}
+4-13 \\
+8
+\end{array}\right]=\left[\begin{array}{c}
+-9 \\
+8
+\end{array}\right] \\
+& T^B=\left[\begin{array}{l}
+x_1^B-w_1^B \\
+x_2^B-w_2^B
+\end{array}\right]=\left[\begin{array}{c}
+9 \\
+6-14
+\end{array}\right]=\left[\begin{array}{c}
+9 \\
+-8
+\end{array}\right]
+\end{align*}
+
+At equilibrium, relative price must be equal to MRS. Thus $p=\frac{2}{3}$.
+}
+\end{enumerate}
+
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item
+at $t=0: \quad\quad\quad\quad q_1 \theta_1+c_2 \theta_2=0$ 
+
+at $t=0: s=1: \quad x_1=w_1+3 \theta_1+\theta_2=10+3 \theta_1+\theta_2$
+
+at $t=0: s=2: \quad x_2=w_2+ \theta_1+3\theta_2=4+\theta_1+3\theta_2$
+}
+{\item
+We solve the consumer problem:
+
+\begin{align*}
+    \max _x \frac{1}{2}\left[\ln \left(x_1\right)+\ln \left(x_2\right)\right] \text { s.t. BCs from (a) }
+\end{align*}
+
+substitute $(x_1, x_2)$ from the BC in (a):
+
+\begin{align*}
+    &\max _\theta \frac{1}{2}\left[\ln \left(10+3 \theta_1+\theta_2\right)+\ln \left(4+\theta_1+3 \theta_2\right)\right] \\
+    &\text { s.t. } q_1 \theta_1+q_2 \theta_2=0
+\end{align*}
+
+First order conditions for $(\theta_1, \theta_2, \lambda)$:
+
+\begin{align*}
+    \frac{1}{2}\left[\frac{3}{10+3 \theta_1+\theta_2}+\frac{1}{4+\theta_1+3 \theta_2}\right]-\lambda q_1 &= 0 \\
+    \frac{1}{2}\left[\frac{1}{10+3 \theta_1+\theta_2}+\frac{3}{4+\theta_1+3 \theta_2}\right]-\lambda q_2 &= 0 \\
+    q_1 \theta_1+q_2 \theta_2 &= 0
+\end{align*}
+
+Let $q_1=q_2=0 \rightarrow \theta_1=-\theta_2$ then
+
+\begin{align*}
+    \frac{3}{10+3 \theta_1+\theta_2}+\frac{1}{4+\theta_1+3 \theta_2} &= \frac{1}{10+3 \theta_1+\theta_2}+\frac{3}{4+\theta_1+3 \theta_2} \\
+    3 \left[4+\theta_1+3 \theta_2\right] + 1 \left[10+3 \theta_1+\theta_2\right] &= 1 \left[ 4+\theta_1+3 \theta_2 \right] + 3 \left[ 10+3 \theta_1+\theta_2 \right] \\
+    2\left[4-2 \theta_1\right] & =2\left[10+2 \theta_1\right] \\ -6 & =4 \theta_1 \\ \theta_1 & =-\frac{3}{2}
+\end{align*}
+
+As $\theta_1 \neq 0$, this is not a $C E$. There is only one consumer and if $\theta_1 \neq 0$, then there is excess supply or demand!
+}
+{\item
+The consumer is poorer in state 2. Thus, he wants to insure against it as he is risk-averse by the concavity of utility. This drives up the price of asset 2 compared to asset 1. Thus $q_2>q_1$.
+}
+\end{enumerate}
+}
