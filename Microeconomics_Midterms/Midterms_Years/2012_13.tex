@@ -1,0 +1,113 @@
+\section*{Microeconomics Midterm 2012 / 13}
+
+{
+\subsection*{Schmidt}
+
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+To violate WA, both bundles must be affordable under both price-wealth-situations:
+
+\begin{align*}
+    \left|\begin{array}{c}
+    540 \leqslant 360+24 x \\
+    30(12+x) \leqslant 600
+    \end{array}\right| \\
+    \Leftrightarrow \quad\left|\begin{array}{c}
+    7.5 \leq x \\
+    x \leq 8
+    \end{array}\right|
+\end{align*}
+
+WA is violated when $x \in[7.5,8]$
+}
+{\item 
+Bundle 2 must be affordable in period 1: $x \leq 8$.
+Thus, the consumer prefers bundle 1 to 2 when $x \in[0,7.5)$.
+}
+{\item 
+\color{red} I think he means good 2. \color{black}
+
+As price decreased, we must have a decrease in consumption to satisfy $\frac{\partial x_\ell}{\partial p_\ell}>0$.
+
+Thus: $x<10$
+
+In order to not violate WA, we are left with $x \in[0,7.5) \cup (8,10)$.
+}
+\end{enumerate}
+}
+
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+Let $f(\cdot)$ be a monotonic transformation and apply Roy's identity to $f(v(p, w))$ :
+
+\begin{align*}
+    \tilde{x}_\ell(p, w)
+    =-\frac{\frac{\partial f(v(p, w))}{\partial p_\ell}}{\frac{\partial f(v(p, w))}{\partial w}}
+    =-\frac{\frac{\partial f(v(p, w))}{\partial v(p, w)} \cdot \frac{\partial v(p, w)}{\partial p_\ell}}{\frac{\left.\partial f\left(p_p, w\right)\right)}{\partial v(p, w)} \frac{\partial v(p)}{\partial w}}
+    =-\frac{\frac{\partial v(p, w)}{\partial p_\ell}}{\frac{\partial v(p)}{\partial w}}
+    =x_\ell(p, w)
+\end{align*}
+
+Even by implementing $f(\cdot)$ we find the same $x_\ell(p, w)$.
+}
+{\item 
+(1) Invert $v(p, w)$ to find $e(p, u)$ :
+\begin{align*}
+e(p, u)=u\left(\frac{p_1}{\alpha}\right)^\alpha\left(\frac{p_2}{1-\alpha}\right)^{1-\alpha}
+\end{align*}
+(2) Apply Shepherd's Lemma:
+\begin{align*}
+\begin{aligned}
+h_1(p, u) & =\frac{\partial e\left(p_1 u\right)}{\partial p_1}=u \alpha^{-\alpha}\left(\frac{p_2}{1-\alpha}\right)^{1-\alpha} \alpha p_1^{\alpha-1} \\
+& =u\left(\frac{\alpha}{1-\alpha}\right)^{1-\alpha}\left(\frac{p_2}{p_1}\right)^{1-\alpha}
+\end{aligned}
+\end{align*}
+}
+{\item 
+\begin{align*}
+    \text { case 1: } & \alpha=\alpha\left(\frac{p_1}{p_2}\right) \\
+    & u_1\left(\lambda p, u\right) = u\left[\frac{\alpha\left(\frac{\lambda p_1}{\lambda p_2}\right)}{1-\alpha\left(\frac{\lambda p_1}{\lambda p_1}\right)} \frac{\lambda p_2}{\lambda p_1}\right]^{1-\alpha\left(\frac{\lambda p_1}{\lambda p_2}\right)} 
+    = u \left( \frac{\alpha\left(\frac{p_1}{p_2}\right)}{1-\alpha\left(\frac{p_1}{p_2}\right)} \frac{p_2}{p_1}\right)^{1-\alpha\left(\frac{p_1}{p_2}\right)}=h_1\left(p_1 u\right) \\
+    \text { case 2: } & \alpha=\alpha\left(p_1\right) \\
+    & u_1\left(\lambda p, u\right) = u\left[\frac{\alpha\left(\lambda p_1\right)}{1-\alpha\left(\lambda p_1\right)} \frac{\lambda p_2}{\lambda p_1}\right]^{1-\alpha\left(\lambda p_1\right)} 
+    = u\left[\frac{\alpha\left(\lambda p_1\right)}{1-\alpha\left(\lambda p_1\right)} \frac{ p_2}{ p_1}\right]^{1-\alpha\left(\lambda p_1\right)} \neq h_1\left(p_1 u\right)
+\end{align*}
+}
+\end{enumerate}
+
+\subsubsection*{Exercise 3}
+
+As the returns to scale are constant, we must apply cost-minimization.
+
+\begin{align*}
+    \min_x wx \text { s.t. } f(x)=1
+\end{align*}
+
+We differentiate with respect to $x_\ell$ to find FOC:
+
+\begin{align*}
+    w_\ell-\lambda \frac{\partial f(x)}{\partial x_\ell} &= 0 \\
+    w_\ell x_\ell^*-\lambda \frac{\partial f(x)}{\partial x_\ell} x_\ell^* &= 0 \quad \text{use Euler's formula} \\
+    w x^*-\lambda \sum \frac{\partial f(x)}{\partial x_\ell} x_\ell^* &= 0 \\
+    w x^*-\lambda \cdot 1 &= 0 \\
+    w x^*=c(w) &= \lambda
+\end{align*}
+
+By constant returns to scale $\min _x wx \text { s.t. } f(x)=y$ will give
+
+\begin{align*}
+    w \tilde{x}-\lambda \sum \frac{\partial f(x)}{\partial x_e} \tilde{x}_e &= 0 \\
+    w \tilde{x}-\lambda y &= 0 \\
+    w \tilde{x}=c(w, y)=\lambda y &= c(w) \cdot y
+\end{align*}
+
+\newpage
+{
+\subsection*{Gottardi}
+
+\subsubsection*{Exercise 1}
+}
