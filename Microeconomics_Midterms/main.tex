@@ -39,7 +39,7 @@ margin=1.5in
 %if you want to start a multicolomns part inside your normally one columned article
 \usepackage{multicol}
 %titlesec allows you to change the way, titles are presented in latex
-% \usepackage{titlesec}
+\usepackage{titlesec}
 %lets you change the style of your (sub)section headers
 \usepackage{sectsty}
 %I chose to make my headers cyan-colored
@@ -179,7 +179,7 @@ hollow node/.style={circle,draw,inner sep=1.5,fill=white}
 \usepackage{bm}
 \usepackage{empheq}
 % Nice rules for tables. Usage \begin{tabular}\toprule ... \midrule ... \bottomrule
-\usepackage{booktabs}          
+% \usepackage{booktabs}          
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % APPENDIX
@@ -267,7 +267,7 @@ hollow node/.style={circle,draw,inner sep=1.5,fill=white}
 
 %\thispagestyle{empty} %suppresses the footer and header since I want to start show them after the TOC, optional
 \pagenumbering{roman}	
-% \tableofcontents
+\tableofcontents
 
 % The \clearpage command is a pagebreak to separate the abstract from the content
 %\clearpage
@@ -277,7 +277,6 @@ hollow node/.style={circle,draw,inner sep=1.5,fill=white}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
  % ACTUAL CONTENT 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \newpage
 \input{Midterms_Years/2011_12}\newpage
 \input{Midterms_Years/2012_13}\newpage
