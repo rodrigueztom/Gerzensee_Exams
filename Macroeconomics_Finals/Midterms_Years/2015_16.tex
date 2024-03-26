@@ -1,0 +1,83 @@
+\section{Macroeconomics Final 2015 / 16}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+$$
+\begin{aligned}
+Y_{t}(i) & =C_{t}(i)+\gamma_{t} Y_{t}(i) \\
+\left(1-\gamma_{t}\right) Y_{t}(i) & =C_{t}(i) \\
+\left(1-\gamma_{t}\right) \int_{0}^1 Y_{t}(i) d i & =\int_{0}^1 C_{t}(i) d i \\
+\left(1-\gamma_{t}\right) Y_{t} & =C_{t} \\
+\ln \left(1-\gamma_{t}\right)+y_{t} & =c_{t} \\
+y_{t} & =c_{t}-\ln \left(1-\gamma_{t}\right)=c_{t}-g_{t}
+\end{aligned}
+$$
+}
+{
+\item 
+
+Optimality conditions of household are unchanged as $G_{t}(i)$ is financed via lump-sum:
+
+$$
+\begin{aligned}
+C_{t}(i) & =\left(\frac{P_{t}(i)}{P_{t}}\right)^{-\varepsilon} C_{t} \\
+Q_{t} & =\mathbb{E}_{t}\left[\frac{C_{t}}{C_{t+1}} \frac{P_{t}}{P_{t+1}}\right] \\
+C_{t} N_{t}^{\varphi} & =\frac{W_{t}}{P_{t}} \\
+\frac{M_{t}}{P_{t}} & =C_{t}\left[1-\exp \left(-i_{t}\right)\right]^{-1}=\left(Y_{t}-G_{t}\right)\left[1-\exp \left(-i_{t}\right)\right]^{-1}
+\end{aligned}
+$$
+
+Since $Y_{t}$ increases in $N_{t}$, we have that a higher $G_{t}$ must increase employment. \color{red} Or $C_{t}$ goes down? \color{black}
+
+Firms' pricing: (Assume $Y_{t}(i)=N_{t}(i)$ )
+
+$$
+\max _{P_{t}(i)} \mathbb{E}_{t-1}\left[\Lambda_{t-1, t} \frac{Y_{t}(i)}{P_{t}}\left(P_{t}(i)-W_{t}\right)\right]
+$$
+
+Use the market clearing condition: $Y_{t}(i)=C_{t}(i)+G_{t}(i)$
+
+$$
+\begin{aligned}
+& \max _{P_{t}(i)} \mathbb{E}_{t-1}\left[\Lambda_{t-1, t} \frac{C_{t}(i)+G_{t}(i)}{P_{t}}\left(P_{t}(i)-W_{t}\right)\right] \\
+& \max _{P_{t}(i)} \mathbb{E}_{t-1}\left[\Lambda_{t-1, t}\left(\frac{1}{P_{t}}\left(\frac{P_{t}(i)}{P_{t}}\right)^{-\varepsilon} C_{t}+\frac{G_{t}(i)}{P_{t}}\right)\left(P_{t}(i)-W_{t}\right)\right]
+\end{aligned}
+$$
+
+$$
+\max _{P_{t}(i)}\mathbb{E}_{t-1}\left[\Lambda_{t-1, t}\left(\frac{1}{P_{t}}\left(\frac{P_{t}(i)}{P_{t}}\right)^{-\varepsilon}\left(Y_{t}-G_{t}\right)+\frac{G_{t}(i)}{P_{t}}\right)\left(P_{t}(i)-W_{t}\right)\right]
+$$
+
+FOC:
+
+\begin{align*}
+\mathbb{E}_{t-1}\left[\Lambda_{t-1, t} \frac{1}{P_{t}^{1-\varepsilon}}(1-\varepsilon) P_{t}(i)^{-\varepsilon}\left(Y_{t}-G_{t}\right)\left(1-P_{t}(i)^{-1}(-\varepsilon) W_{t}\right)+\frac{G_{t}(i)}{P_{t}(1-\varepsilon)}\right] &= 0 \\
+\mathbb{E}_{t-1}\left[\Lambda_{t-1, t}\underbrace{\left(\frac{P_t(i)}{P_t}\right)^{-\varepsilon} \frac{\left(Y_t-G_t\right)}{P_t}}_{\frac{Y_t(i)-G_t(i)}{P_t}}\left(1-P_t(i)^{-1} M W_t\right)+\frac{G_t(i)}{P_t(1-\varepsilon)}\right] &= 0 \\
+\mathbb{E}_{t-1}\left[\Lambda_{t-1, t} \frac{Y_{t}(i)-G_{t}(i)}{P_{t}}\left(P_{t}(i)-M W_{t}\right)+\frac{G_{t}(i)}{P_{t}(1-\varepsilon)}\right] &= 0
+\end{align*}
+
+
+Impose symmetry: $Y_{t}(i)=Y_{t}$ and $P_{t}(i)=P_{t} \quad \forall i$
+
+$$
+\longrightarrow G_{t}(i)=G_{t} \text { and } G_{t}(i)=C_{t}
+$$
+
+$$
+\mathbb{E}_{t-1}\left[\Lambda_{t-1, t}\left(Y_{t}-G_{t}\right)\left(1-M \frac{W_{t}}{P_{t}}\right)+\frac{G_{t}}{P_{t}(1-\varepsilon)}\right]=0
+$$
+
+Recall: $\Lambda_{t-1, t}=\beta \frac{C_{t-1}}{C_{t}}$
+
+$$
+\begin{aligned}
+& \mathbb{E}_{t-1}\left[\left(Y_{t-1}-G_{t-1}\right)\left(1-M \frac{W_{t}}{P_{t}}\right)+\frac{G_{t}}{P_{t}(1-\varepsilon)}\right]=0 \\
+& \mathbb{E}_{t-1}\left[\left(1-\gamma_{t-1}\right) Y_{t-1}\left(1-M\left(1-\gamma_{t}\right) N_{t}^{1+\varphi}\right)+\frac{\gamma_{t} Y_{t}}{P_{t}(1-\varepsilon)}\right]=0
+\end{aligned}
+$$
+}
+\end{enumerate}
+}

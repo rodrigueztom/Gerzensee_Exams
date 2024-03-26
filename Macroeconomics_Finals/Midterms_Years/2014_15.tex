@@ -1,0 +1,132 @@
+\section{Macroeconomics Final 2014 / 15}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\begin{aligned}
+\mathcal{L}= & \mathbb{E}_{0}\left\{\sum_{t=0}^{\infty} \beta^{t} u(\cdot)+\frac{\lambda_{t}}{P_{t}}\left(B_{t-1}+W_{t} N_{t}+D_{t}-P_{t} C_{t}-Q_{t} B_{t}\right)\right\}
+\end{aligned}
+$$
+
+FOCs:
+
+$$
+\begin{aligned}
+& {\left[C_{t}\right] \beta^{t} U_{C}(\cdot)-\lambda_{t}=0 \Leftrightarrow \lambda_{t}=\beta^{t} U_{C}(\cdot) } \\
+& {\left[N_{t}\right] \beta^{t} U_{N}(\cdot)+\lambda_{t} \frac{w_{t}}{R_{t}}=0 \Rightarrow-\frac{U_{N}(\cdot)}{U_{C}(\cdot)}=\frac{w_{t}}{P_{t}} } \\
+& {\left[B_{t}\right] \mathbb{E}_{t}\left(\lambda_{t+1} / P_{t+1}\right)-Q_{t}\left(\lambda_{t} / P_{t}\right)=0 }
+\end{aligned}
+$$
+
+In logs (combine $\left[C_{t}\right]$ and $\left[N_{t}\right]$):
+
+\begin{equation}
+    c_{t}+\varphi n_{t}=w_{t}- p_{t} \tag{intratemporal}
+\end{equation}
+
+Rewrite $\left[B_{t}\right]$:
+
+$$
+Q_{t}=\beta \mathbb{E}_{t}\left[\begin{array}{lll}
+\frac{P_{t+1}}{P_{t}} & \frac{Z_{t+1}}{Z} & \frac{C_{t}}{C_{t+1}}
+\end{array}\right]
+$$
+
+In logs: 
+
+\begin{align}
+    -i_{t}=-\rho+\mathbb{E}_{t}\left(\pi_{t+1}\right)+\left(\rho_{z}-1\right) z_{t}+c_{t}-\mathbb{E}_{t}\left(c_{t+1}\right) \notag \\
+    c_{t}=\mathbb{E}_{t}\left(c_{t+1}\right)-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-\left(1\rho_{z}\right) z_{t}-\rho\right) \tag{intertemporal}
+\end{align}
+
+}
+{
+\item 
+$$
+\left.\begin{aligned}
+& \text { Firms: } \quad p_{t}=w_{t}+\mu_{t} \\
+& \text{ HH: } \quad c_{t}+\varphi u_{t}=w_{t}-p_{t}
+\end{aligned} \right\rvert\, \Rightarrow c_{t}+\varphi n_{t}=-\mu_{t}
+$$
+
+$$
+\left.\begin{array}{ll}
+\text { markets clear: } & y_{t}=c_{t} \\
+\text { technology: } & y_{t}=n_{t}
+\end{array} \right\rvert\, \rightarrow c_{t}=n_{t}
+$$
+
+All together:
+
+$$
+\begin{aligned}
+& (1+\varphi) y_{t}=-\mu_{t} \\
+& y_{t}^{n}=-\frac{\mu}{1+\varphi}
+\end{aligned}
+$$
+
+Natural output level is constant in all periods. It is independent of $z_t$ because it cancels in the intratemporal optimality condition. $z_t$ influences $C_{t}$ \& $N_{t}$ to the same degree!
+}
+{
+\item 
+$\mu_{t}-\mu=-(1+\varphi) \tilde{y}_{t}$, where $\tilde{y}_{t}=y_{t}-y_{t}^{n}$
+}
+{
+\item 
+
+$$
+\begin{aligned}
+& \tilde{y}_{t}=\mathbb{E}_{t}\left(\tilde{y}_{t+1}\right)-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-\left(1-\rho_z\right) z_{t}-\rho\right) \\
+& \pi_{t}=\beta \mathbb{E}_{t}\left(\pi_{t+1}\right)+\lambda(1+\varphi) \tilde{y}_{t}
+\end{aligned}
+$$
+
+Conjecture: $\tilde{y}_{t}=A z_{t} ; \pi_{t}=B z_{t} ; i_{t}=\rho+\phi_{\pi} B z_{t}$
+
+$$
+\begin{aligned}
+& \tilde{y}_{t}=A \rho_z z_{t}-\left(\phi_{\pi} B z_{t}-B \rho_z z_{t}-\left(1-\rho_{z}\right) z_{t}\right) \\
+& =\left(A \rho_z-\phi_{\pi} B+B \rho_z+1-\rho_z\right) z_{t} \\
+& \longrightarrow \quad A=\left(1-\rho_z\right)^{-1}\left(1-\rho_z+B {\rho_z}-\phi_{\pi} B\right) 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+& \pi_{t}=\left(\beta \rho_{z} B+\lambda(1+\varphi) A\right) z_{t}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\longrightarrow B&=\left(1-\beta \rho_z\right)^{-1} \lambda(1+\varphi) A \\
+& =\left[\left(1-\beta \rho_z\right)\left(1-\rho_z\right)\right]^{-1}\left[\lambda(1+\varphi)\left(1-\rho_z+B{\rho_z}-\phi_{\pi} B\right)\right] \\
+& =\lambda(1+\varphi) \frac{1-\rho_z+B\left(\rho_z-\phi_{\pi}\right)}{\left(1-\beta \rho_z\right)\left(1-\rho_z\right)} \\
+& =\frac{\lambda(1+\varphi)}{1-\beta \rho_z}+\frac{\left(\rho_{z}-\phi_{\pi}\right)(1+\varphi) \lambda}{\left(1-\beta \rho_z\right)\left(1-\rho_z\right)} B
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+& B=\frac{\lambda(1+\varphi)\left(1-\rho_{z}\right)}{\left(\rho_{z}-\varphi_{\pi}\right)(1+\varphi) \lambda+\left(1-\beta \rho_z\right)\left(1-\rho_{z}\right)} \\
+& A=\frac{\left(1-\beta \rho_{z}\right)\left(1-\rho_{z}\right)}{\left(\rho_{z}-\varphi_{\pi}\right)(1+\varphi) \lambda+\left(1-\beta \rho_{z}\right)\left(1-\rho_{z}\right)} \\
+& i_{t}=\rho+\phi_{\pi} B z_t \\
+& r_{t}=i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)=i_{t}-\rho_z B z_{t}=p+\left(\phi_{\pi}-\rho_{z}\right) B z_{t}
+\end{aligned}
+$$
+}
+{
+\item 
+Preference shock leads to expansion since $A>0$, and $B>0$. y $y_{t}, \pi_{t}, i_{t}$, and $r_{t}$ go up. $C B$ reacts by adjusting interest rate upward $\left(\phi_{\pi}>1\right)$.
+
+Monetary policy shock meas higher $i_{i}$ and $r_{t}$. At the same time, $y_t$, and $\pi_{t}$ decrease. \color{red} Why though? \color{black}
+}
+{
+\item 
+By divine coincidence $i_t=\beta+\phi_{\pi} \pi_{t}$ with $\phi_{\pi}>1$ is sufficient to stabilize prices.
+}
+\end{enumerate}
+}

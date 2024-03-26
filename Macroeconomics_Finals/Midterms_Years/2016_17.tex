@@ -1,0 +1,114 @@
+\section{Macroeconomics Final 2016 / 17}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+True
+
+The DIS is given by
+
+$$
+\tilde{y}_{t}=\frac{1}{\sigma}\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-r_{t}^n\right)+\mathbb{E}_{t}\left(\tilde{y}_{t+1}\right)
+$$
+
+The $C B$ can influence $i_t$ which indirectly has an effect on $\mathbb{E}_{t}\left(\pi_{t+1}\right)$ as long as current and future inflation are linked. Even more so if the $C B$ can commit to a policy.
+}
+{
+\item 
+False
+
+They depend on the nominal rate. And the nominal rate depends on inflation.
+}
+{
+\item 
+False 
+
+Output increases but real wages actually increase since $\omega_{t}=w_{t}-p_{t}=\sigma c_{t}+n_{t}$ and in equilibrium $c_{t}=y_{t}$. Therefore, higher $y_{t}$ implies higher real wages. (reference: slide deck 3, p. 37)
+}
+{
+\item 
+True
+
+Unless there are "menu costs". Output gap fluctuations still cause welfare losses.
+}
+\end{enumerate}
+}
+{
+\subsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$u_t$ represents an exogenous shock that affects marginal costs. 
+E.g. a pandemic causing supply-chains to break down. Since $u_{t}$ follows on AR (1) process, the shocks are persistent over time.
+
+The addition of $u_{t}$ in this model "breaks" the divine coincidence: the $C B$ cannot stabilize output by only focusing on stabilizing prices.
+}
+{
+\item 
+Conjectures:
+
+\begin{align}
+    & \pi_{t}=\psi_{\pi} u_{t} \tag{I} \\
+    & x_{t}=\psi_{x} u_{t} \tag{II}
+\end{align}
+
+Plug (I), (II) \& interest rate rule into (1) \& (2):
+
+$$
+\begin{aligned}
+& \left|\begin{array}{l}
+\psi_{\pi} u_{t}=\beta \mathbb{E}_{t}\left(\psi_{\pi} v_{t+1}\right)+\kappa \psi_{x} u_{t}+u_{t} \\
+\psi_{x} u_{t}=\mathbb{E}_{t}\left(\psi_{x} v_{t+1}\right)-\left(\Phi_{\pi} \psi_{\pi} u_{t}-\mathbb{E}_{t}\left(\psi_{\pi} u_{t+1}\right)\right)
+\end{array}\right| \\
+& \Leftrightarrow\left|\begin{array}{l}
+\psi_{\pi}=\beta \psi_{\pi} \rho_{u}+\kappa \psi_{x}+1 \\
+\psi_{x}=\psi_{x} \rho_{u}-\phi_{\pi} \psi_{\pi}+\psi_{\pi} \rho_{u}
+\end{array}\right| \\
+& \Leftrightarrow \left\lvert\, \begin{array}{l}
+\psi_{\pi}\left(1-\beta \rho_{u}\right)=\kappa \psi_{x}+1 \\
+\psi_{x}\left(1-\rho_{u}\right)=\left(\rho_{u}-\phi_{\pi}\right) \psi_{\pi}
+\end{array}\right. \\
+& \Longrightarrow \psi_{\pi}\left(1-\beta \rho_{u}\right)=\kappa \frac{\rho_{u}-\phi_{\pi}}{1-\rho_{u}} \psi_{\pi}+1 \\
+& \Leftrightarrow \psi_{\pi}\left(1-\beta\rho_{u}-\kappa \frac{\rho_{u}-\phi_{\pi}}{1-\rho_{u}}\right)=1 \\
+& \pi_{t}=\frac{1-\rho_{u}}{\left(1-\beta\rho_{u}\right)\left(1-\rho_{u}\right)-\kappa\left(\rho_{u}-\varnothing_{\pi}\right)} u_{t} \\
+& x_{t}=\frac{\rho_{u}-\phi_{\pi}}{\left(1-\beta \rho_{u}\right)\left(1-\rho_{u}\right)-\kappa\left(\rho_{u}-\varnothing_{\pi}\right)} u_{t} \\
+& \operatorname{Var}\left(x_{t}\right)=\psi_{x}^{2} \operatorname{Var}\left(u_{t}\right) \\
+& \Rightarrow \frac{\partial \operatorname{Var}\left(x_{t}\right)}{\partial \phi_{\pi}}<0
+\end{aligned}
+$$
+
+Volatility increases, the weaker $C B$ reacts to $\pi_{t}$. Because divine coincidence is broken!
+
+\color{red} No (c) or (d)? \color{black}
+}
+{
+\item[(e)]
+
+$$
+\begin{aligned}
+\min _{\phi_{\pi}} L\left(\phi_{\pi}\right) &=\operatorname{Var}\left(\pi_{t}\right)+\vartheta \operatorname{Var}\left(x_{t}\right) \\
+& =\left(\psi_{\pi}^{2}+\vartheta \psi_{x}^{2}\right) \operatorname{Var}\left(u_{t}\right) 
+\end{aligned}
+$$
+%%% from here
+FOC:
+
+$$
+\begin{aligned}
+& 0 = 2 \psi_{\pi} \frac{\partial \psi_{\pi}}{\partial \phi_{\pi}}+2 \vartheta \psi_{x} \frac{\partial \psi_{x}}{\partial \phi_{\pi}} \\
+0=&\left(1-\rho_{u}\right)\left(-\left(1-\rho_{u}\right) \kappa \right) \\
+& +\vartheta\left(\rho_{u}-\phi_{\pi}\right)\left(\kappa\left(\rho_{u}-\phi_{\pi}\right)-\left(1-\beta\rho_{ u}\right)\left(1-\rho_{u}\right)-\left(\rho_{u}-\phi_{\pi}\right) \kappa\right) \\
+& \left(1-\rho_{u}\right)^{2} \kappa=-\vartheta\left(\rho_{u}-\phi_{\pi}\right)\left(1-\beta\rho_{u}\right)\left(1-\rho_{u}\right) \\
+& \rho_{u}-\phi_{\pi}=\frac{1-\rho_{u}}{1-\beta\rho_{u}} \frac{\kappa}{\vartheta} \\
+& \phi_{\pi}=\rho_{u}+\frac{\kappa}{\vartheta} \frac{1-\rho_{u}}{1-\beta\rho_{u}}
+\end{aligned}
+$$
+
+Note, that $\rho_{u}=0$ implies $\phi_{\pi}=\frac{\kappa}{\theta}$. 
+
+At the same time $\rho_{u}=1$ implies $\phi_\pi=1$.
+}
+\end{enumerate}
+}
