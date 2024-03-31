@@ -1,0 +1,159 @@
+\section{Macroeconomics Final 2018 / 19}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+False
+
+We showed in class that in this case, the optimal interest rate is zero. Together with the result of the representative consumer behaviour:
+
+$$
+\pi=i_{t}-\rho=-\rho
+$$
+
+I.e. constant deflation at rate $\rho$.
+}
+{
+\item 
+False
+
+We analyzed the following welfare loss:
+
+$$
+W=-\mathbb{E}_{0} \sum_{t=0}^{\infty} \beta^{t} \frac{U_{t}-U}{U_{c} C}
+$$
+
+And looked at a 2nd order Taylor approximation:
+
+$$
+W \approx \frac{1}{2} \mathbb{E}_{0} \sum_{t=0}^{\infty} \beta^{t}\left(-\Phi \hat{x}_{t}+\left(G+\frac{\varphi+\alpha}{1-\alpha}\right) \hat{x}_{t}^{2}+\frac{\varepsilon}{\lambda} \pi_{t}^{2}\right)+t . i . \rho \text {. }
+$$
+
+Note, that $\pi_{t}$ does enter the welfare loss such that $\pi_{t}=0$ would lead to minimal welfare losses.
+}
+{
+\item 
+True
+
+We have seen that with a distortional labour income tax, the divine coincidence breaks down. This means, inflation targeting is insufficient to stabilize outcome.
+
+More specifically in exercise 2, PS3, we found the following NKPC:
+
+$$
+\pi_{t}=\beta \mathbb{E}_{t}\left(\pi_{t+1}\right)+\lambda(1+\varphi) x_{t}+\lambda\left(\mu+\tau_{t}\right)
+$$
+}
+{
+\item 
+True.
+
+It is only attainable if the natural real wage does not change, i.e. is constant.
+}
+\end{enumerate}
+}
+{
+\subsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\max _{N_{t}}\left(P_{t}-1\right) N_{t}
+$$
+
+This implies
+
+$$
+N_{t}=\left\{\begin{array}{lll}
+\infty & \text { if } & P_{t} > 1 \\
+\mathbb{R}^{+} & \text { if } & P_{t}=1 \\
+0 & \text { if } & P_{t}<1
+\end{array}\right.
+$$
+
+Therefore, we may conclude that $P_{t}=1$, and the firm employs everyone that wants to work.
+}
+{
+\item 
+First, obtain labour supply by solving
+
+$$
+\begin{aligned}
+& \max \mathbb{E}_{0}\left[\sum_{t=0}^{\infty} \beta^{t}\left(C_{t}-\frac{N_{t}^{1+\varphi}}{1+\varphi}\right)\right] \\
+& \text { s.t. } 0=B_{t-1}+M_{t-1}+N_{t}-P_{t} C_{t}-Q_{t} B_{t}-M_{t}
+\end{aligned}
+$$
+
+Classic result from FOCs:
+
+$$
+\begin{aligned}
+& N_{t}^{\varphi}=\frac{W_{t}}{P_{t}}=1 \\
+\Rightarrow & N_{t}=1
+\end{aligned}
+$$
+
+Thus, labour supply is 1 , and this is the maximum that can be produced. Use CIA \& market clearing:
+
+$$
+G_{t}=Y_{t}=\frac{M_{t}}{Z_{t}}
+$$
+
+We conclude that:
+
+$$
+Y_{t}=\min \left\{\frac{M_{t}}{Z_t}, 1\right\}
+$$
+}
+{
+\item 
+The positive shock impacts the CIA constraint. Increase in money demanded per unit of consumption. If supply does not increase (e.g. because $N_{t}=1$ is hit), need to reduce consumption, and lower output.
+}
+{
+\item 
+Social planner problem:
+
+$$
+\begin{aligned}
+\max & \mathbb{E}_{0}\left[ \sum_{t=0}^{\infty} \beta^{t}\left(C_{t}-\frac{N_{t}^{1+\varphi}}{1+\varphi}\right)\right] \\
+\text { s.t. } & C_{t}=Y_{t}=N_{t}
+\end{aligned}
+$$
+
+Plug constraint into objective function:
+
+$$
+\max _{N_{t}} \mathbb{E}_{0}\left[\sum_{t=0}^{\infty} \beta^{t}\left(N_{t}-\frac{N_{t}^{1+\varphi}}{1+\varphi}\right)\right]
+$$
+
+FOC:
+
+$$
+1-N_{t}^{\varphi}=0 \Leftrightarrow N_{t}=1
+$$
+
+By production technology:
+
+$$
+Y_{t}^{e}=1
+$$
+
+Use $Y_{e}=1, P_{t}=1$ in CIA constraint:
+
+$$
+M_{t}=Z_{t}
+$$
+
+I.e. the money supply reacts to $Z_t$.
+}
+{
+\item 
+No. Both short- and long-run $Y_{t}=\min \left\{\frac{M_{t}}{Z_{t}}, 1\right\}$.
+
+Here, prices and wages are fixed, and there is a persistent effect of money on output.
+
+In NK model, both prices \& wages can be adjusted.
+}
+\end{enumerate}
+}

@@ -1,0 +1,205 @@
+\section{Macroeconomics Final 2021 / 22}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+False
+
+We saw, that the optimal monetary policy is $i_{t}=0 \quad \forall t$. Therefore, a constant deflation at rate $\rho$ would be optimal.
+}
+{
+\item 
+True
+
+We saw that the divine coincidence breaks down in this type of economy. Therefore, only targeting price inflation is not optimal.
+
+CB should also target wage inflation and/or output gap.
+}
+{
+\item 
+Uncertain
+
+The interest rate was set consistently too low compared to the Taylor rule, using current data. But when looking at the data, the Fed had at that point in time, the interest rate is very close to the behaviour predicted by the Taylor rule.
+}
+{
+\item 
+True
+
+In the short run, this is always the case. Note however that in the case of flexible prices \& sticky wages, price inflation will be lower (compared to baseline) after one period.
+}
+\end{enumerate}
+}
+{
+\subsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+Let the representative consumer solve
+
+$$
+\begin{aligned}
+\max _{C_t, N_{t}, B_{t}, M_{t}} & \mathbb{E}_{0}\left(\sum_{t=0}^{\infty} \beta^{t}\left(\ln \left(C_{t}\right)-V\left(N_{t}\right)\right) \xi_{t}\right) \\
+\text { s.t. } & P_{t} C_{t}+Q_{t} B_{t}+M_{t}=M_{t-1}+B_{t-1}+W_{t} N_{t}+P_{t} D_{t}+P_{t} T_t \\
+&M_{t}=\int P_{t}(i) C_{t}(i) d i \\
+&P_{t} C_{t}=\int P_{t}(i) C_{t}(i) d i
+\end{aligned}
+$$
+
+Then the Euler equation will be
+
+$$
+Q_{t}=\beta \mathbb{E}_{t}\left[\frac{U_{C, t+1}}{U_{C},t} \frac{P_{t}}{P_{t+1}}\right]=\beta \mathbb{E}_{t}\left[\frac{C_{t} \xi_{t}}{C_{t+1} \xi_{t+1}} \Pi_{t+1}^{-1}\right]
+$$
+
+Log-linearized using $Q_{t}=\exp \left(-i_{t}\right) ; \beta=\exp (-\rho)$ :
+
+$$
+\begin{aligned}
+c_{t} & =\mathbb{E}_{t}\left\{c_{t+1}\right\}-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-\rho\right)+\underbrace{\ln \left[\mathbb{E}_{t}\left\{\frac{\xi_{t+1}}{\xi_{t}}\right\}\right]}_{\equiv z_{t} \operatorname{iid}\left(0, \sigma_{z}^{2}\right)} \\
+\Leftrightarrow c_{t} & =\mathbb{E}_{t}\left\{c_{t+1}\right\}-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-\rho-z_{t}\right)
+\end{aligned}
+$$
+
+By market clearing: $c_{t} \stackrel{!}{=} y_{t}$
+
+Also let $\tilde{y}_{t}=y_{t} - y_{t}^{n}$, then
+
+$$
+\tilde{y}_{t}=\mathbb{E}_{t}\left\{\tilde{y}_{t+1}\right\}-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-r_{t}^n\right)
+$$
+
+where $r_{t}^{n}=\rho+z_{t}=\rho_{t}$
+
+Now $x=y_{t}-y_{t}^{e}=y_{t}-y_{t}^{n}-\left(y_{t}^{e}-y_{t}^{n}\right)$
+
+Assume that $y_{t}^{n}=y_{t}^{e}$, i.e. the natural output is efficient, then we end up with:
+
+$$
+x_{t}=\mathbb{E}_{t}\left\{x_{t+1}\right\}-\left(i_{t}-\mathbb{E}_{t}\left\{\pi_{t+1}\right\}-\rho-z_{t}\right)
+$$
+
+Also, one must assume that $E E$ can be log-linearized around SS, and that goods markets clear. Also, by $U(\cdot), \sigma=1$, and here $p_{t}$ is time-varying.
+}
+{
+\item 
+Plug policy into (1):
+
+\begin{equation*}
+    x_{t}=\mathbb{E}_{t}\left\{x_{t+1}\right\}-\left(\phi_{\pi} \pi_{t}-\mathbb{E}_{t}\left\{\pi_{t+1}\right\}-z_{t}\right) \tag{I}
+\end{equation*}
+
+Conjecture:
+
+$$
+\begin{aligned}
+& \pi_{t}=\delta_{\pi} z_{t}+\psi_{\pi} u_{t} \\
+& x_{t}=\delta_{x} z_{t}+\psi_{x} u_{t}
+\end{aligned}
+$$
+
+Conjectures into (I):
+
+\begin{align*}
+    \delta_{x} z_{t}+\psi_{x} u_{t} =&  \mathbb{E}_{t}\left\{\delta_{x} z_{t}+\psi_{x} u_{t}\right\} -\phi_{\pi}\left(\delta_{\pi} z_{t}+\psi_{\pi} u_{t}\right) \\
+    &+\mathbb{E}_{t} \left\{ \delta_{\pi} z_{t+1}+\psi_{\pi} u_{t+1}\right\}+z_{t} \\
+    =& -\phi_{\pi} \delta_{\pi} z_{t}-\phi_{\pi} \psi_{\pi} u_{t}+z_{t} \\
+    =&\left(1-\phi_{\pi} \delta_{\pi}\right) z_{t}-\phi_{\pi} \psi_{\pi} u_{t}
+\end{align*}
+
+Therefore we have the intermediate results:
+
+\begin{align*}
+    & \delta_{x}=1-\phi_{\pi} \delta_{\pi}  \tag{II}\\
+    & \psi_{x}=-\phi_{\pi} \psi_{\pi} \tag{III}
+\end{align*}
+
+Conjectures into (2):
+
+\begin{align*}
+\delta_{\pi} z_{t}+\psi_{\pi} u_{t} =& \beta \mathbb{E}_{t}\left\{ \delta_{\pi} z_{t+1}+\psi_{\pi} u_{t+1}\right\} + \kappa \left(\delta_{x} z_{t}+\psi_{x} u_{t}\right)+u_{t} \\
+=& \kappa \delta_{x} z_{t}+\left(\kappa \psi_{x}+1\right) u_{t}
+\end{align*}
+
+Achieve the following intermediate results:
+
+\begin{align*}
+    \delta_{\pi} &= \kappa \delta_{x} \tag{IV}\\
+    \psi_{\pi} &= \kappa \psi_{x}+1 \tag{V}
+\end{align*}
+
+Combine (II) \& (IV):
+
+$$
+\begin{aligned}
+& \delta_{\pi}=\kappa\left(1-\phi_{\pi} \delta_{\pi}\right)=\kappa-\kappa \phi_{\pi} \delta_{\pi} \\
+& \Leftrightarrow \quad \delta_{\pi}=\frac{\kappa}{1+\kappa \phi_{\pi}} \Rightarrow \delta_{x}=\frac{1}{1+\kappa \delta_{\pi}}
+\end{aligned}
+$$
+
+Combine (III) \& (V):
+
+$$
+\begin{aligned}
+\psi_{\pi} & =-\kappa \phi_{\pi} \psi_{\pi}+1 \\
+& \psi_{\pi}=\frac{1}{1+\kappa \phi_{\pi}} \Rightarrow \psi_{x}=\frac{-\phi_{\pi}}{1+\kappa \phi_{\pi}}
+\end{aligned}
+$$
+
+Therefore, the equilibrium behaviour is
+
+$$
+\begin{aligned}
+& \pi_{t}=\frac{\hat{\kappa}}{1+\kappa \phi_\pi} z_{t}+\frac{1}{1+\kappa \phi_\pi} u_{t} \\
+& x_{t}=\frac{1}{1+\kappa \phi_\pi} z_{t}+\frac{-\phi_{\pi}}{1+\kappa \phi_\pi} u_{t}
+\end{aligned}
+$$
+
+The welfare loss is then given by:
+
+$$
+\begin{aligned}
+L =& \operatorname{Var}\left(\frac{\kappa}{1+\kappa \phi_{\pi}} z_{t}+\frac{1}{1+\kappa \phi_{\pi}} u_{t}\right) + \vartheta \operatorname{Var}\left(\frac{1}{1+\kappa \phi_{\pi}} z_t +\frac{-\phi_{\pi}}{1+\kappa \phi_{\pi}} u_t \right) \\
+=& \left[\left(\frac{\kappa}{1+\kappa \phi_{\pi}}\right)^{2}+\vartheta\left(\frac{1}{1+\kappa \phi_{\pi}}\right)^{2}\right] \sigma_{z}^{2} +\left[\left(\frac{1}{1+\kappa \phi_{\pi}}\right)^{2}+\vartheta\left(\frac{\phi_\pi}{1+\kappa \phi_{\pi}}\right)^{2}\right] \sigma_{u}^{2} \\
+=& \frac{\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\left(1+\vartheta \phi_{\pi}^{2}\right) \sigma_{u}^{2}}{\left(1+\kappa \phi_{\pi}\right)^{2}}
+\end{aligned}
+$$
+}
+{
+\item 
+We solve
+
+$$
+\min _{\phi_{\pi}} \frac{\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\left(1+\vartheta \phi_{\pi}^{2}\right) \sigma_{u}^{2}}{\left(1+\kappa \phi_{\pi}\right)^{2}}
+$$
+
+FOC:
+
+\begin{align*}
+    0 &= \vartheta 2 \phi_{\pi} \sigma_{u}^{2}\left(1+\kappa \phi_{\pi}\right)^{2} -2\left(1+\kappa \phi_{\pi}\right) \kappa\left(\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\left(1+\vartheta \phi_{\pi}^{2}\right) \sigma_{u}^{2}\right) \\
+    0 &= \vartheta  \phi_{\pi} \sigma_{u}^{2}\left(1+\kappa \phi_{\pi}\right) -\kappa\left(\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\left(1+\vartheta \phi_{\pi}^{2}\right) \sigma_{u}^{2}\right)
+\end{align*}
+
+\begin{align*}
+    \vartheta  \phi_{\pi} \sigma_{u}^{2}\left(1+\kappa \phi_{\pi}\right) &= \kappa\left(\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\left(1+\vartheta \phi_{\pi}^{2}\right) \sigma_{u}^{2}\right) \\
+    \vartheta  \phi_{\pi} \sigma_{u}^{2}+\kappa \vartheta  \phi_{\pi}^2 \sigma_{u}^{2} &=  \kappa\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\kappa\sigma_{u}^{2}+\kappa\vartheta \phi_{\pi}^{2}\sigma_{u}^{2} \\
+    \vartheta  \phi_{\pi} \sigma_{u}^{2} &=  \kappa\left(\kappa^{2}+\vartheta\right) \sigma_{z}^{2}+\kappa\sigma_{u}^{2} \\
+    \phi_{\pi} &= \frac{\kappa}{\vartheta}\left[\left(\kappa^{2}+\vartheta\right) \frac{\sigma_{z}^{2}}{\sigma_u^{2}}+1\right]
+\end{align*}
+
+$$
+\begin{aligned}
+& \text { for } \sigma_{u}^{2} \longrightarrow 0: \phi_{\pi} \rightarrow \infty \\
+& \text { for } \sigma_{z}^{2} \longrightarrow 0: \phi_{\pi} \longrightarrow \frac{\kappa}{\vartheta}
+\end{aligned}
+$$
+
+Intuition: Cost-push shocks going to zero, means CB reacts only to real interest rate shocks.
+
+Since $\pi_{t}=i_{t}-\rho_{t}=i_{t}-\rho-z_{t}$, this means the CB reacts as hard as it con to changes in inflation. If interest rate shocks go to zero, the CB reacts to $u_{t}$ directly by (2), and also indirectly by the equilibrium behaviour from (b).
+
+\color{red}Don't really understand this tbh.\color{black}
+}
+\end{enumerate}
+}

@@ -1,0 +1,225 @@
+\section{Macroeconomics Final 2019 / 20}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+False.
+
+In this model $\Delta m=\pi$, i.e. the CB controls inflation by printing money only. Additionally, the social planner's problem yields $\pi_{t}=-r_{t-1}$. Therefore, as long as real interest is positive, money is not growing but declining.
+}
+{
+\item 
+False.
+
+Demand shocks do not matter, but cost-push shocks for example destroy the divine coincidence.
+
+Thus, the CB should also be targeting output gap.
+}
+{
+\item 
+True.
+
+In the model, output spikes at $t$ and goes back slowly. In reality, the output increases slowly \& stays at a higher level. Employment drops directly at $t$ both in the model and in the data. But the model predicts that it rises back to previous level and in the data employment settles at a higher level.
+}
+{
+\item 
+False.
+
+Inflation should move with output gap. But one should not define output gap as detrended GDP because the trend is not necessarily the natural output.
+}
+\end{enumerate}
+}
+\newpage
+{
+\subsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+(1) Derive optimal expenditure allocation
+
+$$
+\begin{aligned}
+& \min _{\{C_t(i)\}} \int_{0}^{1} P_{t}(i) C_{t}(i) d i \\
+& \text { s.t. }\left[\int_{0}^{1} C_{t}(i)^{1-1 / \varepsilon} d i\right]^{\frac{\varepsilon}{\varepsilon-1}}=C_{t} \\
+\Rightarrow &\int_{0}^{1} P_{t}(i) C_{t}(i) d i=P_{t} C_{t}
+\end{aligned}
+$$
+
+(2) Solve consumer's problem:
+
+\begin{align*}
+    \max &\:\mathbb{E}_{0}\left\{\sum_{t=0}^{\infty} \beta^{t}\left(\ln \left(C_{t}\right)-N_{t}\right) Z_{t}\right\}
+    \text{ where } C_{t} = \left[ \int_{0}^{1} C_{t}(i)^{1-\frac{i}{\varepsilon}} d i \right]^{ \frac{\varepsilon}{\varepsilon-1} } 
+    \text{ , } \varepsilon>1 \\
+    \text{s.t. } & P_{t} C_{t}+Q_{t} B_{t}+M_{t} \leq B_{t-1}+M_{t-1}+W_{t} N_{t}(1+\tau)+P_{t} D_{t}-P_{t} T_{t}
+\end{align*}
+
+Optimality Conditions:
+
+$$
+\begin{aligned}
+-\frac{U_{n, t}}{U_{c, t}}=C_{t} & =\frac{W_{t}}{P_{t}}(1+\tau) \\
+Q_{t}=\beta \mathbb{E}_{t}\left[\frac{U_{c, t+1}}{U_{c t}} \frac{P_{t}}{P_{t+1}}\right] & =\beta \mathbb{E}_{t}\left[\frac{C_{t}}{C_{t+1}} \frac{Z_{t+1}}{Z_{t}} \frac{P_{t}}{P_{t+1}}\right] \\
+M_{t} & =P_{t} C_{t}
+\end{aligned}
+$$
+
+Log-linearize the optimality conditions and recall that $Q_{t}=\exp \left(-i_{t}\right)$ and $\beta=\exp (-\rho)$:
+
+$$
+\begin{gathered}
+w_{t}-p_{t}=c_{t}-\ln (1+\tau) \\
+c_{t}=\mathbb{E}_{t}\left(c_{t+1}\right)-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-\rho\right)-\mathbb{E}_{t}\left(z_{t+1}\right)+z_{t} \\
+m_{t}=p_{t}+c_{t}
+\end{gathered}
+$$
+}
+{
+\item 
+Markup:
+
+\begin{align*}
+    \mu_{t}&=p_{t}-w_{t}+a_{t} \text{ (because CRS)} \\
+    &=\tau-y_{t}+a_{t}
+\end{align*}
+
+Under flexible prices:
+
+$$
+\begin{aligned}
+\mu &= \tau-y_{t}^{n}+a_{t} \\
+\Leftrightarrow y_{t}^{n} &= \tau-\mu+a_{t} \quad \text { (natural output) } \\
+\Leftrightarrow n_{t}^{n} &= y_{t}^{n}-a_{t}=\tau-\mu \quad \text { (natural employment) }
+\end{aligned}
+$$
+
+Social planner's problem:
+
+$$
+\begin{aligned}
+& \max \left(\ln \left(C_{t}\right)-N_{t}\right) Z_{t} \\
+& \text { s.t. } C_{t}=A_{t} N_{t} \\
+\Longrightarrow & \max_{N_t} \left(\ln \left(A_{t} N_{t}\right)-N_{t}\right) Z_{t}
+\end{aligned} 
+$$
+
+FOC:
+
+$$
+\frac{1}{N_{t}}-1=0 \Leftrightarrow N_{t}=1
+$$
+
+As a result:
+
+\begin{align*}
+    y_{t}^{e} &= a_{t} \quad \text{ (efficient output)} \\
+    n_{t}^{e} &= 0 \quad \text{ (efficient employment)}
+\end{align*}
+}
+{
+\item 
+\underline{Dynamic IS:}
+
+$\begin{array}{ll}c_{t}=\mathbb{E}_{t}\left(c_{t+1}\right)-\left(i_{t}-\mathbb{E}_{t}\left(\pi_{t+1}\right)-\rho\right)-\mathbb{E}_{t}\left(z_{t+1}\right)+z_{t} & \text { (Euler Equ) } \\ c_{t}=y_{t} & \text { (market) } \\ z_{t+1}=\rho z_{t}+\nu_{t+1} & \text { (AR(1)) } \end{array}$
+
+\begin{align*}
+    y_{t} &= \mathbb{E} \left( y_{t+1} \right) - \left(i_{t}-\mathbb{E}\left(\pi_{t+1}\right)-\rho\right)+\left(1-\rho_{z}\right) z_{t} \\
+    y_{t}-y_{t}^{n} &= \mathbb{E} \left( y_{t+1} \right) - \left(i_{t}-\mathbb{E}\left(\pi_{t+1}\right)-\rho\right)+\left(1-p_{z}\right) z_{t}-y_{t}^{n}+\mathbb{E}\left(y_{t+1}^n-y_{t+1}^n\right) \\
+    \tilde{y}_{t} &= \mathbb{E} \left( \tilde{y}_{t+1} \right) - \left( i_{t} - \mathbb{E} \left(\pi_{t+1}\right)-\rho \right)+\left(1-\rho_{z}\right) z_{t}+\mathbb{E}\left(\Delta y_{t+1}^{n}\right) \\
+    \tilde{y}_{t} &= \mathbb{E} \left( \tilde{y}_{t+1} \right)-\left( i_{t}-\mathbb{E}\left(\pi_{t+1}\right)-\rho\right)+\left(1-\rho_{z}\right) z_{t}-\left(1-\rho_{a}\right) a_{t} \text{ (DIS)}
+\end{align*}
+
+\underline{NKPC:}
+
+Firms: 
+
+\begin{align*}
+    Y_{t}(i)=A_{t} N_{t} \quad \text{ (technology CRS)} \\
+    \psi_{t}(i)=w_{t}-a_{t}\quad \text{ (marginal cost)}
+\end{align*}
+
+Firms can reset prices every period with probability $(1-\theta)$. The following price level dynamics emerge:
+
+\begin{align*}
+P_{t} & =\left[\int_{0}^{1} P_{t}(i)^{1-\varepsilon} d i\right]^{\frac{1}{1-\varepsilon}} \\
+& =\left[\theta P_{t-1}^{1-\varepsilon}+(1-\theta)\left(P_{t}^{*}\right)^{1-\varepsilon}\right]^{\frac{1}{1-\varepsilon}} \tag{1}
+\end{align*}
+
+In SS: $P_{t}=P_{t-1}=P_{t}^{*}$
+
+Thus log-lin around SS of (1):
+
+$$
+p_{t}=\theta p_{t-1}+(1-\theta) p_{t}^{*}
+$$
+
+Optimal price setting:
+
+$$
+\begin{aligned}
+& \max _{P_{t}^{*}} \sum_{t=0}^{\infty} \theta^{k} \mathbb{E}_{t}\left[\Lambda_{t, t+k} \frac{1}{P_{t+k}}\left(P_{t}^{*} Y_{t+k|t}-C_{t+k}\left(Y_{t+k | t}\right)\right)\right] \\
+& \text { s.t. } \quad Y_{t+k| t}=\left(\frac{P_{t}^{*}}{P_{t+k}}\right)^{-\varepsilon} Y_{t+k}
+\end{aligned}
+$$
+
+Optimality condition:
+
+$$
+\begin{gathered}
+\sum_{k=0}^{\infty} \theta^{k} \mathbb{E}_{t}\left[\Lambda_{t+t|k} Y_{t+k \mid t} \frac{1}{P_{t+k}}\left(P_{t}^{*}-M \psi_{t+k |t}\right)\right]=0
+\end{gathered}
+$$
+
+log-linearize the result:
+
+$$
+\begin{aligned}
+p_{t}^{*}&=\mu+(1-\beta \theta) \sum_{k=0}^{\infty}(\beta \theta)^{k} \mathbb{E}_{t}\left(\psi_{t+k |t}\right) \\
+&\vdots \\
+p_{t}^{*}&=\beta \theta \mathbb{E}_{t}\left(p_{t+1}^{*}\right)+(1-\beta \theta) p_{t}-(1-\beta \theta)\left(\mu_{t}-\mu\right) \\
+p_{t}-\theta p_{t-1}&=(1-\theta)\left[\beta \theta \mathbb{E}_{t}\left(p_{t+1}^{*}\right)+(1-\beta \theta) p_{t}-(1-\beta \theta)\left(\mu_{t}-\mu\right)\right]  \\
+\theta p_{t}+(1-\theta) p_{t}-\theta p_{t-1}&=(1-\theta)\left[\beta \theta \mathbb{E}_{t}\left(p_{t+1}^{*}\right)+(1-\beta \theta) p_{t}-(1-\beta \theta)\left(\mu_{t}-\mu\right)\right]  \\
+\theta\left(p_{t}-p_{t-1}\right)&=(1-\theta)\left[\beta \theta \mathbb{E}_{t}\left(p_{t+1}^{*}\right)-\beta \theta p_{t}-(1-\beta \theta)\left(\mu_{t}-\mu\right)\right] \\
+\pi_{t}&=(1-\theta) \beta \mathbb{E}_{t}\left(p_{t+1}^{*}\right)-(1-\theta) \beta p_{t}-\frac{(1-\beta \theta)(1-\theta)}{\theta}\left(\mu_{t}-\mu\right)
+\end{aligned}
+$$
+
+Note: $(1-\theta)$ is the part of firms that change prices. This determines inflation:
+
+\color{red} I think, starting here would have been fine as well: \color{black}
+
+\begin{align*}
+& \pi_{t}=\beta \mathbb{E}_{t}\left(\pi_{t+1}\right)-\frac{(1-\beta \theta)(1-\theta)}{\theta}\left(\mu_{t}-\mu\right)  \tag{2}\\
+& \mu_{t}=\ln (1+\tau)-y_{t}-a_{t} \\
+& \mu=\ln (1+\tau)-y_{t}^{n}-a_{t} \\
+\Rightarrow & \mu_{t}-\mu=-\tilde{y}_{t}  \tag{3}
+\end{align*}
+
+Combine (2) \& (3):
+
+$$
+\pi_{t}=\beta \mathbb{E}_{t}\left(\pi_{t+1}\right)+\frac{(1-\beta \theta)(1-\theta)}{\theta} \tilde{y}_{t} \quad(N K P C)
+$$
+}
+{
+\item 
+$r_{t}^{n}=\rho-\left(1-\rho_{z}\right) z_{t}+\left(1-\rho_{a}\right) a_{t}$ directly from DIS
+}
+{
+\item 
+This implies $y_{t}^{n}=y_{t}^{e}$. Thus $\tilde{y}_{t}$ is the welfare relevant output gap. Make $\tilde{y}=0$ to minimize welfare losses. Using this in DIS \& NKPC:
+
+$$
+\begin{aligned}
+i_{t} & =\mathbb{E}\left(\pi_{t+1}\right)+\rho+\left(1-\rho_{z}\right) z_{t}-\left(1-\rho_{a}\right) a_{t} \\
+\pi_{t} & =\beta \mathbb{E}_{t}\left(\pi_{t+1}\right) \\
+\longrightarrow \quad & i_t=\beta^{-1} \pi_{t}+\rho+\left(1-\rho_{z}\right) z_{t}-\left(1-\rho_{a}\right) a_{t} \\
+& =\phi_{\pi} \pi_{t}+r_{t}^{n} \quad \text { with } \phi_{\pi}>1 \text { as in lecture } \\
+n_{t} & =0 ; \quad y_{t}=a_{t} \longrightarrow \tilde{y}_{t}=0
+\end{aligned}
+$$
+}
+\end{enumerate}
+}

@@ -1,0 +1,112 @@
+\section{Macroeconomics Final 2017 / 18}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\arabic*)]
+{
+\item 
+$u_{t}$ is what we call a cost-push-shock, and it is exogenous. Say cost increases due to an unpredictable shock (e.g. Covid).
+All else equal, $p_{t}$ increases \& thus inflation increases.
+
+Usually: $u_{t}=\left(\hat{y}_{t}^{e}-\hat{y}_{t}^{n}\right) \kappa$
+
+Divine coincidence is broken due to $u_{t}$ influencing $\pi_{t}$ independently of output.
+}
+{
+\item 
+In class we found that
+
+$$
+r_{t}^{e}=\rho+\sigma \mathbb{E}_{t}\left(y_{t+1}^{e}-y_{t}^{e}\right)=\rho+\mathbb{E}_{t}\left(y_{t+1}^{e}-y_{t}^{e}\right)
+$$
+
+Therefore, we conclude that $\varepsilon_{t}$ is the expected change in the efficient output. 
+Since $\mathbb{E} \left( \varepsilon_{t} \right) = 0$, we have that $y_t^e$ is also white noise. 
+Additionally, $\varepsilon_t$ captures anything that influences the efficient output.
+}
+{
+\item 
+Conjecture: 
+
+$$
+\begin{aligned}
+\pi_{t}=\psi_{\pi} u_{t}+\delta_{\pi} \varepsilon_{t} \\
+x_{t}=\psi_{x} u_{t}+\delta_{x} \varepsilon_{t}
+\end{aligned}
+$$
+
+Plug conjectures in:
+
+$$
+\begin{aligned}
+\psi_{\pi} u_{t}+\delta_{\pi} \varepsilon_{t} & =\beta \cdot 0+\kappa\left(\psi_{x} u_{t}+\delta_{x} \varepsilon_{t}\right)+u_{t} \\
+& =\left(\kappa \psi_{x}+1\right) u_{t}+\kappa \delta_{x} \varepsilon_{t} \\
+\psi_{x} u_{t}+\delta_{x} \varepsilon_{t} & =0-\left(\phi_{\pi}\left(\psi_{\pi} u_{t}+\delta_{\pi} \varepsilon_{t}\right)-0-\varepsilon_{t}\right) \\
+& =-\phi_{\pi} \psi_{\pi} u_{t}+\left(-\phi_{\pi} \delta_{\pi}+1\right) \varepsilon_{t}
+\end{aligned}
+$$
+
+Therefore:
+
+$$
+\begin{aligned}
+\psi_{\pi} &= \kappa \psi_{x}+1 \\
+\psi_{x} &= -\phi_{\pi} \psi_{\pi} \\
+\Longrightarrow 
+\left(\psi_{\pi}, \psi_{x}\right) &= \left(\frac{1}{1+\kappa \phi_{\pi}}, \frac{-\phi_{\pi}}{1+\kappa \phi_{\pi}}\right)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\delta_{\pi} &= \kappa \delta_{x} \\
+\delta_{x} &= -\phi_{\pi} \delta_{\pi}+1 \\
+\Longrightarrow 
+\left(\delta_{\pi}, \delta_{x}\right) &= \left(\frac{\kappa}{1+\kappa \phi_{\pi}}, \frac{1}{1+\kappa \phi_{\pi}}\right)
+\end{aligned}
+$$
+
+Together, we obtain that:
+
+$$
+\begin{aligned}
+& \pi_{t}=\frac{1}{1+\kappa \phi_{\pi}} u_{t}+\frac{\kappa}{1+\kappa \phi_{\pi}} \varepsilon_{t} \\
+& x_{t}=\frac{-\phi_{\pi}}{1+\kappa \phi_{\pi}} u_{t}+\frac{1}{1+\kappa \phi_{\pi}} \varepsilon_{t}
+\end{aligned}
+$$
+}
+{
+\item 
+\begin{align*}
+    \min _{\phi_{\pi}}& \operatorname{Var}\left(x_{t}\right)+\vartheta \operatorname{Var}\left(\pi_{t}\right) \\
+    \min _{\phi_{\pi}}& \left[\left(\frac{-\phi_{\pi}}{1+\kappa \phi_{\pi}}\right)^{2}+\left(\frac{1}{1+\kappa \phi_{\pi}}\right)^{2} \vartheta\right] \sigma_{u}^{2} +\left[\left(\frac{-1}{1+\kappa \phi_{\pi}}\right)^{2}+\left(\frac{-\kappa}{1+\kappa \phi_{\pi}}\right)^{2} v\right] \sigma_{\varepsilon}^{2} \\
+    \min _{\phi_{\pi}}& \frac{1}{\left(1+\kappa \phi_{\pi}\right)^{2}}\left[\left(\phi_{\pi}^{2}+\vartheta\right) \sigma_u^{2} +\left(1+\kappa^{2} \vartheta\right) \sigma_{\varepsilon}^{2}\right]
+\end{align*}
+
+FOC:
+
+\begin{align*}
+    & 2 \phi_\pi \sigma_u^2\left(1+\kappa \phi_\pi\right)^2 -2\left(1+\kappa \phi_\pi\right) \kappa \left[\left(\phi_\pi^2+\vartheta\right) \sigma_u^2+\left(1+\kappa^2 \vartheta\right) \sigma_{\varepsilon}^2\right]=0 \\
+    & \Longleftrightarrow \phi_\pi+\kappa \phi_\pi^2=\kappa \phi_\pi^2+\vartheta \kappa+\left(1+\kappa^2 \vartheta\right)\frac{\sigma_{\varepsilon}^2}{\sigma_u^2} \kappa \\
+    & \Longleftrightarrow \phi_\pi= \vartheta\kappa+\kappa\left(1+\kappa^2 \vartheta\right) \frac{\sigma_\varepsilon^2}{\sigma_u^2}
+\end{align*}
+
+As cost-push-shocks become arbitrarily small ( $\sigma^{2}_u \rightarrow 0$ ) $\phi_\pi$ explodes since reacting to inflation is more and more important. This means inflation stabilization would be sufficient to stabilize output, i.e. the divine coincidence would work again.
+}
+{
+\item 
+Flexible prices: $\mu_{t}=\mu \quad \forall t$ and $x_{t}=0 \quad \forall t$
+
+$$
+\begin{aligned}
+\longrightarrow & \pi_{t}=\beta \mathbb{E}_{t}\left(\pi_{t+1}\right)+u_{t} ; \mathbb{E}_{t}\left(\pi_{t+1}\right)=\phi_{\pi} \pi_{t}-\varepsilon_{t} \\
+\longrightarrow & \pi_{t}=\beta \phi_{\pi} \pi_{t}-\beta \varepsilon_{t}+u_{t} \\
+& \pi_{t}=\frac{1}{1-\beta \phi_{\pi}} v_{t}-\frac{\beta}{1-\beta \phi_{\pi}} \varepsilon_{t}
+\end{aligned}
+$$
+
+\color{red} Nope. Forget monetary policy, solve model. Plug in Taylor-rule etc. \color{black}
+}
+\end{enumerate}
+}

@@ -1,0 +1,161 @@
+\section{Macroeconomics Final 2020 / 21}
+
+{
+\subsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+False
+
+Expansionary shock lowers the interest rate, and increases the output. But as the labour supply is defined as
+
+$$
+w_{t}-p_{t}=\sigma c_{t}+n_{t} \text{ and } c_{t}=y_{t}
+$$
+
+Higher $y_t$ leads to higher real wages.
+}
+{
+\item 
+True
+
+Inflation targeting is optimal when wages are flexible as this stabilized output at the same time by the "divine coincidence". Under sticky wages, this breaks down \& the central bank should also aim to stabilize output (\$ unemployment).
+}
+{
+\item 
+ False \color{red}?\color{black}
+
+In the classical model, prices react to money growth more than 1:1. 
+While prices react much less to money growth, as they are sticky, they still react, albeit to a lesser degree.
+}
+{
+\item 
+False
+
+Because some firms are not able to adjust their prices, the inflation from last period is somewhat predictive for current inflation.
+}
+\end{enumerate}
+}
+{
+\subsection*{Exercise 2}
+
+Market clearing: 
+
+\begin{align*}
+    Y_{t} &= C_{t}+\gamma_{t} Y_{t} \\
+    \Leftrightarrow Y_{t} &= \frac{1}{1-\gamma_{t}} C_{t}=F_{t} C_{t} \\
+    y_{t} &= f_{t} + c_{t}
+\end{align*}
+
+HH optimality:
+
+\begin{align*}
+    N_{t} C_{t} &= \frac{W_{t}}{P_{t}} \\
+    \Longrightarrow n_{t}+c_{t} &= w_{t}-p_{t} \\
+    Q_{t} &= \beta \mathbb{E}_{t}\left\{\frac{C_{t}}{C_{t+1}} \frac{P_{t}}{P_{t+1}}\right\} \\
+    \Rightarrow \dot{i}_{t} &= \beta+\mathbb{E}_{t}\left(c_{t+1}\right)-c_{t}+\mathbb{E}\left(\pi_{t+1}\right)
+\end{align*}
+
+Firms: 
+
+\begin{align*}
+    P_{t} &= \psi_{t} M_{t}=W_{t} M_{t} \\
+    \Rightarrow p_{t} &= \mu_{t}+w_{t}
+\end{align*}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$\mu$ is constant:
+
+$$
+\begin{aligned}
+\mu & =p_{t}-w_{t}=-\left(n_{t}+c_{t}\right) \\
+& =-\left(y_{t}+y_{t}-f_{t}\right)=f_{t}-2 y_{t} \\
+\longrightarrow y_{t}^{n} & =\frac{1}{2}\left(f_{t}-\mu\right)
+\end{aligned}
+$$
+
+Since $y^{n}_t$ rises in $f_{t}$, we conclude that $\gamma_{t}$ increases output. Note, that the increase is not $1: 1$ as $g_t$ crowds out some of the consumption.
+}
+{
+\item 
+By market clearing:
+
+$$
+Y_{t}=G_{t}+C_{t}=F_{t} C_{t} \quad \text { (since } G_{t}=\gamma_{t} Y_{t} \text { ) }
+$$
+
+In logs:
+
+\begin{equation*}
+y_{t}=f_{t}+c_t \tag{1}
+\end{equation*}
+
+Need to find DIS. Stat with EE, plug in $c_t$ from (1):
+
+$$
+\begin{aligned}
+& \underbrace{i_{t}}_{=\rho+\phi_{y}\hat{y}_t}=\rho+\mathbb{E}_{t}\left(c_{t+1}\right)-c_{t}+\underbrace{\mathbb{E}\left(\pi_{t+1}\right)}_{=0 \text{ by const. prices}} \\
+& y_t-f_{t}=\mathbb{E}_{t}\left(y_{t+1}-f_{t+1}\right)-\phi_{y} \hat{y}_t
+\end{aligned}
+$$
+
+Express in deviations from SS. By $\gamma_t \sim iid(\gamma)$, the expected deviation from SS is zero.
+
+$$
+\begin{aligned}
+& \hat{y}_{t}=\mathbb{E}_{t}\left(\hat{y}_{t+1}\right)+\hat{f}_{t}-\phi_{y} \hat{y}_{t} \\
+& \hat{y}_{t}=\frac{1}{1+\phi_{y}}\left(\mathbb{E}_{t}\left(\hat{y}_{t+1}\right)+\hat{f}_{t}\right)
+\end{aligned}
+$$
+
+Now, iterate forward, using $\mathbb{E}_{t}\left(\hat{f}_{t+1}\right)=0$ :
+
+$$
+\begin{aligned}
+    \mathbb{E}_{t} \left(\hat{y}_{t+1}\right) &= \frac{1}{1+\phi_{y}} \mathbb{E}_{t}\left(\hat{y}_{t+2}\right) \\
+    &\vdots \\
+    \mathbb{E}_{t}\left(\hat{y}_{t+1}\right) &= \left(\frac{1}{1+\phi_{y}}\right)^{j} \mathbb{E}_{t}\left(\hat{y}_{t+j+1}\right) \xrightarrow{j \rightarrow \infty} 0
+\end{aligned}
+$$
+
+Thus, we are left with
+
+$$
+\hat{y}_{t}=\frac{1}{1+\phi_{y}} \hat{f}_{t}
+$$
+
+Channel: Increase in aggregate demand for goods which is met by increased production.
+}
+{
+\item 
+Generally:
+
+$$
+\frac{d Y_{t}}{d G_{t}}=\frac{d Y_{t} / d \gamma_{t}}{d G_{t} / d \gamma_{t}}=\frac{d Y_{t} / d \gamma_{t}}{d\left(\gamma_{t} Y_{t}\right) / d \gamma_{t}}=\frac{d Y_{t} / d \gamma_{t}}{Y_{t}+\gamma_{t} \left( d Y_{t} / d \gamma_{t}\right)}
+$$
+
+In (a):
+
+$$
+\begin{aligned}
+& y_{t}^{n}=\frac{1}{2}\left(f_{t}-\mu\right) \Rightarrow y_{t}^{n}=\left[F_{t} M\right]^{1 / 2}=\left(1-\gamma_{t}\right)^{-1 / 2} M^{1 / 2} \\
+& d Y_{t} / d \gamma_{t}=-\frac{1}{2}\left(1-\gamma_{t}\right)^{-3 / 2}(-1) M^{1 / 2}=\frac{Y_{t}^{n}}{2\left(1-\gamma_{t}\right)} \\
+& \Rightarrow \frac{d Y_{t}}{d G_{t}}=\frac{Y_{t}^{n}}{2\left(1-\gamma_{t}\right) Y_{t}^{n}+Y_{t}^{n} \gamma_{t}}=\frac{1}{2-\gamma_{t}}
+\end{aligned}
+$$
+
+In (b):
+
+$$
+d Y_{t} / d \gamma_{t}=Y \frac{d y_{t}}{d f_{t}} \frac{d f_{t}}{d \gamma_{t}}=Y \frac{1}{1+\phi_{y}} \frac{1}{1-\gamma}=\frac{1}{1+\phi_{y}(1-\gamma)}
+$$
+}
+{
+\item 
+In (a) mandatory policy is neutral (no effect of $\phi_{y}$ on $Y_{t}^{n}$).
+
+In (b), if monetary policy is more countercyclical ($\phi_{y}$ bigger), the spending multiplier is smaller. Reason: effect of government spending is partly offset by the rise in the interest rate.
+}
+\end{enumerate}
+}
