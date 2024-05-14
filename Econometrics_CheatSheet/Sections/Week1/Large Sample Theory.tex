@@ -1,0 +1,91 @@
+\section{Large Sample Theory}
+
+$X_n \stackrel{a s}{\longrightarrow} X \text { if } P \left\{\omega | \lim _{n \rightarrow \infty} X_n(\omega)=X(\omega)\right\}=1$
+
+$X_n \stackrel{p}{\longrightarrow} X \text { if } \forall \varepsilon>0, \lim\limits_{n\rightarrow \infty} \mathbb{P}(|X_n-X|\geq\varepsilon)=0$
+
+$X_n \stackrel{ms}{\longrightarrow} X \text { if } \lim\limits_{n\rightarrow \infty} \mathbb{E}\left[(X_n - X)^2\right]=0$
+
+$X_n \stackrel{d}{\rightarrow} X \text { if } \lim _{n \rightarrow \infty} F_{X_n}(x)=F_X(x)$
+
+\paragraph{Relationship between convergences}
+
+\begin{itemize}
+    \item If $X_n \stackrel{a.s.}{\longrightarrow} X$ then $X_n \stackrel{p}{\longrightarrow} X$
+    \item If $X_n \stackrel{ms}{\longrightarrow} X$ then $X_n \stackrel{p}{\longrightarrow} X$
+    \item If $X_n \stackrel{p}{\longrightarrow} X$ then $X_n \stackrel{d}{\longrightarrow} X$
+\end{itemize}
+
+\paragraph{Slutsky's Theorem}
+
+If \\
+
+$X_n \xrightarrow[]{% above
+		\substack{D}
+	} X \in \mathbb{R}^k, \qquad \text{where $X$ can be random}$
+
+$Y_n \xrightarrow[]{% above
+		\substack{P}
+	} A \in \mathbb{R}^p, \qquad \text{where $A$ is fixed}$
+
+$Z_n \xrightarrow[]{% above
+		\substack{P}
+	} B \in \mathbb{R}^{p \times k}, \qquad \text{where $B$ is fixed}$
+
+Then, $Y_n + Z_n X_n \xrightarrow[]{% above
+		\substack{D}
+	} A + BX$
+
+% \paragraph{Continuous Mapping Theorem}
+
+% \begin{align*}
+% 	X_n \xrightarrow[]{% above
+% 		\substack{\text{a.s.}\\P\\D}
+% 	} X \Rightarrow
+% 	g(X_n) \xrightarrow[]{% above
+% 		\substack{\text{a.s.}\\P\\D}
+% 	} g(X) 
+% \end{align*}
+
+\subsection{Law of Large Numbers}
+
+\paragraph{The sample mean}
+
+By LLN: $\Bar{X} \stackrel{a}{\sim} N\left( \mu, \frac{\sigma^2}{n} \right)$
+
+\paragraph{weak LLN}
+
+Let $X_1, X_2, \dots$ be a sequence of random variables with $\mathbb{E}(X_i) = \mu$, and $\text{Var}(X_i)=\sigma^2$, and $\text{Cov}(X_i, X_j)=0 \: \forall i\neq j$. Then one can use Chebyshev to show that:
+
+\begin{align*}
+    \Bar{X} \stackrel{p}{\longrightarrow} \mu
+\end{align*}
+
+\paragraph{strong LLN}
+
+Let $X_1, X_2, \dots$ be $i.i.d.$ with $\mathbb{E}(X_i) = \mu < \infty$, then without saying anything about \nth{2} moments:
+
+\begin{align*}
+    \Bar{X} \stackrel{a.s.}{\longrightarrow} \mu
+\end{align*}
+
+\subsection{Central Limit Theorem}
+Let $Y_1,Y_2,...$ be a sequence of $k$-dimensional i.i.d. random vectors with $E[Y_i]=\mu_Y$ and $Var(Y_i) = \Sigma$.
+
+\begin{align*}
+	\sqrt{n} \Sigma^{-\frac{1}{2}}(\bar{Y}_n- \mu) &\xrightarrow[]{% above
+		\substack{d}
+	} N(0,I_k) \\
+	\lim\limits_{n \rightarrow \infty} P (\sqrt{n}\Sigma^{-\frac{1}{2}}(\bar{Y}_n - \mu) \leq y) &= \Phi_k(y), \qquad \forall y \in \mathbb{R}^k
+\end{align*}
+
+\paragraph{Delta Method}
+
+Let $U_n$ denote a sequence of scalar random variables, and let $V_n = \sqrt{n}(U_n)-a$, where $a$ is a constant.
+Let $g(\cdot)$ be a continuously differentiable function. Suppose $V_n \stackrel{p}{\longrightarrow} V \sim N(\mu, \sigma^2)$. Then
+
+\begin{align*}
+    \sqrt{n}\left(g\left(U_n\right)-g(a)\right) &\Rightarrow \frac{d g(a)}{d a} V \sim N \left(0,\left[\frac{d g(a)}{d a}\right]^2 \sigma^2\right) \\
+	\sqrt{n}\left(g\left(U_n\right)-g(a)\right) & \\
+	\Rightarrow \frac{d g(a)}{d a} V &\sim N \left(0,\left[\frac{d g(a)}{d a}\right] \Sigma\left[\frac{d g(a)}{d a}\right],\right)
+\end{align*}

@@ -1,0 +1,71 @@
+\section{The Functional Central Limit}
+
+\subsection{Wiener Process}
+
+$W(s)$ defined on $s\in[0,1]$. 
+
+We have $W(0)=0$.
+
+$W\left(t_i\right)-W\left(t_{i-1}\right) \sim \mathbb{N}\left(0, t_i-t_{i-1}\right)$ are all iid.
+
+Thus: $W(1) \sim N(0,1)$. And realizations of $W(s)$ are continuous with probability $1$.
+
+Suppose $\varepsilon_t \stackrel{\text{iid}}{\sim}N(0,1)$, and $\xi_T(t / T)=\frac{1}{\sqrt{T}} \sum_{i=1}^t \varepsilon_i$ is linear interpolation between the points.
+
+\subsubsection{Theorem 1 (Weak Convergence of random functions on $C[0,1]$)}
+
+Function cannot go too crazy as $T$ grows and at the origin.
+
+\subsubsection{Theorem 2 (CMT)}
+
+\begin{align*}
+    g: C[0,1] \rightarrow \mathbb{R} &\text{ and } \xi_T(.) \Rightarrow \xi(.) \\
+    g\left(\xi_T\right) &\Rightarrow g(\xi)
+\end{align*}
+
+\subsubsection{Theorem 3 (Functional CLT)}
+
+Suppose $\varepsilon_t$ is a MDS with $\sigma^2_\varepsilon$ and bounded $2+\delta$ moments.
+Then any function $\xi_T(s)$ that linearly interpolates between the points $\xi(t/T) = \frac{1}{\sqrt{T}}\sum\limits_{i=1}^t \varepsilon_i(t/T)$ converges in distribution to a Wiener process:
+
+\begin{align*}
+    \xi_T &\Rightarrow \sigma_\varepsilon W \\
+    \nu_T &=\frac{1}{T^{3 / 2}} \sum_{t=1}^T x_t=\frac{1}{T} \sum_{t=1}^T\left[\frac{1}{T^{1 / 2}} \sum_{i=1}^t \varepsilon_i\right] \\
+    &=\sigma_{\varepsilon} \int_0^1 \xi_T(s) d s \Rightarrow \sigma_{\varepsilon} \int_0^1 W(s) d s=\nu
+\end{align*}
+
+\subsection{Application: Testing for a break}
+
+Null and alternative: $H_0: \delta=0$ vs. $H_a: \delta \neq 0$
+
+\begin{align*}
+    y_t&=\beta_t+\varepsilon_t \text {, where } \varepsilon_t \sim i i d\left(0, \sigma_{\varepsilon}^2\right) \\
+    \beta_t&=
+    \left\{\begin{array}{c}
+    \beta \text { for } t \leq \tau \\
+    \beta+\delta \text { for } t>\tau
+    \end{array}\right.
+\end{align*}
+
+\subsubsection{Chow Test (known break)}
+
+\begin{align*}
+    \hat{\delta}&=\bar{Y}_2-\bar{Y}_1 \\
+    \bar{Y}_1&=\frac{1}{\tau} \sum_{t=1}^\tau y_t \text { and } \bar{Y}_2=\frac{1}{T-\tau} \sum_{t=\tau+1}^T y_t \\
+    \hat{\delta} &\stackrel{a}{\sim} \mathbb{N}\left(\delta, \sigma_{\varepsilon}^2\left(\frac{1}{\tau}+\frac{1}{T-\tau}\right)\right) \\
+    \xi_W&=\frac{1}{\hat{\sigma}_{\varepsilon}^2} \frac{\widehat{\delta}^2}{\left(\frac{1}{\tau}+\frac{1}{T-\tau}\right)} \Rightarrow \xi \sim \chi_1^2
+\end{align*}
+
+\subsubsection{Quandt Test (unknown break)}
+
+Compute Chow statistic for many possible values of $\tau$ and use largest.
+
+\subsection{Application: Unit root AR(1) model}
+
+$\phi=1$. Note that the following distribution is only negative, when the numerator is: $P(\phi < 0) \approx 65\%$
+
+\begin{align*}
+    \widehat{\phi} &= \frac{\sum y_t y_{t-1}}{\sum y_{t-1}^2} \:;\:
+    T(\widehat{\phi}-1) \Rightarrow \frac{\frac{1}{2}\left[\chi_1^2-1\right]}{\int_0^1 W(s)^2 d s} \\
+    t&=\frac{\int_0^1 W(s) d W(s)}{\left[\int_0^1 W(s)^2 d s\right]^{\frac{1}{2}}}
+\end{align*}

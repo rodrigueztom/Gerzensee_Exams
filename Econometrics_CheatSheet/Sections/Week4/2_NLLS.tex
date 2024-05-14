@@ -1,0 +1,37 @@
+\section{Non-Linear Least Squares}
+
+\begin{align*}
+    y_i&=f\left(x_i, \beta\right)+\varepsilon_i \quad \text { with } \quad E\left[\varepsilon_i \mid x_i\right]=0 \\
+    S_n(b)&=\sum_{i=1}^n\left(y_i-f\left(x_i, b\right)\right)^2
+\end{align*}
+
+\subsection{Asymptotic Distribution}
+
+\begin{align*}
+    \sqrt{n} & (\widehat{\beta}-\beta) \stackrel{d}{\longrightarrow} N\left(0, A^{-1} B A^{-1}\right) \\
+    A &= E\left[\left(\frac{\partial f\left(x_i, \beta\right)}{\partial \beta}\right)\left(\frac{\partial f\left(x_i, \beta\right)}{\partial \beta}\right)^{\prime}\right] \\
+    B &= E\left[\varepsilon_i^2\left(\frac{\partial f\left(x_i, \beta\right)}{\partial \beta}\right)\left(\frac{\partial f\left(x_i, \beta\right)}{\partial \beta}\right)^{\prime}\right] \\
+    &= E\left[E\left[\varepsilon_i^2 \mid x_i\right]\left(\frac{\partial f\left(x_i, \beta\right)}{\partial \beta}\right)\left(\frac{\partial f\left(x_i, \beta\right)}{\partial \beta}\right)^{\prime}\right]
+\end{align*}
+
+\hrule
+\section{Quantile Regression}
+
+\begin{align*}
+    y_i&=x_i^{\prime} \beta+\varepsilon_i \quad \text { with } \quad P\left(\varepsilon_i \leq 0 \mid x_i\right)=\alpha \\
+    \rho_\alpha(\eta) &=
+    \left\{
+        \begin{array}{cc}
+            -(1-\alpha) \eta & \text { if } \eta<0 \\
+            \alpha \eta & \text { if } \eta \geq 0
+        \end{array}
+    \right. \\
+    \widehat{\beta} &= \arg \min _b \frac{1}{n} \sum_{i=1}^n \rho_\alpha\left(y_i-x_i^{\prime} b\right) \\
+    &=\arg \min _b \sum_{i=1}^n \rho_\alpha\left(y_i-x_i^{\prime} b\right) \\
+    \sqrt{n} & (\hat{\beta}-\beta) \stackrel{d}{\longrightarrow} N\left(0, \alpha(1-\alpha) \Gamma^{-1} V \Gamma^{-1}\right) \\
+    V &= E\left[x_i x_i^{\prime}\right] \: ; \: \Gamma = E\left[f_{\varepsilon \mid x}(0) x_i x_i^{\prime}\right]
+\end{align*}
+
+\subsection{Quantile IV}
+
+\input{Sections/Week4/8_QuantileIV}

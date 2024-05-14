@@ -1,0 +1,126 @@
+\section{VARs and Related Topics}
+
+\subsection{Basic Concepts and Notation}
+
+\subsubsection{VAR and MA representation}
+
+\begin{align*}
+    A(L) Y_t&=\eta_t \\
+    A(L)&=I-A_1 L-\ldots-A_p L^p
+\end{align*}
+
+Where $\eta_t$ is a MDS with $\Sigma_\eta$. $Y_t$ is covariance stationary. Invert $A(L)$ for MA process:
+
+\begin{align*}
+    Y_t&=C(L) \eta_t =\eta_t+C_1 \eta_{t-1}+C_2 \eta_{t-2}+\ldots
+\end{align*}
+
+$\eta_t=Y_t-\mathbb{E}\left(Y_t \mid Y^{t-1}\right)$ are the one-period-ahead forecast errors (or Wold shocks).
+
+\subsubsection{SVAR and SMA representation}
+
+$\varepsilon_t$ is mds vector of STRUCTURAL shocks. Then:
+
+\begin{align*}
+    \eta_t&=H \varepsilon_t \: ; \: \operatorname{Var}\left(\varepsilon_t\right) =\Sigma_{\varepsilon} \\
+    B(L) Y_t&=H^{-1} A(L) Y_t = \varepsilon_t  \text{ (SVAR)}\\
+    Y_t&= C(L) H \varepsilon_t=D(L) \varepsilon_t \text{ (SMA)}
+\end{align*}
+
+\subsubsection{Objects of interest}
+
+\paragraph{Impulse Responses}
+
+Write the SMA as $Y_t=\sum_{k=0}^{\infty} D_k \varepsilon_{t-k}$. 
+% Then we find the following IR where $D_{ij,k}$ is the $ij$th element of $D_k$. Note that there is no time subscript for $D_k$:
+
+\begin{align*}
+    S I R F_{i j, h}=\frac{\partial Y_{i, t}}{\partial \varepsilon_{j, t-h}}=\frac{\partial Y_{i, t+h}}{\partial \varepsilon_{j, t}}=D_{i j, h}
+\end{align*}
+
+\paragraph{Forecast Error Var Decomp}
+
+Suppose the structural shocks are mutually uncorrelated. Then 
+
+\begin{align*}
+    \operatorname{Var}\left(Y_{i, t+h}-E\left(Y_{i, t+h} \mid Y_t\right)\right)=\sum_{j=1}^n \sum_{k=0}^{h-1} D_{i j, k}^2 \sigma_{\varepsilon_j}^2
+\end{align*}
+
+and the fraction that is explained by the $j$th shock is
+
+\begin{align*}
+    F E V D_{i j, h}=\frac{\sum_{k=0}^{h-1} D_{i j, k}^2 \sigma_{\varepsilon_j}^2}{\sum_{j=1}^n \sum_{k=0}^{h-1} D_{i j, k}^2 \sigma_{\varepsilon_j}^2}
+\end{align*}
+
+\subsection{Invertibility}
+
+If $n_\varepsilon > n_Y$ we cannot recover $H$ for structural shocks. Also: Can I determine $\varepsilon_t$ from current and lagged $Y$.
+
+\subsection{Identification of $H$}
+
+We can estimate $\Sigma_\eta$ from data and $\Sigma_\eta=H\Sigma_\varepsilon H^\prime$. We have $n(n+1)/2$ elements in $\Sigma_\eta$ and in $\Sigma_\varepsilon$, and $n^2$ in $H$. Thus, we have $n^2$ too many unknowns.
+
+\subsubsection{Restrictions}
+
+1. Uncorrelated structural shocks: make $\Sigma_\varepsilon$ diagonal. Still $n(n+1)/2$ too many.
+
+2.1 Scale normalization: drop $\varepsilon_t$ unit: $\eta_t = H\varepsilon_t$.
+
+2.2 Scale normalization: Set $\operatorname{Var}(\varepsilon_t)=I$ or $H_{ii}=1$ for $i=1, \ldots, n$.
+Still $n(n-1)/2$ restrictions short.
+
+3. other restrictions, e.g.: timing restriction. Set upper triangle of $H$ to zero. I.e. $\varepsilon_2$ does not affect $Y_1$, and $\varepsilon_3$ not $Y_1, Y_2$ etc.
+
+\subsection{Local Projections}
+
+Use companion form of the VAR:
+
+\begin{align*}
+    Z_t&=\Phi Z_{t-1}+e_t \quad \text{(AR)} \\
+    Z_t&=e_t+\Phi e_{t-1}+\Phi^2 e_{t-2}+\ldots \: \text{(MA)} \\
+    Z_{t+k}&=\Phi^k Z_t+v_{t+k} \quad \text{(Forecast)}
+\end{align*}
+
+Let $J = [I_n \: 0 \: \ldots \: 0]$, then $Y_t = J Z_t$ and $e_t = J^\prime \eta_t$. Thus
+
+\begin{align*}
+    Y_t&=\eta_t+J \Phi J^{\prime} \eta_{t-1}+J \Phi^2 J^{\prime} \eta_{t-2}+\ldots \\
+    C_k&=J \Phi^k J^{\prime} \\
+    Y_{t+k}&=C_k Y_t+\sum_{i=1}^{p-1} W_i Y_{t-i}+u_{t+k}
+\end{align*}
+
+$u_{t+k}$ has mean zero conditional on $(Y_t,\ldots,Y_{t-p+1})$. Thus this is a regression and $C_k$ are the coefficients on $Y_t$ from $Y_{t+k}$ onto $(Y_t,\ldots,Y_{t-p+1})$.
+
+While the LP estimator is inefficient relative to estimators of IRS from a VAR, the LP estimators
+are simple to construct, and potentially more robust to miss-specification than the VAR-plugin
+estimators.
+
+\subsection{Examples of Identification Schemes}
+
+\subsubsection{IV instrument}
+
+Split $H$: $H_1$ is first column, and $H^*$ the rest.
+
+\begin{align*}
+    Y_t=&H_1 \varepsilon_{1, t}+\sum_{k=1} C_k H_1 \varepsilon_{t-k}+H^* \varepsilon_t^* \\
+    &+\sum_{k=1} C_k H^* \varepsilon_{t-k}^* \\
+    \frac{\partial Y_{t+k}}{\partial \varepsilon_{1, t}} =&C_k H_1
+\end{align*}
+
+Use instrument $z_t$ that is only correlated with $\varepsilon_{1,t}$:
+
+\begin{align*}
+    \eta_t&=H \varepsilon_t=H_1 \varepsilon_{1, t}+H^* \varepsilon_t^* \\
+    \mathbb{E}\left(\eta_t z_t\right)&=\Sigma_{\eta z}=H \mathbb{E}\left(\varepsilon_t z_t\right)=H_1 \mathbb{E}\left(\varepsilon_{1, t} z_t\right)
+\end{align*}
+
+This recovers $H_1$ up to a scale factor. Set $H_{1,1} = 1$ and done.
+
+\begin{align}
+    H_{j, 1}=\frac{\mathbb{E}\left(\eta_{j, 1} z_t\right)}{\mathbb{E}\left(\eta_{1,1} z_t\right)}
+\end{align}
+
+\subsubsection{iid shocks}
+
+Let $\varepsilon_{j,t}$ be iid over $t$ and independent over $j$. If the distribution is not Gaussian, identification is possible.
+Look for $H^{-1}$ that generates iid variables in $\varepsilon_t$.

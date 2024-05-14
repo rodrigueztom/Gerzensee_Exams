@@ -1,0 +1,100 @@
+\section{Hayashi 1}
+
+\subsection{Assumptions}
+
+\subsubsection{Linearity}
+
+$y=X \beta+\varepsilon, X$ is $(n\times k) \beta$ is $(k\times1)$
+
+\subsubsection{Strict Exogeneity}
+
+\begin{align*}
+    E\left(\varepsilon_i \mid X\right)=0 \\
+    E\left(\varepsilon_i\right)=E\left[E\left(\varepsilon_i \mid X\right)\right]=0
+\end{align*}
+
+\subsubsection{Full Rank}
+
+No multicollinearity. $(XX^\prime)$ has to be invertible.
+
+\subsubsection{Homoskedasticity}
+
+\begin{align*}
+    E\left(\varepsilon_i^2 \mid X\right)=\sigma^2>0 \\
+    E\left(\varepsilon_i \varepsilon_j \mid X\right)=0 \text { for } \mathrm{i} \neq \mathrm{j}
+\end{align*}
+
+\subsubsection{Normality}
+
+\begin{align*}
+    \varepsilon \mid X \sim N\left(0, \sigma^2 I\right) \\
+    \frac{\varepsilon}{\sigma} \mid X \sim N(0, I)
+\end{align*}
+
+for inference
+
+\hrule
+
+\subsection{OLS estimation}
+
+\begin{align*}
+    \widehat{\beta}_{O L S}&=\left(X^{\prime} X\right)^{-1} X^{\prime} y=\left(\frac{1}{n} X^{\prime} X\right)^{-1}\left(\frac{1}{n} X^{\prime} y\right)\\
+    &=\left(\frac{1}{n} \sum_{i=1}^n x_i x_i^{\prime}\right)^{-1}\left(\frac{1}{n} \sum_{i=1}^n x_i y_i\right)
+\end{align*}
+
+for one regressor: $\widehat{\beta}_1=\frac{\widehat{\operatorname{Cov}}(x,y)}{\widehat{\operatorname{Var}}(x)}$, and $\widehat{\beta}_0 = \bar{y} - \widehat{\beta}_1 \bar{x}$
+
+\begin{align*}
+    \hat{y}=X b \\
+    P \equiv X\left(X^{\prime} X\right)^{-1} X^{\prime} \\
+    M \equiv I-P \\
+    \hat{y}=P y=X\left(X^{\prime} X\right)^{-1} X^{\prime} y=X b \\
+    e=M y=y-P y=y-\hat{y} \\
+    P X=X \\
+    M X=0 \\
+    e=M y=M(X \beta+\varepsilon)=M \varepsilon
+\end{align*}
+
+\hrule
+
+\subsection{Finite sample properties}
+
+OLS estimator is unbiased with following variance:
+
+\begin{align*}
+    \widehat{\beta}_{\text{OLS}}&=\left(X^{\prime} X\right)^{-1} X^{\prime}(X \beta+\varepsilon)\\
+    &=\beta+\left(X^{\prime} X\right)^{-1} X^{\prime} \varepsilon\\
+    E[\hat{\beta}]&=\beta+\left(X^{\prime} X\right)^{-1} X^{\prime} E[\varepsilon \mid x]=\beta \\
+    V[\hat{\beta} \mid X]&=E\left[(\hat{\beta}-E[\hat{\beta}])(\hat{\beta}-E[\hat{\beta}])^{\prime} \mid X\right] \\
+    &= \left(X^{\prime} X\right)^{-1} X^{\prime} E\left[\varepsilon \varepsilon^{\prime} \mid X\right] X\left(X^{\prime} X\right)^{-1} \\
+    &=\sigma^2\left(X^{\prime} X\right)^{-1}
+\end{align*}
+
+CR lower bound (achieved by MLE): $\frac{2\sigma^4}{n}$.
+
+\subsubsection{Misspecification}
+
+Two models:
+
+\begin{align*}
+    A:&\quad y=X \beta+Z \gamma+\epsilon \\
+    B:&\quad y=X \beta+\epsilon
+\end{align*}
+
+\paragraph{OVB:}
+
+$A$ is true, $B$ is false. Then $\hat{\beta}$ is biased.
+
+\begin{align*}
+    \hat{\beta}=\beta+\underbrace{\left(X^{\prime} X\right)^{-1} X^{\prime} Z \gamma}_{\text {Bias }}+\left(X^{\prime} X\right)^{-1} X^{\prime} \varepsilon
+\end{align*}
+
+\paragraph{Irrelevant variable:}
+
+$B$ is true, $A$ is false. Then $\hat{\beta}$ is unbiased, but inefficient.
+
+\begin{align*}
+    V(\hat{\beta} \mid X, Z) \geq \sigma^2\left(X^{\prime} X\right)^{-1}=V(\hat{\beta} \mid X)
+\end{align*}
+
+\hrule

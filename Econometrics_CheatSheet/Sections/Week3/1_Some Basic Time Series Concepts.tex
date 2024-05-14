@@ -1,0 +1,90 @@
+\section{Some Basic Time Series Concepts}
+
+\subsection{Strict Stationarity}
+
+\begin{align*}
+    f_{y_1}=f_{y_2}=f_{y_3}=\ldots
+\end{align*}
+
+\subsection{Covariance Stationarity}
+
+\begin{align*}
+    \mu_t&=\mathbb{E}\left(Y_t\right)=\mu \:;\:
+    \lambda_{t, k}=\lambda_k \text { for all } t
+\end{align*}
+
+\subsection{Martingale (Difference)}
+
+\begin{align*}
+    \tag{M}
+    \mathbb{E}\left\{Y_t \mid \Omega_{t-1}\right\}&=Y_{t-1} \\
+    \tag{MDS}
+    \mathbb{E}\left\{Y_t \mid \Omega_{t-1}\right\}&=0
+\end{align*}
+
+\subsection{AR(p) process}
+
+\subsubsection{VAR(1)}
+
+\begin{align*}
+    Y_t &= \Phi Y_{t-1}+\varepsilon_t =\Phi^t Y_0+\sum_{i=0}^{t-1} \Phi^i \varepsilon_{t-i} \\
+    A(L) Y_t &= (I-A_1 L-\ldots-A_p L^p)Y_t = \varepsilon_t
+\end{align*}
+
+For covariance stationarity, all eigenvalues of $\Phi$ are less than one in modulus, thus $\Phi^t \rightarrow 0 \text { as } t \rightarrow \infty$. 
+OR
+$|A(z)|$ has roots outside unit circle.
+
+\subsubsection{AR(p)}
+
+AR(p) as VAR(1) by companion form:
+
+\begin{align*}
+    Z_t&=\Phi Z_{t-1}+e_t \: ; \: Z_t= \left[Y_t \: \ldots \: Y_{t-p+1} \right]^\prime \\
+    \Phi&= \left[ \begin{array}{llll}
+    \phi_1 & \phi_2 & \ldots & \phi_p \\
+    1 & 0 & \ldots & 0 \\
+    \vdots & & \vdots & \vdots \\
+    0 & 0 & \ldots & 0
+    \end{array} \right]\\
+    e_t&= \left[ \varepsilon_t \: 0 \: \ldots \: 0\right]^\prime
+\end{align*}
+
+\subsection{MA(q) are stationary}
+
+\begin{align*}
+    Y_t&=\varepsilon_t-\ldots-\theta_q \varepsilon_{t-q} \:;\:
+    \varepsilon_t \sim i i d\left(0, \sigma^2\right) \\
+    \mathbb{E}\left(Y_t\right)&=0 \: ; \:
+    \operatorname{Var}\left(Y_t\right) =\sigma^2\left(1+\sum_{i=1}^q \theta_i^2\right) \\
+    \operatorname{cov}\left(Y_t Y_{t-k}\right)&=\sigma^2\left(-\theta_\kappa+\sum_{j=1}^{q-k} \theta_j \theta_{k+j}\right) \text{ for } k\leq q \\
+    \operatorname{cov}\left(Y_t Y_{t-k}\right)&=0 \text { for }|k|>q
+\end{align*}
+
+\subsubsection{Invertibility restriction}
+
+MA(1): $|\theta|<1$ or roots of $\theta(z)=(1-\theta z)$ greater $1$ in modulus.
+MA(q): roots of $\theta(z)=\left(1-\theta_1 z-\theta_2 z^2-\ldots-\theta_q z^q\right)$ greater $1$ in modulus.
+
+Need the restriction for identification as we cannot be sure if we recover $\theta$ or $\tilde{\theta}=\theta^{-1}$, with $\tilde{\sigma}^2 = \sigma^2 \theta^2$.
+
+\subsection{Autocovariance generating functions}
+
+\begin{align*}
+    \lambda(z)&=\sum_{j=-\infty}^{\infty} \lambda_j z^j \\
+    \lambda(z)&=\sigma^2 \theta(z) \theta\left(z^{-1}\right) \text{ for MA(q)}
+\end{align*}
+
+\subsection{ARMA(p,q) models}
+
+\begin{align*}
+    \phi(L) Y_t&=\theta(L) \varepsilon_t \\
+    \lambda_0&=\sigma^2\left(1+\frac{(\phi-\theta)^2}{1-\phi^2}\right) \\
+    \lambda_h&=\sigma^2\left((\phi-\theta) \phi^{h-1}+\frac{(\phi-\theta)^2 \phi^h}{1-\phi^2}\right)
+\end{align*}
+
+For the ACGF transform into MA(q) representation:
+\begin{align*}
+    \lambda(z)&=\sigma^2 c(z) c\left(z^{-1}\right) \\
+              &= \sigma^2 \phi(z)^{-1} \theta(z) \phi\left(z^{-1}\right)^{-1} \theta\left(z^{-1}\right)
+\end{align*}

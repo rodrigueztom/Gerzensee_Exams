@@ -1,0 +1,106 @@
+\section{Hayashi 3: IV and GMM}
+
+\subsection{Assumptions IV}
+
+\subsubsection{Linearity}
+
+\begin{align*}
+    y_i=z_i^{\prime} \delta+\varepsilon_i \quad \text { but } \quad E\left[z_i \varepsilon_i\right] \neq 0
+\end{align*}
+
+\subsubsection{Ergodicity and Stationarity}
+
+$\left(y_i, z_i, x_i\right)$ ergodic and stationary for LLN.
+
+\subsubsection{Exogenous Instrument}
+
+\begin{align*}
+    E\left[g_i\right]=E\left[x_i \varepsilon_i\right]=E\left[x_i\left(y_i-z_i^{\prime} \delta\right)\right]=0
+\end{align*}
+
+\subsubsection{Identification}
+
+$E\left[x_i z_j^{\prime}\right]$ has full rank $L$ where $\operatorname{dim}(z_i) = L \leq K = \operatorname{dim}(x_i)$
+
+\subsection{Estimator}
+
+\begin{align*}
+    \delta&=E\left[x_i z_i^{\prime}\right]^{-1} E\left[x_i y_i\right]=\Sigma_{x z}^{-1} \sigma_{x y} \\
+    \widehat{\delta}&=\left(\frac{1}{n} \sum_{i=1}^n x_i z_i^{\prime}\right)^{-1} \frac{1}{n} \sum_{i=1}^n x_i y_i\\
+    \sqrt{n}(\widehat{\delta}-\delta)=&\left(\frac{1}{n} \sum_{i=1}^n x_i z_i^{\prime}\right)^{-1} \frac{1}{\sqrt{n}} \sum_{i=1}^n x_i \varepsilon_i \\
+    & \stackrel{d}{\longrightarrow} E\left[x_i z_i^{\prime}\right]^{-1} \cdot N(0, S) \\
+    & \stackrel{d}{\longrightarrow} N(0, E\left[x_i z_i^{\prime}\right]^{-1} S E\left[x_i z_i^{\prime}\right]^{-1}) \\
+    & \stackrel{d}{\longrightarrow} N(0, E\left[x_i z_i^{\prime}\right]^{-1} E\left[\varepsilon_i^2 x_i x_i^\prime \right] E\left[x_i z_i^{\prime}\right]^{-1}) \\
+    S&=E\left[g_i g_i^{\prime}\right] = \left[(x_i \varepsilon_i)(x_i \varepsilon_i)^{\prime}\right] 
+\end{align*}
+
+\subsubsection{Case 1: exogenous error}
+
+Assume 
+
+\begin{align*}
+    E\left[\varepsilon_i \mid x_i, z_i\right]&=0 \\
+    E\left[\varepsilon_i^2 \mid x_i, z_i\right]&=f(x_i)
+\end{align*}
+
+Then it is pretty much OLS:
+
+\begin{align*}
+    \widehat{\delta}_{\operatorname{OLS}} &\stackrel{p}{\longrightarrow} \delta \\
+    \sqrt{n}(\widehat{\delta}_{\operatorname{OLS}}-\delta) &\stackrel{d}{\longrightarrow} N(0, V) \\
+    V &= E\left[z_i z_i^{\prime}\right]^{-1}  E\left[\varepsilon_i^2 z_i z_i^\prime \right] E\left[z_i z_i^{\prime}\right]^{-1}
+\end{align*}
+
+And for GMM estimator:
+
+\begin{align*}
+    W&=S^{-1}=E\left[\varepsilon_i^2 x_i x_i^{\prime}\right]^{-1} \\
+    \sqrt{n}\left(\widehat{\delta}\left(\widehat{S}^{-1}\right)-\delta\right) &\stackrel{d}{\longrightarrow} N\left(0,\left(\Sigma_{x z}^{\prime} S^{-1} \Sigma_{x z}\right)^{-1}\right)
+\end{align*}
+
+\subsubsection{Case 2: endogenous error with homoskedasticity}
+
+Assume 
+
+\begin{align*}
+    E\left[\varepsilon_i \mid z_i\right]&\neq 0 \\
+    E\left[\varepsilon_i \mid x_i\right]&=0 \\
+    E\left[\varepsilon_i^2 \mid x_i, z_i\right]&=\sigma^2
+\end{align*}
+
+OLS-estimator:
+
+\begin{align*}
+    \hat{\delta}_{\operatorname{OLS}} &\stackrel{p}{\rightarrow} \delta+E\left[z_i z_i^\prime\right]^{-1} E\left[z_i \varepsilon_i\right] = \bar{\delta} \\
+    \sqrt{n}\left(\hat{\delta}_{\operatorname{OLS}} - \bar{\delta} \right)&\stackrel{d}{\rightarrow} N(0,V) \\
+    V &= E\left[z_i z_i^\prime\right]^{-1} E\left[u_i^2 z_i z_i^\prime \right] E\left[z_i z_i^\prime\right]^{-1} \\
+    &= E\left[z_i z_i^\prime\right]^{-1} E\left[u_i^2 | z_i \right] \\
+    u_i &= z_i^\prime \bar{\delta} - y_i
+\end{align*}
+
+Efficient GMM estimator:
+
+\begin{align*}
+    W&=S^{-1}=E\left[\varepsilon_i^2 x_i x_i^{\prime}\right]^{-1} \\
+    \sqrt{n}\left(\widehat{\delta}\left(\widehat{S}^{-1}\right)-\delta\right) &\stackrel{d}{\longrightarrow} N\left(0,\left(\Sigma_{x z}^{\prime} S^{-1} \Sigma_{x z}\right)^{-1}\right)
+\end{align*}
+
+\subsubsection{Case 3: endogenous error with heteroskedasticity}
+
+Assume 
+
+\begin{align*}
+    E\left[\varepsilon_i \mid z_i\right]&\neq 0 \\
+    E\left[\varepsilon_i \mid x_i\right]&=0 \\
+    E\left[\varepsilon_i^2 \mid x_i, z_i\right]&=f(x_i)
+\end{align*}
+
+Then we use the GMM estimator which also works in the case of overidentification with $W = \mathbb{E}\left[x_i x_i^\prime\right]^{-1}$:
+
+\begin{align*}
+    &\sqrt{n}(\widehat{\delta}(\widehat{W})-\delta) \\
+    &\qquad =\left(S_{x z}^{\prime} \widehat{W} S_{x z}\right)^{-1} S_{x z}^{\prime} \widehat{W}\left(\frac{1}{\sqrt{n}} \sum_{i=1}^n x_i \varepsilon_i\right) \\
+    &\qquad \stackrel{d}{\longrightarrow}\left(\Sigma_{x z}^{\prime} W \Sigma_{x z}\right)^{-1} \Sigma_{x z}^{\prime} W \cdot N(0, S) \\
+    &\qquad \stackrel{d}{\longrightarrow}N\left(0,\Omega\right) \\
+    \Omega & = \left(\Sigma_{x z}^{\prime} W \Sigma_{x z}\right)^{-1} \Sigma_{x z}^{\prime} W S W \Sigma_{x z}\left(\Sigma_{x z}^{\prime} W \Sigma_{x z}\right)^{-1}
+\end{align*}

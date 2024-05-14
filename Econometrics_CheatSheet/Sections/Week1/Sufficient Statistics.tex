@@ -1,0 +1,28 @@
+\section{Sufficient Statistics}
+
+Pdf of $Y$ as $f_Y(y | \theta)$, the pdf of $S$ as $f_S(s | \theta)$ and the conditional pdf of $Y$ given $S=s$ as $f_{Y | S}(y| s, \theta)=f_{Y| S}(y| s)$, that is the conditional density of $Y$ given $S$ does not depend on $\theta$.
+
+\paragraph{Factorization Theorem}
+
+\begin{align*}
+    \hat{\theta}(Y)=\arg \max _\theta f(Y | \theta)=\arg \max _\theta g(S | \theta)=\hat{\theta}(S)
+\end{align*}
+
+\paragraph{Rao-Blackwell Theorem}
+
+$Y$ is RV with mean $\mu$ and variance $\sigma_Y^2$. $X$ is another RV. Let $\mu(x)=\mathbb{E}[Y| X=x]$. Then $\operatorname{Var}(\mu(x))\leq\sigma_Y^2$:
+
+\begin{align*}
+    E (\mu(X))&=\mu \\
+    Y&=\mu(X)+(Y-\mu(X)) \\
+    \sigma_Y^2&=\operatorname{Var}(\mu(X))+\operatorname{Var}(Y-\mu(X)) \\
+    \operatorname{Var}(\mu(X)) &\leq \sigma_Y^2
+\end{align*}
+
+Use this result in estimations: 
+Suppose $\hat{\theta}(Y)$ is an unbiased estimator of $\theta$, so that $\theta=\mathbb{E}[\hat{\theta}(Y)]$, and let $S$ be a sufficient statistic for $\theta$. Then $E [\tilde{\theta}(S)]$ is an unbiased estimator of $\theta$ but the variance is lower by Rao-Blackwell.
+
+\begin{align*}
+    \theta&= E [\hat{\theta}(Y)]= E [ E [\hat{\theta}(Y) | S]]= E [\tilde{\theta}(S)]
+\end{align*}
+

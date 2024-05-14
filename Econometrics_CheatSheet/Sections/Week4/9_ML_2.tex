@@ -1,0 +1,77 @@
+\section{Machine Learning}
+
+\subsection{Trees}
+
+Highly intuitive, easy to explain, highly flexible BUT hard to interpret, discrete step function (even for continuous data), and might need a lot of leaves.
+
+Uses regression sample split algorithm:
+
+\begin{align*}
+    Y_i &= \mu_1 1\left\{X_{d i} \leq \gamma\right\}+\mu_2 1\left\{X_{d i}>\gamma\right\}+\varepsilon_i\\
+    \mathbb{E}\left[\varepsilon_i \mid X_i\right] &= 0
+\end{align*}
+
+\begin{itemize}
+    \item The parameters are $d, \gamma, \mu_1$, and $\mu_2$
+    \item $d$ and $\gamma$ are estimated by grid search
+    \item The estimates produce a sample split
+    \item need $N_{\text{min}}$ for stopping criteria
+\end{itemize}
+
+\subsection{Bagging (Bootstrap Aggregating)}
+
+You generate a large number B of bootstrap samples.
+Estimate your regression model on each bootstrap sample.
+The average of the bootstrap estimates is the bagging estimator.
+
+\subsection{Random Forests}
+
+Random forests are a modification of bagged regression trees. The modification is to reduce estimation variance. 
+
+1. Draw a nonparametric bootstrap sample.
+
+2. Grow a regression tree on the bootstrap sample using m variables chose at random from the p regressors
+
+\begin{align*}
+    \widehat{m}_{\mathrm{rf}}(x)=B^{-1} \sum_{b=1}^B \widehat{m}_b(x)
+\end{align*}
+
+
+\subsection{Elastic Net (Ridge / Lasso)}
+
+\begin{align*}
+    y_i=\sum_{j=1}^k x_{i j} \beta_j+\varepsilon_i \: \text{(many regressors)}
+\end{align*}
+
+For Lasso, set $\alpha = 0$. For Ridge, set $\alpha = 1$. Get the parameters via $m$-fold cross validation.
+
+\begin{align*}
+    \min_{b_j} &\sum_{i=1}^n\left(y_i-\sum_{j=1}^k x_{i j} \beta_j\right)^2 \\
+    &+\lambda\left((1-\alpha) \sum_{j=1}^k\left|b_j\right|+\alpha \sum_{j=1}^k b_j^2\right)
+\end{align*}
+
+\subsection{Double Selection Lasso (IV)}
+
+Use Lasso to estimate
+
+\begin{align*}
+    D_i=x_i^{\prime} \gamma+v_i
+\end{align*}
+
+Let $x_1$ be the selected variables.
+
+Use Lasso to estimate
+
+\begin{align*}
+    Y_i=x_i^{\prime} \delta+v_i
+\end{align*}
+
+Let $x_2$ be the selected variables.
+
+Let $\widetilde{x}=x_1 \cup x_2$ and regress (OLS)
+
+\begin{align*}
+    y_i=D_i \theta+\widetilde{x}_i^{\prime} \beta+\varepsilon_i
+\end{align*}
+
+to get the estimator of $\theta$.

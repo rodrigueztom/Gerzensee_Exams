@@ -1,0 +1,170 @@
+\section{Selected Probability Distributions}
+
+\begin{minipage}{.09\textwidth}
+  \subsection{Binomial}
+
+    \begin{align*}
+    	p(k)&={{n}\choose{k} }p^k (1-p)^{n-k} \\
+    	E[X]&=np \\
+    	Var(X)&=np(1-p) \\
+    	M(t)&=(1-p+pe^{t})^{n}
+    \end{align*}
+
+Note: if $n=1$, it's a Bernoulli distribution.
+\end{minipage}% This must go next to `\end{minipage}`
+\begin{minipage}{.09\textwidth}
+  \subsection{Poisson}
+
+    \begin{align*}
+    	p(k)&=\frac{\lambda^ke^{-\lambda}}{k!} \\
+    	E[X]&=\lambda \\
+    	Var(X)&=\lambda \\
+    	M(t)&=e^{\lambda(e^t-1)}
+    \end{align*}
+\end{minipage}
+
+\begin{minipage}{.07\textwidth}
+  \subsection{Uniform}
+
+\begin{align*}
+	f(x) &= \frac{1}{b-a} \\
+	E[X]&=\frac{1}{2} (a+b) \\
+	Var(X)&=\frac{1}{12} (b-a)^2 \\
+	M(t)&=\frac{e^{bt} - e^{at}}{(b-a)t}
+\end{align*}
+\end{minipage}% This must go next to `\end{minipage}`
+\begin{minipage}{.11\textwidth}
+  \subsection{Univariate Normal}
+
+\begin{align*}
+	f(x) &= \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2 } \\
+	E[X]&=\mu \\
+	Var(X)&=\sigma^2  \\
+	M(t)&=e^{\mu t}e^{\frac{\sigma^2 t^2}{2}} \\
+\end{align*}
+\end{minipage}
+
+\begin{minipage}{.09\textwidth}
+  \paragraph{$\chi^2$ Distribution}
+
+\begin{align*}
+	U&:=\sum\limits_{i=1}^{n}Z_i^2 \\
+	U& \sim \chi^2_n \\
+	E[U]&=n , \forall n \geq 1\\
+	Var(U) &= 2n , \forall n \geq 1
+\end{align*}
+\end{minipage}% This must go next to `\end{minipage}`
+\begin{minipage}{.09\textwidth}
+  \paragraph{t Distribution}
+
+\begin{align*}
+	T&:= \frac{Z}{\sqrt{U/n}}\\
+	T& \sim t_n \\
+	E[T]&=0 , \forall n \geq 2\\
+	Var(T) &= \frac{n}{n-2} , \forall n \geq 3
+\end{align*}
+\end{minipage}
+
+\paragraph{F Distribution}
+
+\begin{align*}
+	W&:= \frac{U/m}{V/n} &	&\\
+	W& \sim F_{m,n} &	&\\
+	E[W]&=\frac{n}{n-2}&	&\qquad \forall n \geq 3\\
+	Var(W) &= \frac{2n^2(m+n-2)}{m(n-2)^2(n-4)}  &	&\qquad \forall n \geq 5
+\end{align*}
+
+\subsection{Multivariate Normal}
+
+\paragraph{Notes on matrix algebra:}
+Let $\Sigma$ be a positive definite matrix. Then it can be factored as $\Sigma = AA'$. $A=\Sigma^{1/2}$, and then $\Sigma^{-1}=(A')^{-1}A^{-1}$.
+$| A| ^{-1}=| A^{-1}| $ and $| A| =| A'| $.
+
+\begin{align*}
+	f(x) &= \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2 } \\
+	E[X]&=\mu \\
+	Var(X)&=\sigma^2  \\
+	M(t)&=e^{\mu t}e^{\frac{\sigma^2 t^2}{2}}
+\end{align*}
+
+\paragraph{Theorems}
+
+\begin{center}
+    \resizebox{.19\textwidth}{!}{
+    \begin{tabular}{l|l}
+        A &  Linear functions of X are normally distributed\\
+          &  $Y=\eta+B X \sim N_k\left(\eta+B \mu, B \Sigma B^{\prime}\right)$\\
+          \hline
+        B &  $X$ has density given by\\
+          &  $f_X(x)=\frac{1}{(2 \pi)^{p / 2}| \Sigma| ^{1 / 2}} \exp \left\{-\frac{1}{2}(x-\mu)^{\prime} \Sigma^{-1}(x-\mu)\right\}$\\
+          \hline
+        C &  Independent normally distributed RVs are jointly normal.\\
+          &  $X=(X_1^\prime , X_2^\prime)^\prime \sim N_{p+q}\left(\mu, \Sigma\right)$\\
+          &  $\mu=\left(\begin{array}{l} \mu_1 \\ 
+             \mu_2 \end{array}\right) \quad \text { and } \quad \Sigma=\left(\begin{array}{cc} \Sigma_1 & 0 \\
+             0 & \Sigma_2 \end{array}\right)$\\
+          \hline
+        D &  Conditional normal distribution\\
+          &  $\left(X_1 | X_2=x_2\right) \sim N \left(\mu_1+\Sigma_{12} \Sigma_{22}^{-1}\left(x_2-\mu_2\right), \Sigma_{11}-\Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}\right)$\\
+          \hline     
+        E &  Suppose $X_2 \sim N \left(\mu_2, \Sigma_{22}\right)$ and $X_1 | X_2=x_2 \sim N \left(A+B x_2, \Omega\right)$.\\
+        &Then $X=(X_1^\prime , X_2^\prime)^\prime$ has a multivariate normal distribution\\
+          &  $\left(\begin{array}{c} X_1 \\ X_2 \end{array}\right)
+          \sim N \left(\left(\begin{array}{c} A+B \mu_2 \\ \mu_2 \end{array}\right),
+          \left(\begin{array}{cc} B \Sigma_{22} B^{\prime}+\Omega & B \Sigma_{22} \\ \Sigma_{22} B^{\prime} & \Sigma_{22} \end{array}\right)\right)$\\
+          \hline
+        F & Sums of independent normals \\
+          &  $X_1+X_2 \sim N \left(\mu_1+\mu_2, \Sigma_1+\Sigma_2\right)$\\
+          \hline
+    \end{tabular}
+    }
+\end{center}
+
+Let $X \sim N_p(\mu, \Sigma)$. Also let $X=(X_1^\prime, X_2^\prime)^\prime$, $\mu=(\mu_1^\prime, \mu_2^\prime)^\prime$, and $\Sigma=\left(\begin{array}{cc} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22} \end{array}\right)$.
+
+\begin{center}
+    \resizebox{.19\textwidth}{!}{
+    \begin{tabular}{l|l}
+        G &  The marginal distribution of $X_1$ is $N_k(\mu_1, \Sigma_{11})$\\
+          \hline
+        H &  For a normal, a zero correlation implies independence.\\
+          \hline
+        I &  Characterizing independence of linear combinations of \\
+          & normal variables. \\
+          &  If $X \sim N_p(\mu, \Sigma)$, $B$ is a $p\times k$ matrix, and \\
+          & $C$ is a $p\times m$ matrix, then $B\prime X$ and $C^\prime X$\\
+          & are independent iff $B^\prime\Sigma C = 0$.\\
+          & Note that $B^\prime X$ and $C^\prime X$ are jointly normal and\\ 
+          & $B^\prime\Sigma C$ is the covariance.\\
+          \hline
+    \end{tabular}
+    }
+\end{center}
+
+Quadratics: Assume $A$ is symmetric, then $Y\prime AY$ is a quadratic form.
+
+\begin{center}
+    \resizebox{.19\textwidth}{!}{
+    \begin{tabular}{l|l}
+        J & If $X \sim N_p(\mu, \Sigma)$ where $\Sigma$ has rank $p$,\\
+          &then $(X-\mu)^\prime\Sigma^{-1}(X-\mu)\sim\chi_p^2$. \\
+          \hline
+        K & Let $M$ denote an idempotent $p\times p$ matrix with rank $k$,\\ 
+          & then $Z^\prime MZ \sim\chi_k^2$\\
+          &  $M=P\Lambda P^\prime$, where $\Lambda$ contains the eigenvalues of $M$\\ 
+          & on the diagonal, \\
+          & and the rows of $P$ are the orthonormal eigenvectors.\\
+          & Then $M=\left[ P_1 \: P_2 \right] \left[ \begin{array}{cc} I_k & 0 \\
+        0 & 0 \end{array} \right] \left[ \begin{array}{c} P_1^\prime \\
+        P_2^\prime \end{array} \right] = P_1 P_1^\prime$ \\
+          & Thus, $P_1^\prime Z \sim N(0,P_1^\prime P_1)$, where $P_1^\prime P_1 = I_k$\\
+          \hline
+        L & Let $X=PZ$, and $Q=Z^\prime AZ$, where $PA=0$, \\ 
+          & then $X$ and $Q$ are independent. \\
+          \hline
+        M & Let $Q_1 = Z^\prime A_1 Z$, and $Q_2 = Z^\prime A_2 Z$, where $A_1 A_2=0$.\\ 
+          & Then $Q_1$ and $Q_2$ are independent.\\
+          \hline
+    \end{tabular}
+    }
+\end{center}

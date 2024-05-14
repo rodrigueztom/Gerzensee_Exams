@@ -1,0 +1,116 @@
+\section{Random Variables}
+
+$F_X(x) = \mathbb{P}(X\leq x)$ and $f_X(x) = \mathbb{P}(X = x_i) $
+
+\subsection{More than one variable}
+
+$F_{X,Y}(x,y)=\mathbb{P}(X\leq x, Y\leq y)$
+
+DRV: $P_{X,Y}(x_i,y_j)=P(X=x_i,Y=y_j)$
+
+CRV: $P((X,Y)\in A) = \int\limits_{A}\int f(x,y) dx \: dy$
+
+\paragraph{Marginal Distribution}
+
+\begin{center}
+    \resizebox{.2\textwidth}{!}{
+	\begin{tabular}{ c | c }
+		DRV & CRV  \\ 
+		$p_x(x_i) = \sum\limits_{j} p(x_i,y_j)$ & $f_x(x) = \int\limits_{-\infty}^{\infty} f(x,y)dy $
+	\end{tabular}
+	}
+\end{center}
+
+\paragraph{Conditional Distribution}
+
+\begin{center}
+    \resizebox{.2\textwidth}{!}{
+	\begin{tabular}{ c| c }
+		DRV & CRV  \\ 
+		$P(X=x_i |  Y= y_j) = \frac{P(X=x_i,Y=y_j)}{P(Y=y_j)} = \frac{P_{XY}(x_i,y_j) }{P_Y(y_j)}$ & $f_{X| Y}(x| y) =  \frac{f_{XY}(x,y)}{f_Y(y)} $
+	\end{tabular}
+	}
+\end{center}
+
+\paragraph{Law of total probability}
+
+\begin{center}
+    \resizebox{.2\textwidth}{!}{
+	\begin{tabular}{ c| c }
+		DRV & CRV  \\ 
+		$P_X(x_i)=\sum\limits_{y_j} P_{X| Y}(x_i| y_j)P_Y(y_j)$ & $f_X(x_i) = \int\limits_{-\infty}^{\infty} f_{X| Y}(x_i| y_j)f_Y(y_j)dy $
+	\end{tabular}
+	}
+\end{center}
+
+\subsection{Expectations}
+
+\begin{center}
+    \resizebox{.2\textwidth}{!}{
+	\begin{tabular}{ c| c }
+		DRV & CRV  \\ 
+		$\mathbb{E}[X]=\sum\limits_{i}x_ip(x_i)$ & $\mathbb{E}[X] = \int\limits_{-\infty}^{\infty}xf(x)dx$ \\
+		$\mathbb{E}[g(X)]=\sum\limits_{i}g(x_i)p(x_i)$ & $\mathbb{E}[g(X)] = \int\limits_{-\infty}^{\infty}g(x)f(x)dx$
+	\end{tabular}
+	}
+\end{center}
+
+\begin{align*}
+	\mathbb{E}[X]=\int\limits_0^\infty 1 - F(X) dx \quad\text{for any nonnegative RV}
+\end{align*}
+
+
+\paragraph{Conditional Expectation}
+
+\begin{center}
+    \resizebox{.2\textwidth}{!}{
+	\begin{tabular}{ c| c }
+		DRV & CRV  \\ 
+		$\mathbb{E}[X| Y=y] = \sum\limits_{x}xp_{X| Y}(x| y)$ & $\mathbb{E}[X| Y=y]  = \int xf_{X| Y}(x| y) dx$ \\
+		$\mathbb{E}[g(X)| Y=y] = \sum\limits_{x}g(x)p_{X| Y}(x| y)$  & $\mathbb{E}[g(X)| Y=y]  = \int g(x)f_{X| Y}(x| y) dx$
+	\end{tabular}
+	}
+\end{center}
+
+\paragraph{Law of Iterated Expectations}
+
+\begin{align*}
+	\mathbb{E}_Y[Y] &= \mathbb{E}_X[\mathbb{E}_{Y| X}(Y| X=x)]
+\end{align*}
+
+\subsection{Transformation of RVs}
+
+\begin{align*}
+    \text{Let } Y&=g(X) \\
+	f_Y(y) &= f_X(g^{-1}(y)) \cdot | \frac{d}{dy}g^{-1}(y)|  \\
+	f_Y(y) &= f_X(g^{-1}(y)) \cdot | J| 
+\end{align*}
+
+\subsection{Moments}
+
+\begin{align*}
+    M(t) &= \mathbb{E}(e^{tX}) \quad\text{mgf} \\
+    M^{(j)}(t) &= \int x^j e^{tx} f_X(x) dx \\
+    M^{(j)}(0) &= \mathbb{E}(X^j) \\
+\end{align*}
+
+\subsection{(Co)variance and Correlation}
+
+\begin{center}
+    \resizebox{.2\textwidth}{!}{
+	\begin{tabular}{ c| c }
+		DRV & CRV  \\ 
+		$Var(X) = \sum\limits_{i}(x_i-\mu)^2p(x_i)$ & $Var(x) = \int\limits_{-\infty}^{\infty}(x-\mu)^2f(x)dx$
+	\end{tabular}
+	}
+\end{center}
+
+\begin{align*}
+    Var(X) &= \mathbb{E}[(X-\mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2 \\
+	Cov(X,X) &= \mathbb{E}[(X-\mu_X)(Y-\mu_Y)] \\
+	&= \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] \\
+	\mathbb{E}[XY] &= \int \int xyf(x,y) \: dx \: dy \\
+	Cov(X,Y) &= \int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}(x-\mu_X) (y-\mu_Y) \\
+	&\cdot f(x,y) \: dx \: dy \\
+	\rho &= \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}
+\end{align*}

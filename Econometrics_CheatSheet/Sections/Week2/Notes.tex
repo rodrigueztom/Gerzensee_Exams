@@ -1,0 +1,45 @@
+\section{Notes}
+
+\begin{align*}
+    \left[
+    \begin{array}{l}
+        x \\
+        y
+    \end{array}
+    \right]^{\prime}
+    \left[
+    \begin{array}{ll}
+        a & b \\
+        c & d
+    \end{array}
+    \right]^{-1}
+    \left[
+    \begin{array}{l}
+        x \\
+        y
+    \end{array}
+    \right]=\frac{d x^2-(b+c) x y+a y^2}{a d-b c}
+\end{align*}
+
+\subsection{Couples' data}
+
+\begin{align*}
+    &\hat{\beta}_{\text{2SLS}}-\beta  \\
+    &=\left(\frac{1}{n} \sum_{i=1}^n \sum_{j=1}^2 x_{i j} z_{i j}^\prime\right)^{-1}\left(\frac{1}{n} \sum_{i=1}^n \sum_{j=1}^2 x_{i j} \varepsilon_{i j}\right) \\
+    &\sqrt{n}\left(\hat{\beta}_{\text{2SLS}}-\beta\right)  \\
+    &=\underbrace{\left(\frac{1}{n} \sum_{i=1}^n \sum_{i=1}^2 x_{i j} z_{i j}^\prime\right)^{-1}}_A \underbrace{\left(\frac{1}{\sqrt{n}} \sum_{i=1 j=1}^n \sum_{i j}^2 x_{i j}\right)}_B \\
+    \text{LLN: }& A \stackrel{p}{\longrightarrow} E\left[\sum_{i=1}^2 x_{i j} z_{i j}^\prime\right]=C \\
+    &B \stackrel{d}{\longrightarrow} N\left(0, E\left[\sum_{j=1}^2 x_{i j} \varepsilon_{i j}\left(\sum_{j=1}^2 x_{i j} \varepsilon_{i j}\right)^{\prime}\right]\right)=D \\
+    \text{CLT: }& \sqrt{n}\left(\hat{\beta}_{\text{2SLS}}-\beta\right)\stackrel{d}{\longrightarrow} N\left(0, C^{-1}DC^{-1}\right)
+\end{align*}
+
+\subsection{Normal distribution}
+
+\begin{align*}
+    \mathbb{E}\left[X^2\right] &= \mu^2+\sigma^2 \\
+    \mathbb{E}\left[X^3\right] &= \mu^3+3 \mu \sigma^2 \\
+    \mathbb{E}\left[X^4\right] &= \mu^1+6 \mu^2 \sigma^2+3 \sigma^1 \\
+    \mathbb{E}\left[X^2|\mu=0\right] &=  \sigma^2 \\
+    \mathbb{E}\left[X^3|\mu=0\right] &=  0 \\
+    \mathbb{E}\left[X^4|\mu=0\right] &= 3 \sigma^4
+\end{align*}

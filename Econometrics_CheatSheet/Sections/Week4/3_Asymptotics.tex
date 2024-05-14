@@ -1,0 +1,108 @@
+\section{Extremum Estimators}
+
+\begin{align*}
+    \widehat{\theta} &= \arg \max _{\theta \in \Theta} Q_n(\theta)=\arg \max _{\theta \in \Theta} n^{-1} Q_n(\theta) \\
+    Q_n(\theta) &= \sum_{i=1}^n q\left(z_i, \theta\right) \: ; \: Q(\theta)=E\left[q\left(z_i, \theta\right)\right] \\
+    0 &= Q_n^{\prime}(\widehat{\theta})=\sum_{i=1}^n q^{\prime}\left(z_i, \widehat{\theta}\right) \quad \text{(FOC)}
+\end{align*}
+
+Using a Taylor approximation (where $\tilde{\theta}$ lies between $\theta_0$ and $\hat{\theta}$), one can show that:
+
+\begin{align*}
+    \sqrt{n} \left(\widehat{\theta}-\theta_0\right)= &-\left[\frac{1}{n} \sum_{i=1}^n q^{\prime \prime}\left(z_i, \widetilde{\theta}\right)\right]^{-1} \cdot \\
+    &\frac{1}{\sqrt{n}} \sum_{i=1}^n q^{\prime}\left(z_i, \theta_0\right) \\
+    \sqrt{n} \left(\widehat{\theta}-\theta_0\right) \stackrel{d}{\longrightarrow}& N\left(0, A^{-1} V \left[q^{\prime}\left(z_i, \theta_0\right)\right] A^{-1}\right) \\
+    A =& E\left[q^{\prime \prime}\left(z_i, \theta_0\right)\right]
+\end{align*}
+
+\subsubsection{MLE}
+
+\begin{align*}
+    \sqrt{n}\left( \widehat{\theta}_{\mathrm{MLE}}-\theta_0 \right)  &\stackrel{d}{\longrightarrow}  
+    N\left(0, A^{-1} V\left[q^{\prime}\left(z_i, \theta_0\right)\right] A^{-1}\right) \\
+    A &= E\left[q^{\prime \prime}\left(z_i, \theta_0\right)\right] \\
+    q\left(z_i, \theta\right) & =\log \left(f\left(z_i, \theta\right)\right) \\
+    q^{\prime}\left(z_i, \theta\right) & =\frac{\partial \log \left(f\left(z_i, \theta\right)\right)}{\partial \theta} \\
+    q^{\prime \prime}\left(z_i, \theta\right) & =\frac{\partial^2 \log \left(f\left(z_i, \theta\right)\right)}{\partial \theta \partial \theta^{\prime}}
+\end{align*}
+
+If correctly specified:
+
+\begin{align*}
+    -E\left[\frac{\partial^2 \log \left(f\left(z_{i,} \theta\right)\right)}{\partial \theta \partial \theta^{\prime}}\right] 
+    &=V\left[\frac{\partial \log \left(f\left(z_i, \theta\right)\right)}{\partial \theta}\right] = \mathcal{I} \\
+    \sqrt{n}\left(\widehat{\theta}_{\mathrm{MLE}}-\theta_0\right) &\stackrel{d}{\longrightarrow} N\left(0, \mathcal{I}^{-1}\right)
+\end{align*}
+
+\subsubsection{Clustering}
+
+\begin{align*}
+    & Q_n(\theta)=\sum_{i=1}^n \sum_{t=1}^{T_i} q\left(z_{i t}, \theta\right)\\
+    & 0=Q_n^{\prime}(\widehat{\theta})=\sum_{i=1}^n \sum_{t=1}^{T_i} q^{\prime}\left(z_{i t}, \widehat{\theta}\right) \\
+    & \sqrt{n}\left(\widehat{\theta}-\theta_0\right) \stackrel{d}{\longrightarrow} N\left(0, ABA \right) \\
+    & A = E\left[\sum_{t=1}^{T_i} q^{\prime \prime}\left(z_{i t}, \theta_0\right)\right]^{-1} \\
+    & B = V\left[\left(\sum_{t=1}^{T_i} q^{\prime}\left(z_{i t}, \theta_0\right)\right)\right]
+\end{align*}
+
+\hrule
+\section{Generalized MoM (GMM)}
+
+\begin{align*}
+    0 &= E\left[f\left(z_i, \theta_0\right)\right] \\
+    \widehat{\theta} &= \arg \min _\theta\left(\frac{1}{n} \sum_{i=1}^n f\left(z_i, \theta\right)\right)^{\prime} W_n\left(\frac{1}{n} \sum_{i=1}^n f\left(z_i, \theta\right)\right)
+\end{align*}
+
+\subsubsection{Asymptotics}
+
+\begin{align*}
+    \sqrt{n}&\left(\widehat{\theta}-\theta_0\right) \stackrel{d}{\longrightarrow} N(0, \Sigma) \\
+    \Sigma &= A^{-1} B^\prime W_0 S W_0 B A^{-1} \\
+    A &= E\left[\frac{\partial f\left(z_i, \theta_0\right)}{\partial \theta}\right]^{\prime} W_0 E\left[\frac{\partial f\left(z_i, \theta_0\right)}{\partial \theta}\right] \\
+    B &= E\left[\frac{\partial f\left(z_i, \theta_0\right)}{\partial \theta}\right] \\
+    S&=V\left[f\left(z_i, \theta_0\right)\right] \\
+    \text{if } W_0 &= S^{-1} \quad\text{efficient GMM}
+\end{align*}
+
+\begin{align*}
+    \sqrt{n}\left(\widehat{\theta}-\theta_0\right) &\stackrel{d}{\longrightarrow} N\left(0, \left( G^\prime S^{-1} G\right)^{-1}\right) \\
+    G &= E\left[\frac{\partial f\left(z_i, \theta_0\right)}{\partial \theta}\right]
+\end{align*}
+
+\subsubsection{MoM (just identified)}
+
+\begin{align*}
+    \sqrt{n}\left(\widehat{\theta}-\theta_0\right) &\stackrel{d}{\longrightarrow} 
+    N\left(0, A^{-1} S (A^\prime)^{-1} \right) \\
+    A &= E\left[\frac{\partial f\left(z_i, \theta_0\right)}{\partial \theta}\right]
+\end{align*}
+
+\hrule
+\section{Sequential Estimators}
+
+\begin{align*}
+    0 & =\sum_{i=1}^{\prime \prime} q\left(x_i, \widehat{\theta}_1\right) \: ; \:
+    0 =\sum_{i=1}^n r\left(x_i, \widehat{\theta}_1, \widehat{\theta}_2\right) \\
+    f&\left(x_i, \theta\right)=\left(
+    \begin{array}{c}
+        q\left(x_i, \theta_1\right) \\
+        r\left(x_i, \theta_1, \theta_2\right)
+    \end{array}\right) \quad \text{GMM} \\
+    Q_1 &= E\left[\frac{\partial q\left(\theta_{10}, \theta_{20}\right)}{\partial \theta_1^{\prime}}\right] \\
+    R_1 &= E\left[\frac{\partial r\left(\theta_{10}, \theta_{20}\right)}{\partial \theta_1^{\prime}}\right] \;:\;
+    R_2 = E\left[\frac{\partial r\left(\theta_{10}, \theta_{20}\right)}{\partial \theta_2^{\prime}}\right] \\
+    \sqrt{n} & \left(\left(
+    \begin{array}{c}
+        \widehat{\theta}_1 \\
+        \widehat{\theta}_2
+    \end{array}\right)-\left(
+    \begin{array}{c}
+        \theta_{1} \\
+        \theta_{2}
+    \end{array}\right)\right) \\
+    &\stackrel{d}{\longrightarrow} N\left(0,\left(
+    \begin{array}{cc}
+        Q_1^{-1} V_{11} Q_1^{-1} & \text {mess} \\
+        \text {mess} & \text {mess}
+    \end{array}\right)\right) \\
+    \sqrt{n} & \left(\widehat{\theta}_2-\theta_{2}\right) \stackrel{d}{\longrightarrow} N\left(0, R_2^{-1} V_{22} R_2^{-1}\right) \text{ if } R_1 =  0
+\end{align*}

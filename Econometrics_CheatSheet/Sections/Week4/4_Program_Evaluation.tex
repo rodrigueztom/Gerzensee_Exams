@@ -1,0 +1,113 @@
+\section{Treatment Effects and Selection Models}
+
+\subsection{Treatment Heterogeneity}
+
+If effect only varies with observable covariates, let $\varepsilon_1 = \varepsilon_0 = \varepsilon$. If the effect is even common, additionally use $X^{\prime}\beta_0 = \alpha + X^{\prime}\beta_1$.
+
+\begin{align*}
+    Y_0 &= X^{\prime} \beta_0+\varepsilon_0 \\
+    Y_1 &= X^{\prime} \beta_1+\varepsilon_1 \\
+    Y &= X^{\prime} \beta_0+D\left(X^{\prime}\left(\beta_1-\beta_0\right)+\varepsilon_1-\varepsilon_0\right)+\varepsilon_0 \\
+    TE &= Y_1-Y_0 = X^{\prime}\left(\beta_1-\beta_0\right)+\varepsilon_1-\varepsilon_0
+\end{align*}
+
+Unobservable. Focus on average instead.
+
+\subsection{Parameters of Interest}
+
+\begin{align*}
+    \tag{ATE}
+    E\left[TE\right] &\text { or } E\left[TE \mid X\right] \\
+    \tag{ATET}
+    E\left[TE \mid D=1\right] &\text { or } E\left[TE \mid D=1, X\right]
+\end{align*}
+
+\subsubsection{Bounds}
+
+Assume $Y_k$ for $k\in\{0,1\}$ is bounded, so $y^{\ell} \leq Y_k \leq y^u$. Then $y^{\ell} \leq E\left[Y_k \mid D=0\right] \leq y^u$. Then we can find $E\left[TE\right] = E\left[Y_1 - Y_0\right]$ by using
+
+\begin{align*}
+    & \operatorname{Pr}(D=k) E\left[Y_k \mid D=k\right]+(1-\operatorname{Pr}(D=k)) y^{\ell} \\
+    \leq & E\left[Y_k\right] \\
+    \leq & \operatorname{Pr}(D=k) E\left[Y_k \mid D=k\right]+(1-\operatorname{Pr}(D=k)) y^u
+\end{align*}
+
+\subsubsection{Matching}
+
+Assume that conditional on $X$, $(Y_1, Y_0)$ is independent of $D$, and that there are actually observations to match across treatment groups $1>\operatorname{Pr}(D=1 \mid X)>0$.
+
+\paragraph{ATE}
+
+\begin{align*}
+    E\left[Y_1-Y_0\right] =& E\left[E\left[Y_1-Y_0 \mid X\right]\right]  \text{ (ATE)} \\
+    =& E\left[E\left[Y_1 \mid X, D=1\right]\right. \\
+     &\left.-E\left[Y_0 \mid X, D=0\right]\right] 
+\end{align*}
+
+\paragraph{ATET}
+
+\begin{itemize}
+    \item construct average for each $X$, and $D$
+    \item difference each average across $D$s
+    \item Average the differences. Weight by appearance in $D=1$
+\end{itemize}
+
+\subsubsection{Propensity Score Matching}
+
+If $\left(Y_1, Y_0\right)$ is independent of $D$ conditional on $X$, then $\left(Y_1, Y_0\right)$ is independent of $D$ conditional on $P(X)=\operatorname{Pr}(D=1 \mid X)$.
+Thus, if it is valid to match on $X$, then one can alternatively match on $P(X)$.
+Very difficult to justify from an economic perspective.
+
+\subsubsection{Differences-in-Differences Estimator}
+
+\begin{align*}
+    \widehat{\beta}_1^{\text {diff-in-diff }} &= \left(\left(\bar{Y}^{\text {treat,after }}-\bar{Y}^{\text {treat,before }}\right) \right. \\
+    & \left.-\left(\bar{Y}^{\text {control,after }}-\bar{Y}^{\text {control,before }}\right)\right)
+\end{align*}
+
+\subsection{Randomized Experiments with Imperfect Compliance}
+
+Let $Z$ be $1$ if assigned to treatment, and $0$ if assigned to control. Also let $D_1$ be the treatment status if $Z=1$, and $D_0$ the treatment status if $Z=0$. Also, $D_1, D_0$ are binary. Must assume 
+
+\begin{itemize}
+    \item Independence: $\left(Y_0, Y_1, D_0, D_1\right)$ is independent of $Z$ (random assignment)
+    \item First Stage: $0<P(Z=1)<1$ and $P\left(D_1=1\right) \neq P\left(D_0=1\right)$
+    \item Monotonicity: $D_1 \geq D_0 \longrightarrow$ (no defiers)
+\end{itemize}
+
+Then we have for the compliers (Local average TE = LATE):
+
+\begin{align*}
+    \alpha_\text{LATE} &= E\left[Y_1-Y_0 \mid D_1>D_0\right] \\
+    &= \frac{E[Y \mid Z=1]-E[Y \mid Z=0]}{E[D \mid Z=1]-E[D \mid Z=0]}=\frac{\operatorname{cov}(Y, Z)}{\operatorname{cov}(D, Z)}
+\end{align*}
+
+Effectively, $Z$ acts as an instrument for the treatment, and one can run 2SLS of $Y$ on a constant and $D$, using $Z$ as instrument (one may include other controls $X$).
+
+\subsubsection{Parameter Heterogeneity}
+
+Every individual has own paremeter.
+
+\begin{align*}
+    y_i &= x_i^{\prime} \beta_i+\varepsilon_i \quad E\left[x_i \varepsilon_i\right]=0 \\
+    \widehat{\beta} & \stackrel{p}{\longrightarrow} E\left[\beta_i\right]
+\end{align*}
+
+Assume $\beta_{1 i}$ and $\delta_{1 i}$ are distributed independently of $\left(u_i, v_i, z_i\right)$. And $E\left[u_i \mid z_i\right]=0$, $E\left[v_i \mid z_i\right]=0$, and $E\left[\delta_{1 i}\right] \neq 0$:
+
+\begin{align*}
+    \widehat{\beta}_1^{2 S L S} &\stackrel{p}{\longrightarrow} \frac{\operatorname{cov}\left(y_i, z_i\right)}{\operatorname{cov}\left(x_i z_i\right)}=\frac{E\left[\delta_{1 i} \beta_{1 i}\right]}{E\left[\delta_{1 i}\right]}
+\end{align*}
+
+2SLS estimates the causal effect for individuals for whom $Z_i$ is most influential (those with large $\delta_{1 i}$ ).
+
+\subsection{Regression Discontinuity}
+
+\begin{align*}
+    & P(D=1 \mid X=x)= \begin{cases}0 & \text { for } x<c \\
+    1 & \text { for } x \geq c\end{cases} \\
+    & E[Y \mid X=x]= \begin{cases}E\left[Y_0 \mid X=x\right] & \text { for } x<c \\
+    E\left[Y_1 \mid X=x\right] & \text { for } x \geq c\end{cases} \\
+    & \lim _{x \searrow c} E[Y \mid X=x]-\lim _{x \nearrow_c} E[Y \mid X=x] \\
+    & =E\left[Y_1-Y_0 \mid X=c\right]
+\end{align*}

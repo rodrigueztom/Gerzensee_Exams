@@ -1,0 +1,31 @@
+\section{The Bayes Approach to Estimation and Inference}
+
+\subsection{Basic concepts and some jargon}
+
+\begin{align*}
+    f_{\theta | Y}(\tilde{\theta} | y)=\frac{f_{Y, \theta}(y, \tilde{\theta})}{f_Y(y)}&=\frac{f_{Y | \theta}(y | \tilde{\theta}) f_\theta(\tilde{\theta})}{\int f_{Y, \theta}(y, \tilde{\theta}) d \tilde{\theta}}\\
+    &=\frac{f_{Y | \theta}(y | \tilde{\theta}) f_\theta(\tilde{\theta})}{\int f_{Y | \theta}(y | \tilde{\theta}) f_\theta(\tilde{\theta}) d \tilde{\theta}} \\
+    \text { Posterior }&=\frac{\text { Likelihood } \times \text { Prior }}{\text { Marginal Likelihood }}
+\end{align*}
+
+\subsection{Bayes Estimators}
+
+\begin{align*}
+    \min _{\hat{\theta}} \mathbb{E} _{\theta | Y=y}[L(\hat{\theta}, \theta)] \quad\text{posterior risk}
+\end{align*}
+
+If loss is quadratic, then we know that $\hat{\theta}= E _{\theta | Y=y}(\theta)$ minimizes the MSE, which is just the posterior mean.
+
+\subsection{Bayes Credible Sets}
+
+\begin{align*}
+    P _{\theta | Y=y}(\theta \in C(y))=1-\alpha
+\end{align*}
+
+where the notation emphasizes that the probability is computed using the posterior for $\theta|Y=y$. Because this holds for all $y$, we also have
+
+\begin{align*}
+    P _{\theta, Y}(\theta \in C(Y))=1-\alpha
+\end{align*}
+
+where now the probability is computed over $\theta$ and $Y$.

@@ -1,0 +1,50 @@
+\section{Estimators}
+
+\begin{itemize}
+    \item An estimator is unbiased, if $\mathbb{E}(\hat{\theta})=\theta$. Where Bias is defined as $\operatorname{Bias}(\hat{\theta})= \mathbb{E}(\hat{\theta})-\theta$
+    \item Loss Function , say $L(\hat{\theta}, \theta)=(\hat{\theta}-\theta)^2=\text { quadratic loss }$. This is not the same as expected quadratic loss, which is MSE:
+    
+    \begin{align*}
+        E (L(\hat{\theta}, \theta))&= E \left((\hat{\theta}-\theta)^2\right)=\operatorname{mse}(\hat{\theta}) \\
+        &= \operatorname{Var}(\hat{\theta})+[\operatorname{Bias}(\hat{\theta})]^2
+    \end{align*}
+    \item Conclusion: for unbiased estimator $\operatorname{mse}(\hat{\theta})=\operatorname{Var}(\hat{\theta})$
+    \item An estimator is consistent, if $\hat{\theta} \stackrel{p}{\rightarrow} \theta$
+\end{itemize}
+
+\subsection{The Likelihood Function}
+
+\begin{align*}
+    L (\theta, Y)&=f(Y | \theta) \\
+    S(\theta, y)&=\frac{\partial \ln f(y | \theta)}{\partial \theta}=\frac{1}{f(y | \theta)} \frac{\partial f(y | \theta)}{\partial \theta}\\
+    E [S(\theta, Y)]&=\int \frac{\partial f(y | \theta)}{\partial \theta} d y=\int S(\theta, y) f(y | \theta) d y= 0\\
+    I (\theta)&=- E \left[\frac{\partial S(\theta, Y)}{\partial \theta}\right] = E \left[S(\theta, Y)^2\right]\\
+    &=\operatorname{Var}[S(\theta, Y)]
+\end{align*}
+
+\paragraph{The Cramer-Rao inequality and unbiased estimators}
+
+\begin{align*}
+    \operatorname{Var}(\hat{\theta}) &\geq \frac{1}{\operatorname{Var}(S(\theta, Y))}= I (\theta)^{-1}
+\end{align*}
+
+\paragraph{Maximum Likelihood Estimators}
+
+\begin{align*}
+    \max\limits_{\theta} L _n(\theta)&= \max\limits_{\theta} \prod_{i=1}^n f\left(Y_i | \theta\right) \\
+    \widehat{\theta}_{m l e} &\stackrel{p}{\rightarrow} \theta_0 \\
+    I \left(\theta_o\right)^{1 / 2} \sqrt{n}\left(\widehat{\theta}_{m l e}-\theta_0\right) &\stackrel{d}{\rightarrow} N(0, I)\\
+    \widehat{\theta}_{m l e} &\stackrel{a}{\sim} N\left(\theta_0, n^{-1} I \left(\theta_0\right)^{-1}\right)
+\end{align*}
+
+\subsection{Method of Moment Estimators}
+
+Assume $\mu = h(\theta_0)$, where $\mu$ is $l\times 1$, $\theta_0$ is $k\times 1$ with $k\leq l$. Then $\widehat{\theta}_{m m}$ solves
+
+\begin{align*}
+    \min\limits_{\theta} J_n(\theta)&=\min\limits_{\theta} (\bar{Y}-h(\theta))^{\prime}(\bar{Y}-h(\theta))\\
+    \widehat{\theta}_{m m} &\stackrel{p}{\rightarrow} \theta_0 \\
+    \widehat{\theta}_{m m} &\stackrel{a}{\sim} N\left(\theta_0, V\right) \\
+    V &= n^{-1} H^{-1}\left[\frac{\partial h\left(\theta_o\right)}{\partial \theta^{\prime}}\right]^{\prime} \Sigma\left[\frac{\partial h(\theta)}{\partial \theta^{\prime}}\right] H^{-1} \\
+    H&=\left[\frac{\partial h\left(\theta_o\right)}{\partial \theta^{\prime}}\right]^\prime \left[\frac{\partial h\left(\theta_o\right)}{\partial \theta^{\prime}}\right]
+\end{align*}

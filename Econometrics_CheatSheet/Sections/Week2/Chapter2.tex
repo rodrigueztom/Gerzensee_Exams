@@ -1,0 +1,42 @@
+\section{Hayashi 2}
+
+\subsection{Inference}
+
+\begin{align*}
+    t_j = \frac{\widehat{\beta}_j-\beta_j}{\operatorname{se}\left(\widehat{\beta}_j\right)} \\
+    \beta^0 \in \widehat{\beta}_j \pm t_{n-K}^\alpha \operatorname{se}\left(\widehat{\beta}_j\right)
+\end{align*}
+
+\subsubsection{Linear restrictions}
+
+\begin{align*}
+    F &= \frac{\left(R^{\prime} \widehat{\beta}-r\right)^{\prime}\left[R^{\prime}\left(X^{\prime} X\right)^{-1} R\right]^{-1}\left(R^{\prime} \widehat{\beta}-r\right) / p}{\left((n-k) s^2 / \sigma^2\right) /(n-k)} \\
+    &= \frac{\left(e^{\prime *} e^*-e^{\prime} e\right) / p}{e^{\prime} e /(n-K)}=\frac{\left(S S R^*-S S R\right) / p}{S S R /(n-K)} \\
+    &= \frac{\left(R^2-R^{* 2}\right) / p}{\left(1-R^2\right) /(n-K)} =\frac{\left(S S T^*-S S R\right) / p}{S S R /(n-K)}
+\end{align*}
+
+$p$: number of regressors w/o constant \newline
+$n-K$: number of individuals minus number of regressors with constant
+\newline
+last equation only for regression output useful
+
+\subsubsection{Goodness of Fit}
+
+\begin{align*}
+    R^2&=\frac{\sum\left(\widehat{y}_i-\bar{y}\right)^2}{\sum\left(y_i-\bar{y}\right)^2}=M S S / T S S \\
+    &=1-\frac{\sum e_i^2}{\sum\left(y_i-\bar{y}\right)^2}=1-(R S S / T S S) \\
+    \hat{R}^2&=1-\frac{\sum e_i^2 /(n-K)}{\sum\left(y_i-\bar{y}\right)^2 /(n-1)} \\
+    & = 1-\left(1-R^2\right) \frac{n-1}{n-k}
+\end{align*}
+
+\subsubsection{Wald Statistic}
+
+$V(\widehat{\beta} \mid X)$ is given in outputs. Do not forget to square $\operatorname{SE}(\hat{\beta})$.
+
+\begin{align*}
+    W &=\left(R^{\prime} \widehat{\beta}-r\right)^{\prime}\left[R^{\prime} V(\widehat{\beta} \mid X) R\right]^{-1}\left(R^{\prime} \widehat{\beta}-r\right)\\
+    &=n\left(R^{\prime} \widehat{\beta}-r\right)^{\prime}\left[R^{\prime} \hat{\operatorname{Avar}}(\widehat{\beta}) R\right]^{-1}\left(R^{\prime} \widehat{\beta}-r\right)\\
+    W&=a(\hat{\beta})^{\prime}\left[\nabla a(\hat{\beta})^{\prime} \hat{V}(\hat{\beta}\mid X) \nabla a(\hat{\beta})\right]^{-1} a(\hat{\beta}) \\
+    &= n a(\hat{\beta})^{\prime}\left[\nabla a(\hat{\beta})^{\prime} \hat{\operatorname{Avar}}(\hat{\beta}) \nabla a(\hat{\beta})\right]^{-1} a(\hat{\beta})
+\end{align*}
+

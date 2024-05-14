@@ -1,0 +1,19 @@
+\section{Some Useful Inequalities}
+
+\subsection{Jensen's Inequality}
+
+\begin{center}
+	\begin{tabular}{ c| c }
+		$g(x) $ concave & $g(x)$ convex  \\ 
+		$E[g(x)]\leq g(E[X]) $& $E[g(x)]\geq g(E[X]) $
+	\end{tabular}
+\end{center}
+
+\subsection{Chebyshev's and Markov's Inequality}
+
+If $X$ is a random Variable with mean $\mu$ and variance $\sigma^2$, then 
+
+\begin{align*}
+	P(| X-\mu|  \geq \varepsilon) &\leq \frac{\sigma^2}{\varepsilon^2} &\qquad \forall \varepsilon > 0 \\
+	P(| X|  \geq \varepsilon) &\leq \frac{\mathbb{E}(| X| ^p)}{\varepsilon^p} &\qquad \forall \varepsilon > 0 \: \text{(Markov)}
+\end{align*}

@@ -1,0 +1,9 @@
+\section{The Likelihood Function for Time Series}
+
+\begin{align*}
+    f\left(Y_{1: T}\right) =&f\left(Y_T \mid Y_{1: T-1}\right) f\left(Y_{1: T-1}\right) \\
+    =&f\left(Y_T \mid Y_{1: T-1}\right) f\left(Y_{T-1} \mid Y_{1: T-2}\right) \cdot \\
+    &f\left(Y_{1: T-2}\right) \\
+    =&\prod_{t=2}^T f\left(Y_t \mid Y_{1: t-1}\right) f\left(Y_1\right)
+\end{align*}
+

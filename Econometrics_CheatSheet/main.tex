@@ -1,0 +1,246 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+%allows you to neatly integrate an abstract once you start with the actual content
+\usepackage{abstract}
+\usepackage{microtype}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% SETTING THE GEOMETRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%borders and such
+\usepackage[top=0mm,bottom=1mm,left=0mm,right=1mm]{geometry}
+\usepackage{setspace}
+\singlespacing
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% FONTS & COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%if you want to start a multicolomns part inside your normally one columned article
+\usepackage{multicol}
+%lets you change the style of your (sub)section headers
+% \usepackage{sectsty}
+% %I chose to make my headers cyan-colored
+% \sectionfont{\fontsize{10}{10}\selectfont}
+% \subsectionfont{\fontsize{10}{10}\selectfont}
+% \subsubsectionfont{\fontsize{10}{10}\selectfont}
+
+\usepackage[compact]{titlesec}
+\AtBeginDocument{%                     % this will reduce spaces between parts (above and below) of texts within a (sub)section to 0pt, for example - like between an 'eqnarray' and text
+  \setlength\abovedisplayskip{0pt}
+  \setlength\belowdisplayskip{0pt}}
+  
+\usepackage{xcolor}
+
+\titleformat*{\section}{\normalfont\tiny\bfseries\color{blue}}
+\titleformat*{\subsection}{\normalfont\tiny\bfseries\color{blue}}
+\titleformat*{\subsubsection}{\tiny\color{cyan}}
+\titleformat*{\paragraph}{\normalfont\tiny\bfseries\color{cyan}}
+\titleformat*{\subparagraph}{\tiny}
+
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\titlespacing{\paragraph}{0pt}{0pt}{0pt}
+
+% superscript 1st, 2nd, 3rd, 4th ... use \nth{8}
+\usepackage[super]{nth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% INSERTING PICTURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%very useful if you want to add a jpfg or png file. Usage: \includegraphics{path/to/file}
+\usepackage{grffile}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[format=plain,
+            % labelfont=it,
+            font=footnotesize,
+            % width=0.85\textwidth,
+            % textfont=it,
+            % singlelinecheck=on
+            ]{caption}
+% Figures can't live outside the section
+\usepackage[section]{placeins}
+% and then also \FloatBarrier at the end of a section to enforce harder.
+
+% For figures turned 90 degrees
+\usepackage{rotating}
+% For uppercase subfigure panels
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% INSERTING TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+\usepackage{multirow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% LINKS AND WWW
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Provides clickable links in the PDF-document for \ref and the TOC
+\usepackage[hidelinks]{hyperref} %you can remove the hidelinks option to make the hyperrefs visible. looks very ugly to me, but might be useful to less experienced readers of pdfs
+% Lets you typeset urls with linebreak. Usage: \url{http://...}  
+\usepackage{url}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% CODE INTEGRATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Source Code Listings. Usage: \begin{lstlisting}...\end{lstlisting}
+\usepackage{listings}
+%this defines a lot of parameters for code. makes it look nice IMO
+\lstset{ 
+	breaklines=true,                 % sets automatic line breaking
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}         
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% MATH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%some very useful packages for writing down beautiful formulas
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{mathrsfs}  
+\usepackage{bm}
+\usepackage{empheq}
+% Nice rules for tables. Usage \begin{tabular}\toprule ... \midrule ... \bottomrule
+\usepackage{booktabs}          
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% ALL ABOUT YOU
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\title{Summaries}
+\author{Tom Rodriguez}
+\date{\today}
+
+%start your document with \begin{document} and type everything inbetween \begin{document} and \end{document}
+\let\oldcenter\center
+\let\oldendcenter\endcenter
+\renewenvironment{center}{\setlength\topsep{0pt}\oldcenter}{\oldendcenter}
+\begin{document}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % ACTUAL CONTENT 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tiny
+
+\begin{multicols*}{5}
+\setlength{\columnseprule}{0.4pt}
+
+\input{Sections/Week1/Probability Concepts}
+\hrule
+\input{Sections/Week1/Random Variables}
+\hrule
+\input{Sections/Week1/Selected Probability Distributions}
+\hrule
+\input{Sections/Week1/Some Useful Inequalities}
+\hrule
+\input{Sections/Week1/Large Sample Theory}
+\hrule
+\input{Sections/Week1/Estimators}
+\hrule
+\input{Sections/Week1/Sufficient Statistics}
+\hrule
+\input{Sections/Week1/Hypothesis Tests}
+\hrule
+\input{Sections/Week1/Confidence Sets}
+\hrule
+\input{Sections/Week1/The Bayes Approach to Estimation and Inference}
+\hrule
+
+\end{multicols*}
+\newpage
+
+\begin{multicols*}{5}
+\setlength{\columnseprule}{0.4pt}
+
+\input{Sections/Week2/Chapter1}
+\hrule
+\input{Sections/Week2/Chapter2}
+\hrule
+\input{Sections/Week2/Chapter3}
+\hrule
+\input{Sections/Week2/Notes}
+\hrule
+
+\end{multicols*}
+\newpage
+
+\setcounter{section}{0}
+
+\begin{multicols*}{5}
+\setlength{\columnseprule}{0.4pt}
+
+\input{Sections/Week3/1_Some Basic Time Series Concepts}
+\hrule
+\input{Sections/Week3/2_The Likelihood Function for Time Series Models}
+\hrule
+\input{Sections/Week3/3_The Kalman Filter}
+\hrule
+\input{Sections/Week3/4_The Linear model with Serially Correlated Data}
+\hrule
+\input{Sections/Week3/5_The Functional Central Limit}
+\hrule
+\input{Sections/Week3/6_VARs and Related Topics}
+\hrule 
+\input{Sections/Week3/Notes}
+ 
+\vspace{.8mm}
+\hrule
+% \end{multicols*}
+
+% \newpage
+
+% \begin{multicols*}{5}
+% \setlength{\columnseprule}{0.4pt}
+\newpage
+\input{Sections/Week4/1_Discrete_Choice_Models}
+\hrule
+\input{Sections/Week4/2_NLLS}
+\hrule
+\input{Sections/Week4/3_Asymptotics}
+\hrule
+\input{Sections/Week4/4_Program_Evaluation}
+\hrule
+\input{Sections/Week4/5_Nonparametrics}
+\hrule
+% \input{Sections/Week4/6_ML_1}
+% \hrule
+\input{Sections/Week4/9_ML_2}
+\hrule
+\input{Sections/Week4/Notes}
+\end{multicols*}
+
+\end{document}

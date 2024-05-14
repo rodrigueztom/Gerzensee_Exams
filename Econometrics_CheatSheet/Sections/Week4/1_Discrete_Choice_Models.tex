@@ -1,0 +1,33 @@
+\section{Discrete Choice Models}
+
+\subsection{Linear Probability Model}
+
+\begin{align*}
+    V\left[\varepsilon_i \mid x_i\right] & =P\left(y_i=1 \mid x_i\right)-P\left(y_i=1 \mid x_i\right)^2
+\end{align*}
+
+\subsection{Nonlinear Approaches}
+
+\begin{align*}
+    P\left(y_i=1 \mid x_i\right) &= F\left(x_i^{\prime} \beta\right) \\
+    \tag{Probit}
+    F(\eta) &= \Phi(\eta) \\
+    \tag{Logit}
+    F(\eta) &= \frac{\exp(\eta)}{1+\exp(\eta)}
+\end{align*}
+
+\subsubsection{MLE}
+
+\begin{align*}
+    \mathcal{L} &= \prod_i F\left(x_i^{\prime} \beta\right)^{y_i}\left(1-F\left(x_i^{\prime} \beta\right)\right)^{1-y_i} \\
+    \ln \mathcal{L} &= \sum y_i \ln F\left(x_i^{\prime} \beta\right)+\left(1-y_i\right) \ln \left(1-F\left(x_i^{\prime} \beta\right)\right)
+\end{align*}
+
+\subsection{Marginal Effects}
+
+\begin{align}
+    \tag{Probit}
+    &\frac{\partial P\left(y_i=1 \mid x_i\right)}{\partial x_{i \ell}} = \phi\left(x_i^{\prime} \beta\right) \beta_{\ell} \\
+    \tag{Logit}
+    &\frac{\partial P\left(y_i=1 \mid x_i\right)}{\partial x_{i \ell}} = \frac{\exp \left(x_i^{\prime} \beta\right)}{\left(1+\exp \left(x_i^{\prime} \beta\right)\right)^2} \beta_{\ell}
+\end{align}

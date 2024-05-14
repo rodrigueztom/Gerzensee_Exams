@@ -1,0 +1,158 @@
+\section{The Linear model with Serially Correlated Data}
+
+\subsection{Asymptotics for serially correlated processes}
+
+\subsubsection{Ergodicity}
+
+A process is ergodic if its elements are asymptotically independent.
+
+Suppose $\left\{z_t\right\}$ is stationary and ergodic with $E\left(z_t\right)=\mu$. Then $T^{-1} \sum_{i=1}^T z_t \stackrel{a . s}{\longrightarrow} \mu$.
+
+If $z_t$ is stationary and ergodic, then so is $x_t=f\left(z_t\right)$ for arbitrary function $f$.
+
+\subsubsection{CLT for martingale difference sequences (MDS)}
+
+Let $\left\{g_t\right\}$ be a (possibly vector-valued) mds that is stationary and ergodic with $E\left(g_t g_t^{\prime}\right)=\Sigma_{g g}$.
+
+\begin{align*}
+    \sqrt{T} \bar{g}=\frac{1}{\sqrt{T}} \sum_{t=1}^T g_t \Rightarrow N\left(0, \Sigma_{g g}\right)
+\end{align*}
+
+\subsection{Linear and Serially Correlated Regressors}
+
+\begin{align*}
+    y_t=x_t^{\prime} \beta+\varepsilon_t
+\end{align*}
+
+\subsubsection{Assumptions}
+
+(2) $\left\{y_t, x_t\right\}$ is a stationary and ergodic process
+
+(3) $\mathbb{E}\left(\varepsilon_t x_t\right)=0$, or letting $g_t=\varepsilon_t x_t$ then $E\left(g_t\right)=0$
+
+(4) $\mathbb{E}\left(x_t x_t^{\prime}\right)=\Sigma_{x x}$ which is non-singular
+
+(5) $\left\{g_t\right\}$ is a mds with $E\left(g_t g_t^{\prime}\right)=\Sigma_{g g}$
+
+If in addition to (2)-(5), $\mathbb{E}\left[\left(x_{t, i} x_{t, j}\right)^2\right]$ is finite for all $i$ and $j$, and let $\widehat{g}_t=\widehat{\varepsilon}_t x_t=(y_t-x_t \widehat{\beta})x_t$, and $S_{\hat{g} \hat{g}}=\frac{1}{T} \sum \widehat{g}_t^2=\frac{1}{T} \sum \hat{\varepsilon}_t^2 x_t x_t^{\prime}$. Then
+
+\begin{align*}
+    S_{\hat{g} \hat{g}} \stackrel{p}{\rightarrow} \Sigma_{g g}
+\end{align*}
+
+\subsubsection{OLS} 
+
+\begin{align*}
+    \widehat{\beta} \stackrel{p}{\rightarrow}& \beta \\
+    \sqrt{T}(\widehat{\beta}-\beta) \stackrel{d}{\rightarrow}& N\left(0, \Sigma_{x x}^{-1} \Sigma_{g g} \Sigma_{x x}^{-1}\right) \\
+    \xi_W=&T(R \widehat{\beta}-r)^{\prime}\left(R \widehat{V}_{\widehat{\beta}} R^{\prime}\right)^{-1}(R \widehat{\beta}-r)\\
+    \xi_W \Rightarrow& \chi_m^2 \: ; \:
+    \frac{\xi_W}{m} \Rightarrow F_{m, \infty}
+\end{align*}
+
+% \subsubsection{Application: AR(p)}
+
+% Suppose $y_t = \theta(L)\varepsilon_t$ is a MA process. If $\sum_{i=0}^{\infty}\left|\theta_i\right|<\infty$, then $\sum_{i=-\infty}^{\infty}\left|\lambda_i\right|<\infty$ and the process is stationary and ergodic.
+
+% Suppose $\phi(L)y_t = \varepsilon_t$ and the roots of $\phi(L)$ lie outside the unit circle, then $y_t = \theta(L)\varepsilon_t$ with $\sum_{i=0}^{\infty}\left|\theta_i\right|<\infty$. Thus, the process is stationary and ergodic.
+
+% For this process: could also write $y_t=x_t^{\prime} \beta+\varepsilon_t$ and then we can apply OLS:
+
+% \begin{align*}
+%     \widehat{\beta} &\stackrel{p}{\rightarrow} \beta\\
+%     \sqrt{T}(\widehat{\beta}-\beta) &\Rightarrow N\left(0, V_{\widehat{\beta}}\right)\\
+%     V_{\widehat{\beta}}&=\sigma^2 \Sigma_{x x}^{-1}
+% \end{align*}
+
+\paragraph{AR(1) example:} $y_t = \phi x_{t-1}+\varepsilon_t$ and $\sqrt{T}(\widehat{\phi}-\phi) \Rightarrow N\left(0, \sigma^2 \Sigma_{x x}^{-1} \right)$. Then use from AR(1): $\Sigma_{x x}=\frac{\sigma^2}{1-\phi^2}$:
+
+\begin{align*}
+    \widehat{\phi} \stackrel{a}{\sim} N\left(\phi, \frac{1}{T}\left(1-\phi^2\right)\right)
+\end{align*}
+
+\subsection{Let $g_t$ not be a MDS}
+
+\begin{align*}
+    \frac{1}{\sqrt{T}} \sum_{t=1}^T g_t &\Rightarrow N(0, \Omega) \\
+    \Omega &= \sum_{j=-T+1}^{T-1} \lambda_j-\frac{1}{T} \sum_{j=1}^{T-1} j\left(\lambda_j+\lambda_{-j}\right) \\
+    & \rightarrow \sum_{j=-\infty}^{\infty} \lambda_j \\
+    \Omega &= \lambda(z=1)
+\end{align*}
+
+\subsubsection{OLS With Serially Correlated Errors}
+
+Let $\frac{1}{\sqrt{T}} \sum_{t=1}^T g_t \Rightarrow N(0, \Omega)$. Then OLS gives
+
+\begin{align*}
+    \sqrt{T}(\hat{\beta}-\beta) \Rightarrow N\left(0, \Sigma_{X X}^{-1} \Omega \Sigma_{X X}^{-1}\right)
+\end{align*}
+
+\subsection{HAC and HAR inference}
+
+Let $\hat{V}_{\widehat{\beta}}=S_{X X}^{-1} \hat{\Omega} S_{X X}^{-1}$ and $\xi_W=T(\hat{\beta}-\beta)^{\prime} \hat{V}_{\hat{\beta}}^{-1}(\hat{\beta}-\beta)$.
+If $\hat{\Omega} \stackrel{p}{\longrightarrow} \Omega$, then $\hat{V}_{\hat{\beta}} \stackrel{p}{\longrightarrow} V_{\hat{\beta}}$, and $\xi_W \Rightarrow \chi_k^2$.
+
+\subsubsection{Estimators for $\Omega$}
+
+With finite sample, impossible to consistently estimate $\Omega$ for all possible sequences $\left\{\lambda_j\right\}$. Sometimes it is:
+
+Suppose $\lambda_{|j|}=0$ for $|j|>q$ (so $g_t$ follows an MA(q) process). Only estimate the variance and first $q$ auto-covariances. These are consistent.
+
+\subsubsection{HAC Estimators for $\Omega$}
+
+\paragraph{Truncated: } $\hat{\Omega}^{\text {Trunc }}=\sum_{j=-k}^k \hat{\lambda}_j \text { with } \hat{\lambda}_j=T^{-1} \sum_{t=1}^{T-j} g_t g_{t+j}$
+
+\paragraph{Weighted Truncated: } $\hat{\Omega}(w)=\sum_{j=-k}^k w_j \hat{\lambda}_j$ where $w_j$ are weights.
+
+\begin{align*}
+    \hat{\Omega}^{N W}&=\sum_{j=-k}^k w_j \hat{\lambda}_j \: ; \:
+    w_{|j|}=\frac{k+1-|j|}{k+1}
+\end{align*}
+
+These HAC estimators yield test statistics with good size/power properties in cases when there is
+limited autocorrelation.
+
+\subsection{OLS and HAC vs. GLS}
+
+OLS is perfect if $\operatorname{Var}(u \mid X)=\Lambda=\sigma^2 I$. When $\Lambda \neq \sigma^2 I$, use
+
+\begin{align*}
+    \hat{\beta}^{G L S}=\left(X^{\prime} \Lambda^{-1} X\right)^{-1} X^{\prime} \Lambda^{-1} Y
+\end{align*}
+
+If $\Lambda$ is unknown, use feasible GLS:
+
+\begin{align*}
+    \hat{\beta}^{F G L S}&=\left(X^{\prime} \hat{\Lambda}^{-1} X\right)^{-1} X^{\prime} \hat{\Lambda}^{-1} Y \\
+    \hat{\Lambda}&=\Lambda(\hat{\theta})
+\end{align*}
+
+\subsection{OLS (with HAC inference) or GLS?}
+
+\begin{align*}
+    y_t&=x_t^{\prime} \beta+u_t \\
+    E\left(u_t \mid x_t\right)=0 &\Rightarrow E\left(u_t x_t\right)=0 \\
+    u_t&=\rho u_{t-1}+\varepsilon_t \text { where } \varepsilon_t \stackrel{\text{iid}}{\sim} \left(0, \sigma^2\right) \\
+    \widetilde{y}_t&=y_t-\rho y_{t-1} \text{ and } \widetilde{x}_t=x_t-\rho x_{t-1} \\
+    \varepsilon_t&=u_t-\rho u_{t-1}
+\end{align*}
+
+For GLS where we regress $\widetilde{y}_t$ on $\widetilde{x}_t$, we need $\mathbb{E}\left(\varepsilon_t \widetilde{x}\right)=0$:
+
+\begin{align*}
+    &E\left[\left(u_t-\rho u_{t-1}\right)\left(x_t-\rho x_{t-1}\right)\right] \\
+    &=E\left(u_t x_t\right)+\rho^2 E\left(u_{t-1} x_{t-1}\right) \\
+    &-\rho E\left(u_t x_{t-1}\right)-\rho E\left(u_{t-1} x_t\right) =0 
+\end{align*}
+
+Thus the following four must hold. The first two are implied by $\mathbb{E}(u_t \mid x_t)=0$. The others need stronger assumptions.
+
+\begin{align*}
+    E\left(u_t x_t\right) & =0 \: ; \:
+    E\left(u_{t-1} x_{t-1}\right) =0 \\
+    E\left(u_t x_{t-1}\right) & =0 \: ; \:
+    E\left(u_{t-1} x_t\right) =0
+\end{align*}
+
+Exogenous or predetermined: $E\left(u_t \mid x_t, x_{t-1}, \ldots\right)=0$.
+Strictly exogenous: $E\left(u_t \mid \ldots x_{t+1}, x_t, x_{t-1}, \ldots\right)=0$. This is needed for GLS.

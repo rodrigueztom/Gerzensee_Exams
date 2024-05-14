@@ -1,0 +1,84 @@
+% \section{Notes}
+
+% \paragraph{Theorems}
+
+% \begin{center}
+%     \resizebox{.19\textwidth}{!}{
+%     \begin{tabular}{l|l}
+%         A &  Linear functions of X are normally distributed\\
+%           &  $Y=\eta+B X \sim N_k\left(\eta+B \mu, B \Sigma B^{\prime}\right)$\\
+%           \hline
+%         B &  $X$ has density given by\\
+%           &  $f_X(x)=\frac{1}{(2 \pi)^{p / 2}| \Sigma| ^{1 / 2}} \exp \left\{-\frac{1}{2}(x-\mu)^{\prime} \Sigma^{-1}(x-\mu)\right\}$\\
+%           \hline
+%         C &  Independent normally distributed RVs are jointly normal.\\
+%           &  $X=(X_1^\prime , X_2^\prime)^\prime \sim N_{p+q}\left(\mu, \Sigma\right)$\\
+%           &  $\mu=\left(\begin{array}{l} \mu_1 \\ 
+%              \mu_2 \end{array}\right) \quad \text { and } \quad \Sigma=\left(\begin{array}{cc} \Sigma_1 & 0 \\
+%              0 & \Sigma_2 \end{array}\right)$\\
+%           \hline
+%         D &  Conditional normal distribution\\
+%           &  $\left(X_1 | X_2=x_2\right) \sim N \left(\mu_1+\Sigma_{12} \Sigma_{22}^{-1}\left(x_2-\mu_2\right), \Sigma_{11}-\Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}\right)$\\
+%           \hline     
+%         E &  Suppose $X_2 \sim N \left(\mu_2, \Sigma_{22}\right)$ and $X_1 | X_2=x_2 \sim N \left(A+B x_2, \Omega\right)$.\\
+%         &Then $X=(X_1^\prime , X_2^\prime)^\prime$ has a multivariate normal distribution\\
+%           &  $\left(\begin{array}{c} X_1 \\ X_2 \end{array}\right)
+%           \sim N \left(\left(\begin{array}{c} A+B \mu_2 \\ \mu_2 \end{array}\right),
+%           \left(\begin{array}{cc} B \Sigma_{22} B^{\prime}+\Omega & B \Sigma_{22} \\ \Sigma_{22} B^{\prime} & \Sigma_{22} \end{array}\right)\right)$\\
+%           \hline
+%         F & Sums of independent normals \\
+%           &  $X_1+X_2 \sim N \left(\mu_1+\mu_2, \Sigma_1+\Sigma_2\right)$\\
+%           \hline
+%     \end{tabular}
+%     }
+% \end{center}
+
+
+% Let $X \sim N_p(\mu, \Sigma)$. Also let $X=(X_1^\prime, X_2^\prime)^\prime$, $\mu=(\mu_1^\prime, \mu_2^\prime)^\prime$, and $\Sigma=\left(\begin{array}{cc} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22} \end{array}\right)$.
+
+% \begin{center}
+%     \resizebox{.19\textwidth}{!}{
+%     \begin{tabular}{l|l}
+%         G &  The marginal distribution of $X_1$ is $N_k(\mu_1, \Sigma_{11})$\\
+%           \hline
+%         H &  For a normal, a zero correlation implies independence.\\
+%           \hline
+%         I &  Characterizing independence of linear combinations of \\
+%           & normal variables. \\
+%           &  If $X \sim N_p(\mu, \Sigma)$, $B$ is a $p\times k$ matrix, and \\
+%           & $C$ is a $p\times m$ matrix, then $B\prime X$ and $C^\prime X$\\
+%           & are independent iff $B^\prime\Sigma C = 0$.\\
+%           & Note that $B^\prime X$ and $C^\prime X$ are jointly normal and\\ 
+%           & $B^\prime\Sigma C$ is the covariance.\\
+%           \hline
+%     \end{tabular}
+%     }
+% \end{center}
+
+% Quadratics: Assume $A$ is symmetric, then $Y\prime AY$ is a quadratic form.
+
+% \begin{center}
+%     \resizebox{.19\textwidth}{!}{
+%     \begin{tabular}{l|l}
+%         J & If $X \sim N_p(\mu, \Sigma)$ where $\Sigma$ has rank $p$,\\
+%           &then $(X-\mu)^\prime\Sigma^{-1}(X-\mu)\sim\chi_p^2$. \\
+%           \hline
+%         K & Let $M$ denote an idempotent $p\times p$ matrix with rank $k$,\\ 
+%           & then $Z^\prime MZ \sim\chi_k^2$\\
+%           &  $M=P\Lambda P^\prime$, where $\Lambda$ contains the eigenvalues of $M$\\ 
+%           & on the diagonal, \\
+%           & and the rows of $P$ are the orthonormal eigenvectors.\\
+%           & Then $M=\left[ P_1 \: P_2 \right] \left[ \begin{array}{cc} I_k & 0 \\
+%         0 & 0 \end{array} \right] \left[ \begin{array}{c} P_1^\prime \\
+%         P_2^\prime \end{array} \right] = P_1 P_1^\prime$ \\
+%           & Thus, $P_1^\prime Z \sim N(0,P_1^\prime P_1)$, where $P_1^\prime P_1 = I_k$\\
+%           \hline
+%         L & Let $X=PZ$, and $Q=Z^\prime AZ$, where $PA=0$, \\ 
+%           & then $X$ and $Q$ are independent. \\
+%           \hline
+%         M & Let $Q_1 = Z^\prime A_1 Z$, and $Q_2 = Z^\prime A_2 Z$, where $A_1 A_2=0$.\\ 
+%           & Then $Q_1$ and $Q_2$ are independent.\\
+%           \hline
+%     \end{tabular}
+%     }
+% \end{center}

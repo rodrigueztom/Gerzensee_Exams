@@ -1,0 +1,75 @@
+\section{Hypothesis Tests}
+
+\subsection{Wald Tests}
+
+\begin{align*}
+    H_0: & \theta = \theta_0 \quad H_a: \theta \neq \theta_0 \\
+    \xi&=\left(\hat{\theta}-\theta_0\right)^{\prime} \Omega^{-1}\left(\hat{\theta}-\theta_0\right) \\
+    \xi &\sim \chi_k^2 \quad \text{under the null}
+\end{align*}
+
+Therefore, we accept $H_0$, if $\xi\leq \operatorname{cv}$, and reject $H_0$ if $\xi > \operatorname{cv}$. $\operatorname{cv}$ solves $\mathbb{P}(\xi>\operatorname{cv}| \theta = \theta_0)=\alpha$.
+
+$\operatorname{Power} = \mathbb{P}(\xi>\operatorname{cv}| H_a \text{ is true}) = \mathbb{P}(\xi>\operatorname{cv}| \theta \neq \theta_0)$. Because $H_a$ has many values for $\theta$, the power differs for each value. But assuming that the distribution of $\hat{\theta}$ was based on CLT ($\sqrt{n}(\hat{\theta}-\theta) \stackrel{d}{\longrightarrow} N (0, V)$). Then $\Omega=n^{-1} V$, and our test statistic becomes
+
+\begin{align*}
+    \xi&=n\left(\hat{\theta}-\theta_0\right)^{\prime} V^{-1}\left(\hat{\theta}-\theta_0\right)
+\end{align*}
+
+If the mean of $\hat{\theta}$ is equal to a fixed constant (that is not $\theta_0$), then $\xi \rightarrow\infty$, and $\mathbb{P}(\xi>\operatorname{cv})\rightarrow 1$. The test has therefore power $=1$ for any fixed value of $\theta$ under the alternative. When power $\rightarrow 1$, a test is said to be consistent.
+
+\paragraph{Hypotheses involving linear functions of $\theta$}
+
+\begin{align*}
+    H_0: R\theta &= r_0 \quad \text{where $R$ is a $j\times k$ matrix with rank $j$}\\
+    H_a: R\theta &\neq r_0 \quad \text{where $R$ is a $j\times k$ matrix with rank $j$}\\
+    R \hat{\theta} &\sim N\left(R \theta, R \Omega R^{\prime}\right) \\
+    \xi&=\left(R \hat{\theta}-r_0\right)^{\prime}\left(R \Omega R^{\prime}\right)^{-1}\left(R \hat{\theta}-r_0\right) \\
+    \xi&\sim\chi_j^2 \quad \text{under } H_0
+\end{align*}
+
+\paragraph{Hypotheses involving nonlinear functions of $\theta$}
+
+\begin{align*}
+    H_0: R(\theta) &= r_0 \\
+    H_a: R(\theta) &\neq r_0 \\
+    \sqrt{n}(R(\hat{\theta})-R(\theta)) &\Rightarrow N \left(0, H V H^{\prime}\right) \quad \text{by delta method}\\
+    H&=\frac{\partial R(\theta)}{\partial \theta^{\prime}} \\
+    R(\hat{\theta}) &\stackrel{a}{\sim} N (R(\theta), \tilde{\Omega}) \text{ where } \tilde{\Omega}=n^{-1} H V H^{\prime} \\
+    \xi&=\left(R(\hat{\theta})-r_0\right)^{\prime} \tilde{\Omega}^{-1}\left(R(\hat{\theta})-r_0\right)
+\end{align*}
+
+\subsection{Neyman-Pearson Tests}
+
+We choose the probability of a type 1 error (accept $H_a$ when $H_0$) beforehand (size), and then minimize the probability of making a type 2 error (maximize power).
+
+\paragraph{Neyman-Pearson Lemma} 
+Choose critical region based on the LR to maximize power.
+
+\begin{align*}
+    L R(Y)&=\frac{ L _a(Y)}{ L _o(Y)} \\
+    W&=\{y | L R(y)> cv \} \\
+    P \left[L R(Y)> cv | Y \sim F_o\right]&=\alpha \text{ to determine cv}
+\end{align*}
+
+We reject $H_0: \mu=\mu_0$, if LR is large when $H_a: \mu>\mu_0$. We reject $H_0: \mu=\mu_0$, if LR is small when $H_a: \mu<\mu_0$.
+Since the LR critical regions are the same for all of the simple hypotheses making up $H_a$ and each is most powerful, then the LR procedure is said to be Uniformly Most Powerful (UMP) for $H_0$ vs. $H_a$.
+
+\subsection{Maximizing Weighted Average Power}
+
+\begin{align*}
+    H_o: \theta=\theta_0 &\text{ simple null hypothesis}\\
+    H_a: \theta\in \Theta_a &\text{ composite alternative hypothesis}\\
+    w(\theta) &\text{ weight function for values of } \theta\in\Theta_a \\
+    f(y | \theta) &\text{ density of $y$, conditional on a value of } \theta \\
+    \int_W f(y | \theta) d y &\text{ power of the test for a particular } \theta\\
+    WAP &=\int_{\Theta_{a}}\left[\int_W f(y | \theta) d y\right] w(\theta) d \theta \\
+    &=\int_W\left[\int_{\Theta_a} f(y | \theta) w(\theta) d \theta\right] d y\\
+    &=\int_W g(y) d y
+\end{align*}
+
+$g(Y)$ is the density of $Y$ under the assumption that $\theta$ is random with density $w(\theta)$. Thus, the problem is equivalent to testing with a simple alternative $\tilde{H}_a: y\sim g(y)$. Then use NP test:
+
+\begin{align*}
+    L R(Y)&=\frac{g(Y)}{f\left(Y | \theta_o\right)}=\frac{\int_{\Theta_a} f(Y | \theta) w(\theta) d \theta}{f\left(Y | \theta_o\right)}
+\end{align*}

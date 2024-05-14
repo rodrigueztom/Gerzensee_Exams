@@ -1,0 +1,12 @@
+\begin{align*}
+    y_i=x_i^{\prime} \beta+u_i, \quad P\left(u_i \leq 0 \mid z_i\right) &= \alpha \\
+    E\left[(1-\alpha)  1\left\{y_i \leq x_i^{\prime} \beta\right\}-\alpha  1\left\{y_i \geq x_i^{\prime} \beta\right\} \mid z_i\right] &= 0 \\
+    E\left[\left((1-\alpha)  1\left\{y_i \leq x_i^{\prime} \beta\right\}-\alpha  1\left\{y_i \geq x_i^{\prime} \beta\right\}\right) g\left(z_i\right)\right] &= 0
+\end{align*}
+
+This is GMM with discontinuous objective function. Note, that if we knew $\beta$, one could try to find $\gamma$ as the quantile regression estimator:
+
+\begin{align*}
+    y_i-x_i^{\prime} \beta &= z_i^{\prime} \gamma+u_i, \quad P\left(u_i \leq 0 \mid z_i\right)=\alpha \\
+    \widehat{\beta} &= \arg \min _b \widehat{\gamma}(b)^{\prime} W \widehat{\gamma}(b)
+\end{align*}

@@ -1,0 +1,86 @@
+\section{The Kalman Filter}
+
+\subsection{The Basic Linear Model}
+
+\begin{align*}
+    y_t&=A^{\prime} x_t+H^{\prime} \xi_t+w_t \: &; \: 
+    \mathbb{E}\left(w_t w_t^{\prime}\right)=R \\
+    \xi_t&=F \xi_{t-1}+v_t \: &; \: 
+    \mathbb{E}\left(v_t v_t^{\prime}\right)=Q
+\end{align*}
+
+\subsection{Signal extraction and the Kalman Filter}
+
+\begin{align*}
+    y_{1: t}&=\left\{y_i\right\}_{i=1}^t \\
+    \xi_{t \mid k}&=\mathbb{E}\left(\xi_t \mid y_{1: k}\right) \\
+    P_{t \mid k}&=\operatorname{var}\left(\xi_t \mid y_{1: k}\right) \\
+    \left[\begin{array}{c}
+    w_t \\
+    v_t
+    \end{array}\right] &\sim \operatorname{Niid}\left(\left[\begin{array}{l}
+    0 \\
+    0
+    \end{array}\right],\left[\begin{array}{cc}
+    R & \color{red}G\color{black} \\
+    \color{red}G^\prime\color{black} & Q
+    \end{array}\right]\right)       
+\end{align*}
+
+\subsubsection{Kalman Filter equations}
+
+\begin{align*}
+    \xi_{t \mid t-1}&=F \xi_{t-1 \mid t-1} \:\left(\mu_1\right) \\
+    y_{t \mid t-1}&=A^{\prime} x_t+H^{\prime} \xi_{t \mid t-1} \:\left(\mu_2\right) \\
+    P_{t \mid t-1}&=F P_{t-1 \mid t-1} F^{\prime}+Q \:\left(\Sigma_{11}\right) \\
+    h_t&=H^{\prime} P_{t \mid t-1} H+R
+    \color{red} + H^\prime G^\prime + GH \color{black} \:\left(\Sigma_{22}\right) \\
+    K_t&=(P_{t \mid t-1} H \color{red} + G \color{black})h_t^{-1} \:\left(\Sigma_{12} \Sigma_{22}^{-1}\right) \\
+    \eta_t&=y_t-y_{t \mid t-1} \:\left(z_2-\mu_2\right) \\
+    \xi_{t \mid t}&=\xi_{t \mid t-1}+K_t \eta_t \:\left(\mu_1+\Sigma_{12} \Sigma_{22}^{-1}\left(z_2-\mu_2\right)\right) \\
+    P_{t \mid t}&=P_{t \mid t-1}-K_t H^{\prime} (P_{t \mid t-1}\color{red}+G\color{black}) \\
+    &\left(\Sigma_{11}-\Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}\right)
+\end{align*}
+
+If $\xi_t$ is covariance stationary, then $\xi_{0 \mid 0}=\mathbb{E}\left(\xi_0\right)=0$, $P_{0 \mid 0}=\operatorname{Var}\left(\xi_0\right)$.
+
+\subsection{Hamilton}
+
+\begin{align*}
+    y_t&=c_k+\beta_k x_t+\epsilon_{k, t}, \quad \epsilon_{k, t} \sim N\left(0, \sigma_k\right)
+\end{align*}
+
+\begin{align*}
+    \xi_{i, t-1}&=P\left(s_{t-1}=i \mid \tilde{y}_{t-1} ; \theta\right) \\
+    P\left(s_t=j \mid s_{t-1}=i\right)&=P_{i j}=\left[
+        \begin{array}{ll}
+        p_{00} & p_{01} \\
+        p_{10} & p_{11}
+        \end{array}
+    \right]
+\end{align*}
+
+\begin{align*}
+    \eta_{j t} & =f\left(y_t \mid s_t=j, \tilde{y_{t-1}} ; \theta\right) \\
+    & =\frac{1}{\sqrt{2 \pi} \sigma} \exp \left[-\frac{\left(y_t-c_j-\beta_j x_t\right)^2}{2 \sigma_j^2}\right]
+\end{align*}
+
+\subsection{Likelihood function}
+
+Gaussian density for $y_{1:T}$
+
+\begin{align*}
+    f\left(y_{1: T}\right)=&\prod_{t=1}^T f\left(y_t \mid y_{1: t-1}\right) \: ; \: y_{1: 0}=\{\emptyset\} \\
+    f\left(y_t \mid y_{1: t-1}\right)=&\left(\frac{1}{\sqrt{2 \pi\left|h_t\right|}}\right)^n \exp \left(-\frac{1}{2} \eta_t^{\prime} h_t^{-1} \eta_t\right)
+\end{align*}
+
+
+Then the likelihood is:
+
+\begin{align*}
+    f\left(Y_{1: T}\right)=&\left(\frac{1}{\sqrt{2 \pi}}\right)^{n T}\left(\prod_{t=1}^T\left|h_t\right|^{-1 / 2}\right) \\
+    &\exp \left(-\frac{1}{2} \sum_{t=1}^T\left(\eta_t^{\prime} h_t^{-1} \eta_t\right)\right) \\
+    \eta_t=&y_t-y_{t \mid t-1}
+\end{align*}
+
+This is the same expression as in the last section with $h_t=\sigma_{t-1}^2$ and $y_{t \mid t-1}=\mu_{t-1}$.
