@@ -1,0 +1,360 @@
+\section{Econometrics Final 2015 / 16}
+
+{
+\subsection*{Watson}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+No. Since $|\theta|>1$, this process is not invertible:
+
+$$
+\begin{aligned}
+X_{t} & =(1-2 L) \varepsilon_{t} \\
+X_{t} \frac{1}{1-2 L} & =\varepsilon_{t}
+\end{aligned}
+$$
+
+We cannot turn $\frac{1}{1-2 L}$ into an infinite sum. Or, one con show that:
+
+$$
+\begin{aligned}
+\varepsilon_{t} =& X_{t}+\theta \varepsilon_{t-1} \\
+=& X_{t}+\theta\left(X_{t-1}+\theta \varepsilon_{t-2}\right) \\
+&\vdots \\
+=& \sum_{j=0}^{t} \theta^{j} X_{t-j}+\theta^{t} \varepsilon_{0}
+\end{aligned}
+$$
+
+If $|\theta|>1, \varepsilon_{0}$ gets more important as $t$ grows. Thus, $\varepsilon_{t}$ cannot be recovered from past values of $X_{t}$.
+}
+{\item 
+\begin{enumerate}[label=(\roman*)]
+    \item 
+    By observational equivalence, one could estimate:
+    
+    $$
+    X_{t}=\tilde{\varepsilon}_{t}-\tilde{\theta} \tilde{\varepsilon}_{t-1} \text { where } \tilde{\theta}=1 / 2 ; \operatorname{Var}\left(\tilde{\varepsilon}_{t}\right)=1
+    $$
+    
+    Then we also find
+    
+    $$
+    X_{t} \frac{1}{1-\tilde{\theta}L}=\tilde{\varepsilon}_{t} \Rightarrow \tilde{\varepsilon}_{T}=\sum_{j=0}^{T-1} \tilde{\theta}^{j} X_{T-j}
+    $$
+    
+    $$
+    \mathbb{E}_{T}\left(X_{T+1}\right)=-\tilde{\theta} \sum_{j=0}^{T-1} \tilde{\theta}^{j} X_{T-j}
+    $$
+    \item 
+    The first line directly follows from the result above. The jump to the second line is legal because $X_{1:T}$ are known, therefore they have no variance.
+    
+    $$
+    \begin{aligned}
+    \operatorname{Var}\left(X_{T+1}\right) & =\operatorname{Var}\left(\tilde{\varepsilon}_{T+1}-\sum_{j=0}^{T-1} \tilde{\theta}^{j} X_{T-j}\right) \\
+    & =\operatorname{Var}\left(\varepsilon_{T+1}\right)=1
+    \end{aligned}
+    $$
+\end{enumerate}
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\color{blue} Did not cover this in lectures \color{black}
+}
+{
+\subsubsection*{Exercise 3}
+Correlated errors. Use the Kalman Filter derived in exercise session 2:
+
+$$
+\left[\begin{array}{l}
+    w_{t} \\ v_{t}
+\end{array}\right] 
+\stackrel{\text { iid }}{\sim} 
+N\left(\left[\begin{array}{l}
+    0 \\ 0
+\end{array}\right],
+\left[\begin{array}{ll}
+    R & G \\ 
+    G^{\prime} & Q
+\end{array}\right]\right) \quad 
+\begin{aligned} 
+    & y_{t}=A^{\prime} X_{t}+H^{\prime} \xi_{t}+w_{t} \\ 
+    & \xi_{t}=F \xi_{t-1}+v_{t}
+\end{aligned}
+$$
+
+
+Here: $R=1 ; Q=2 ; G=1 ; A^{\prime} X_{t}=0 ; F=1 ; H=1$
+
+$\xi_{t-1 | t-1}=3 ; P_{t-1 | t-1}=0.5 ; y_{t}=2$
+
+\begin{center}
+\begin{tabular}{|l|ll|l|l|}
+\hline \# & Variable & Formula & Value \\
+\hline 1 & $\xi_{t | t-1}$ & $F \xi_{t-1 | t-1}$ & 3 \\
+2 & $Y_{t | t-1}$ & $A^{\prime} X_{t}+H^{\prime} \xi_{t | t-1}$ & 3 \\
+3 & $P_{t | t-1}$ & $F P_{t-1 | t-1} F^{\prime}+Q$ & 2.5 \\
+4 & $h_{t}$ & $H^{\prime} P_{t | t-1} H+R + \color{blue} H^\prime G^\prime + GH \color{black}$ & 5.5 \\
+5 & $K_{t}$ & $\left( P_{t | t-1} H + G \right) \cdot h_{t}^{-1}$ & 0.64 \\
+6 & $\eta_{t}$ & $Y_{t}-Y_{t | t-1}$ & -1 \\
+7 & $\xi_{t | t}$ & $\xi_{t | t-1}+K_{t} \eta_{t}$ & 2.36 \\
+8 & $P_{t | t}$ & $P_{t | t-1}-K_{t} \left( P_{t | t-1} H + G \right)$ & 1.08 \\
+\hline
+\end{tabular}
+\end{center}
+
+Therefore:
+
+$$
+\begin{aligned}
+& \xi_{t | t}=2.36 \\
+& P_{t | t}=1.08
+\end{aligned}
+$$
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+OLS: 
+
+$$
+\sqrt{T}(\hat{\beta}-\beta)=\left(\frac{1}{T} \sum_{t=1}^{T} x_{t}^{2}\right)^{-1}\left(\frac{1}{\sqrt{T}} \sum_{t=1}^{T} x_{t} u_{t}\right)
+$$
+
+$$
+\mathbb{E}\left(x_{t} u_{t}\right)=\mathbb{E}\left(\left(\varepsilon_{t+1}+\varepsilon_{t+2}\right) u_{t}\right)=0
+$$
+
+Unfortunately, $\left(x_{t} u_{t}\right\}$ is not a martingale difference sequence:
+
+$$
+\begin{aligned}
+\mathbb{E}\left(x_{t}u_t \mid \Omega_{t-1}\right) & =\mathbb{E}\left(\left(\varepsilon_{t+1}+\varepsilon_{t+2}\right)\left(\phi u_{t-1}+\varepsilon_{t}\right) \mid \Omega_{t-1}\right) \\
+& =\mathbb{E}\left(\phi u_{t-1} \varepsilon_{t+1}+\phi u_{t-1} \varepsilon_{t+2}+\varepsilon_{t} \varepsilon_{t+1}+\varepsilon_{t} \varepsilon_{t+2} \mid \Omega_{t-1}\right)
+\end{aligned}
+$$
+
+What is $\Omega_{t-1}$ in this case? $\left\{u_{j}\right\}_{j=0}^{t=1}$ and $\left\{x_{j}\right\}_{j=0}^{t-1}$.
+
+Then, we can find:
+
+$$
+\left.\begin{gathered}
+x_{t-1}=\varepsilon_{t}+\varepsilon_{t+1} \\
+x_{t-2}=\varepsilon_{t-1}+\varepsilon_{t} \\
+\vdots \\
+x_{0}=\varepsilon_{1}+\varepsilon_{2}
+\end{gathered} \right\rvert\, \Rightarrow \text { recover } \varepsilon_{t+1} \pm \varepsilon_{1}
+$$
+
+Using $\left\{u_{j}\right\}_{j=0}^{t-1}: \quad \varepsilon_{1}=u_{1}-\phi u_{0}$
+
+Since we are able to recover $\varepsilon_{t+1} \pm \varepsilon_{1}$, and $\varepsilon_{1}$, we can also recover all $\left\{\varepsilon_{j}\right\}_{j=1}^{t+1}$. Therefore, $\varepsilon_{t+1} \in \Omega_{t-1}$ and $\varepsilon_t \in \Omega_{t-1}$. Thus, we conclude that
+
+$$
+\mathbb{E}\left(x_{t} u_{t} \mid \Omega_{t-1}\right) \neq 0
+$$
+
+Thus, we have that:
+
+$$
+\begin{aligned}
+& \frac{1}{\sqrt{T}} \sum_{t=1}^{T} x_{t} u_{t} \xrightarrow{d} N\left(0, \sum_{j=-\infty}^{\infty} \lambda_{j}\right)
+\end{aligned}
+$$
+
+Now, we must find all $\lambda_j$:
+
+$$
+\begin{aligned}
+& \lambda_{0}= \mathbb{E}\left(x^{2} u_{t}^{2}\right)=\mathbb{E}\left(x_{t}^{2}\right) \mathbb{E}\left(u_{t}^{2}\right)=2 \sigma^{2} \cdot \sigma^{2}\left(1-\phi^{2}\right)^{-1} \\
+& \lambda_{1}=\mathbb{E}\left(x_{t} x_{t-1}\right) \mathbb{E}\left(u_{t} u_{t-1}\right)=\sigma^{2} \cdot \phi \sigma^{2}\left(1-\phi^{2}\right)^{-1} \\
+& \lambda_{j}= 0 \quad \forall j>2 \text { since } \mathbb{E}\left(x_{t} x_{t-j}\right)=0 \quad \forall j>2 \end{aligned}
+$$
+
+We can then find the sum we were looking for:
+
+$$
+\begin{aligned}
+& \sum_{j=-\infty}^{\infty} \lambda_{j}=2 \sigma^{2} \cdot \sigma^{2}\left(1-\phi^{2}\right)^{-1}(1+\phi)=\frac{2 \sigma^{4}}{1-\phi}
+\end{aligned}
+$$
+
+Also: 
+
+$$
+\left(\frac{1}{T} \sum x_{t}^{2}\right)^{-1} \xrightarrow{p} \mathbb{E}\left(x_{t}^{2}\right)^{-1}=\left(2 \sigma^{2}\right)^{-1}
+$$
+
+Conclusion: 
+
+$$
+\sqrt{T}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, \frac{1}{2(1-\phi)}\right)
+$$
+}
+{\item 
+We know that
+
+$$
+\hat{\beta} \stackrel{a}{\sim} N\left(\beta, \frac{1}{T} \frac{1}{2(1-\phi)}\right)
+$$
+
+Thus, we construct the following $C I$ :
+
+$$
+\begin{aligned}
+C I_{95} & =\hat{\beta} \pm 1.96 \sqrt{\frac{1}{T}\left(\sum_{j=-1}^{1} \hat{\lambda}_{j}\right)\left(\frac{1}{T} \sum x_{t}^{2}\right)^{-2}} \\
+& =0.08 \pm 1.96 \sqrt{\frac{1}{400}(2.43+6.15+2.43)(1.95)^{-2}} \\
+& =[-0.087 ; 0.247]
+\end{aligned}
+$$
+
+Since $0 \in C I_{95}$, we cannot reject the null hypothesis.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 5}
+
+\begin{align*}
+& \left|\begin{array}{l}
+Y_{t}=Y_{t-1}+X_{t}=\sum_{u=1}^{t} X_{u} \\
+X_{k}=X_{k-1}+\varepsilon_{k}=\sum_{j=1}^{u} \varepsilon_{j}
+\end{array}\right| \Rightarrow Y_{t}=\sum_{u=1}^{t} \sum_{j=1}^{u} \varepsilon_{j}
+\end{align*}
+
+\begin{align*}
+& \sum_{t=1}^{T} Y_{t}=\sum_{t=1}^{T} \sum_{u=1}^{t} \sum_{j=1}^{u} \varepsilon_{j} \\
+& T^{-5 / 2} \sum_{t=1}^{T} Y_{t}=\frac{1}{T} \sum_{t=1}^{T} \boxed{\frac{1}{T} \sum_{u=1}^{t} \frac{1}{\sqrt{T}} \sum_{j=1}^{u} \varepsilon_{j}}
+\end{align*}
+
+The blue block is analogue to what we saw in class.
+Let $\xi(t / T)=T^{-1 / 2} \sum_{i=1}^{t} \varepsilon_{i}(t / T)$, and $\xi_{T}(s)$ the function that linearly interpolates between these points, then $\xi_{T}(s) \xrightarrow{d} W$ as $\sigma^{2}=1$ in this case. $W$ is a Wiener process. As we are summing over $n$ observations, we have
+
+$$
+\boxed{\frac{1}{T} \sum_{u=1}^{t} \frac{1}{\sqrt{T}} \sum_{j=1}^{u} \varepsilon_{j}} \xrightarrow{d} \int_{0}^{u} W(s) d s
+$$
+
+And now, sum this over all $t$, then we get
+
+$$
+T^{-5 / 2} \sum_{t=1}^{T} Y_{t}=\frac{1}{T} \sum_{t=1}^{T} \frac{1}{T} \sum_{u=1}^{t} \frac{1}{\sqrt{T}} \sum_{j=1}^{u} \varepsilon_{j} \xrightarrow{d} \int_{0}^{1} \int_{0}^{u} W(s) d s d u
+$$
+}
+}
+{
+\subsection*{Honor\'e}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+Solve the maximization problem:
+
+$$
+\begin{aligned}
+    \max _{m>0} \mathbb{E}\left(-\frac{Y}{m}\right)-\ln (m) \\
+    \text{FOC: }\mathbb{E}(Y) \frac{1}{m^{2}}-\frac{1}{m}=0 \\
+    \Rightarrow m=\mathbb{E}(Y)=\mu
+\end{aligned}
+$$
+}
+{\item 
+Solve the maximization problem:
+
+$$
+\begin{aligned}
+    \max _{b} &\sum_{i=1}^{n} \frac{y_{i}}{f\left(x_{i}, b\right)}-\ln \left(f\left(x_{i}, b\right)\right) \\
+    \text{FOC: } &\sum_{i=1}^{n}-y_{i} f\left(x_{i}, b\right)^{-2} f^{\prime}\left(x_{i}, b\right)-f\left(x_{i}, b\right)^{-1} f^{\prime}\left(x_{i} b\right)=0 \\
+    &\sum_{i=1}^{n}\left(y_{i} f\left(x_{i}, b\right)^{-1}+1\right) f\left(x_{i}, b\right)^{-1} f^{\prime}\left(x_{i, b} b\right)=0
+\end{aligned}
+$$
+
+\color{red} No clue how to continue \color{black}
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\color{red} No clue. I don't think we looked at ordered logit in lectures. \color{black}
+}
+{
+\subsubsection*{Exercise 3}
+
+$$
+\begin{array}{lll}
+P(D=1)=\alpha & \mathbb{E}\left(Y_{1} \mid D=1\right)=10 & \mathbb{E}\left(Y_{0} \mid D=0\right)=5 \\
+& 0 \leq Y_{0} \leq Y_{1} & 0 \leq Y_{1} \leq 15
+\end{array}
+$$
+
+$$
+\begin{aligned}
+& \left.\begin{array}{l}
+\alpha 10+(1-\alpha) 0 \leq \mathbb{E}\left(Y_{1}\right) \\
+\mathbb{E}\left(Y_{1}\right) \leq \alpha 10+(1-\alpha) 15
+\end{array} \right\rvert\, \Rightarrow 10 \alpha \leq \mathbb{E}\left(Y_{1}\right) \leq 15-5{\alpha} \\
+& \left.\begin{array}{l}
+(1-\alpha) 5+\alpha 0 \leq \mathbb{E}\left(Y_{0}\right) \\
+\mathbb{E}\left(Y_{0}\right) \leq(1-\alpha) 5+\alpha 15
+\end{array} \right\rvert\, \Rightarrow 5-5 \alpha \leq \mathbb{E}\left(Y_{0}\right) \leq 5+10 \alpha
+\end{aligned}
+$$
+
+By these conditions, we conclude that:
+
+$$
+\begin{aligned}
+& \mathbb{E}\left(Y_{1}-Y_{0}\right) \in[15 \alpha-5,10-15 \alpha]
+\end{aligned}
+$$
+
+Size of interval:
+
+$$
+15 \alpha-5-10+15 \alpha=30 \alpha-15
+$$
+
+Smallest if size is zero: $\alpha=1 / 2$
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+Instead of regressing the mean, one wants to find a quantile. Let's say one is interested in the median ($50 \%$ quantile) effect that smoking has on the risk of lung cancer. Then, one would run a quantile regression, and would obtain the constant (risk of cancer for non-smokers), and $\hat{\beta}$ (the median increase in risk for smokers).
+}
+{\item 
+Say, one has data that does not fit the linear model very well. Instead of going non-linear one could run multiple linear regressions on subsets of the data.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 5}
+Difference the model:
+
+$$
+\Delta \varepsilon_{i 2}=\Delta y_{i 2}-\Delta x_{1i2}^{\prime} \beta_{1}-\Delta x_{2i2}^{\prime} \beta_{2} \quad i=1, \dots, n
+$$
+
+Use the information on $\mathbb{E}(\varepsilon \mid x)$.
+
+$$
+\begin{array}{ll}
+\mathbb{E}\left(\Delta \varepsilon_{i 2} \mid x_{1is}\right)=0 & \text { for } s=1,2 \\
+\mathbb{E}\left(\Delta \varepsilon_{i 2} \mid x_{2is}\right)=0 & \text { for } s=1
+\end{array}
+$$
+
+Thus, we found 3 moment conditions. The model is over-identified if $\operatorname{dim}\left(x_{1 i t}\right)+\operatorname{dim}\left(x_{2 i t}\right)<3$. I.e. only if $x_{1it}$ \& $x_{2it}$ are scalars.
+}
+}

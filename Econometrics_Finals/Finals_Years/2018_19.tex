@@ -1,0 +1,337 @@
+\section{Econometrics Final 2018 / 19}
+
+{
+\subsection*{Watson}
+
+{
+\subsubsection*{Exercise 1}
+
+$$
+\sqrt{T}(\hat{\mu}-\mu)=\frac{1}{\sqrt{T}} \sum_{t=1}^{T} u_t
+$$
+
+$\hat{\mu}$ is the OLS estimator of the mean (regressing on a vector of ones).
+
+\begin{enumerate}[label=(\alph*)]
+{\item \color{white} Necessary for enumerate to work \color{black}
+\begin{enumerate}[label=(\roman*)]
+{\item 
+$u_{t}$ is not an mds. Thus, we must use the ACGF:
+
+$$
+\frac{1}{\sqrt{T}} \sum_{t=0}^{T} u_{t} \xrightarrow{d} N\left(0, \sum_{j=-\infty}^{\infty} \lambda_{j}\right)
+$$
+
+$M A(\infty)$ representation:
+
+$$
+u_{t}=(1-\phi L)^{-1} \varepsilon_{t} \Rightarrow \sum_{j=-\infty}^{\infty} \lambda_{j}=\frac{\sigma^{2}}{(1-\phi)^{2}}
+$$
+
+Putting everything together:
+
+$$
+\sqrt{T}(\bar{Y}-\mu) \xrightarrow{d} N\left(0, \frac{\sigma^{2}}{(1-\phi)^{2}}\right)
+$$}
+{\item 
+Since we don't have $\hat{\sigma}^{2}$ and $\hat{\phi}$, we will use $V=\sum_{i=-\infty}^{\infty} \lambda_{i}$, and $\sum_{i=-2}^{2} \lambda_{i}$ is a consistent estimator for $V$. As $Y$ is a scalar: $\lambda_{i}=\lambda_{-i}$
+
+$$
+\begin{aligned}
+C I & =\left[\hat{\mu} \pm 1.96 \sqrt{\frac{1}{T} \sum_{i=-2}^{2} \hat{\lambda}_{i}}\right] =[11.493,12.707]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{\item \color{white} Necessary for enumerate to work \color{black}
+\begin{enumerate}[label=(\roman*)]
+{\item 
+Again, $u_t$ is not a mds. Use ACGF:
+
+$$
+\begin{aligned}
+& u_{t}=(1+\theta L) \varepsilon_{t} \Rightarrow \sum_{j=-\infty}^{\infty} \lambda_{j}=\sigma^{2}(1+\theta)^{2} \\
+& \sqrt{T}(\bar{Y}-\mu) \xrightarrow{d} N\left(0, \sigma^{2}(1+\theta)^{2}\right)
+\end{aligned}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+& \lambda_{0}=\operatorname{Var}\left(Y_{t}\right)=\operatorname{Var}\left(u_{t}\right)=\sigma^{2}+\theta^{2} \sigma^{2} \\
+& \lambda_{1}=\operatorname{Cov}\left(Y_{t}, Y_{t+1}\right)=\operatorname{Cov}\left(u_{t}, u_{t+1}\right)=\theta \sigma^{2} \\
+& \operatorname{Cov}\left(Y_{t}, Y_{t+k}\right)=0 \quad \forall k>1 \\
+& C I=\left[\hat{\mu} \pm 1.96 \frac{1}{\sqrt{T}}\left(\hat{\lambda}_{0}+2 \hat{\lambda}_{1}\right)^{1 / 2}\right]=[11.560 ; 12.640]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+First. I will rewrite the model as
+
+$$
+\begin{aligned}
+& \bar{Y}_{t}=\xi_{t}+\underbrace{\frac{1}{3}\left(\varepsilon_{1 t}+\varepsilon_{2 t}+\varepsilon_{3 t}\right)}_{\equiv u_{t}}=\xi_{t}+u_{t} \\
+& \xi_{t}=F \xi_{t-1}+e_{t} \quad ; \quad F=0.62 \\
+& {\left.\left[\begin{array}{l}
+u_{t} \\
+e_{t}
+\end{array}\right] \stackrel{\text { iid }}{\sim} N\left(0,\left[\begin{array}{ll}
+R & 0 \\
+0 & Q
+\end{array}\right]\right) \quad \right\rvert\, \begin{array}{l}
+R=1 / 3 \\
+Q=1
+\end{array}}
+\end{aligned}
+$$
+
+From here, we can apply the Kalman Filter. The eight equations are given by (ignore the blue text):
+
+(1) $\xi_{t \mid t-1}=F \xi_{t-1 \mid t-1} \color{blue} =0.8 \cdot 0=0 \color{black}$
+
+(2) $\bar{Y}_{t \mid t-1}=\xi_{t \mid t-1} \color{blue} =0 \color{black}$
+
+(3) $P_{t \mid t-1}=F^{2} P_{t-1 \mid t-1}+Q \color{blue} =2.778 \color{black}$
+
+(4) $h_{t}=P_{t \mid t-1}+R \color{blue} =3.111 \color{black}$
+
+(5) $K_{t}=P_{t \mid t-1} h_{t}^{-1} \color{blue} =0.893 \color{black}$
+
+(6) $\eta_{t}=\bar{Y}_{t}-\bar{Y}_{t \mid t-1} \color{blue} =2 \color{black}$
+
+(7) $\xi_{t \mid t}=\xi_{t \mid t-1}+K_{t} \eta_{t} \color{blue} =1.786 \color{black}$
+
+(8) $P_{t \mid t}=P_{t \mid t-1}-K_{t} P_{t \mid t-1} \color{blue} \color{black}$
+
+We need one more thing to start the recursion, which is the initial values. As it is $\operatorname{AR}(1)$ \& stationary, use
+
+$$
+\begin{aligned}
+& \xi_{0\mid 0}=\mathbb{E}\left(\xi_{0}\right)=0 \\
+& P_{0\mid 0} = \operatorname{Var}\left(\xi_{0}\right)=\frac{\operatorname{Var}\left(e_{t}\right)}{1-F^{2}}=\frac{1}{0.36} \cong 2.778
+\end{aligned}
+$$
+
+Now, we can go through the equations and plug in numerical values (in blue) to find $\hat{\xi}_{t\mid t}=1.786$
+}
+{\item 
+Use the eight equations to iterate through $t$ periods until we find $\xi_{t \mid t}$ as the best guess for $\xi_{t}$.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 3}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+I don't think so. My explanation would be that we have 2 innovations for only 1 variable. Thus, we cannot recover $\varepsilon_{1 t}$ ad $\varepsilon_{2 t}$ from past values of $Y_{t}$. Therefore, not invertible.
+}
+{\item 
+$$
+\begin{aligned}
+Y_{t}=&\varepsilon_{1 t}+\left(\theta_{11} \varepsilon_{1 t-1}+\theta_{21} \varepsilon_{1 t-2}+\theta_{31}\boxed{\left[Y_{t-3}-\sum_{h=1}^{\infty} \theta_{h 1} \varepsilon_{1, t-h-3}-\sum_{h=0}^{\infty} \theta_{h, 2} \varepsilon_{2, t-h-3,3}\right]}\right. \\
+& \left.+\theta_{41} \varepsilon_{1 t-4}+\ldots\right)+\sum_{h=0}^{\infty} \theta_{h, 2} \varepsilon_{2 t-h} \\
+=& \theta_{31}\boxed{\left[Y_{t-3}-\sum_{h=1}^{\infty} \theta_{h 1} \varepsilon_{1, t-h-3}-\sum_{h=0}^{\infty} \theta_{h, 2} \varepsilon_{2, t-h-3,3}\right]} \\
+& +\varepsilon_{1 t}+\sum_{h=1}^{\infty} \theta_{1, h} \varepsilon_{t-h}+\sum_{h=0}^{\infty} \theta_{h, 2} \varepsilon_{2, t-h}-\theta_{31} \varepsilon_{1 t-3}
+\end{aligned}
+$$
+
+We see that the "error" is serially correlated.
+The OLS regressor is inconsistent. 
+
+\color{red} Cannot really prove why though. Maybe be cause we don't know is $\left|\theta_{j}\right|<1$, which would make it stationary. \color{black}
+}
+{\item 
+$$
+\varepsilon_{1 t}=\frac{1}{12}\left(Z_{t}-e_{t}\right)=\frac{1}{12} Z_{t}-\tilde{e}_{t}
+$$
+
+\color{red} WTF? \color{black}
+}
+\end{enumerate}
+}
+}
+
+\newpage
+{
+\subsection*{Honor\'e}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+$C I=[\hat{\beta} \pm 1.96 \cdot \hat{S E}(\hat{\beta})]=[-0.132 ; 0.765]$
+}
+{\item 
+$$
+\begin{aligned}
+& x^{\prime} \beta=3.134 \\
+& \begin{aligned}
+P(y=1 \mid x)=\frac{\exp \left(x^{\prime} \beta\right)}{1+\exp \left(x^{\prime} \beta\right)} & \cong 0.93209 =93.209 \%
+\end{aligned}
+\end{aligned}
+$$
+
+We see that the estimated probability is higher than the average at ca. $90 \%$. This is the case because \color{red} ...? \color{black}
+}
+{\item 
+Logit-model:
+
+$$
+\frac{\partial P\left(y_{i}=1 \mid x_{i}\right)}{\partial x_{i l}}=\frac{\exp \left(x_{i}^\prime \beta\right)}{\left(1+\exp \left(x_{i}^\prime \beta\right)\right)^{2}} \beta_{l} \cong-0.035
+$$
+
+Linear model:
+
+$$
+\frac{\partial P\left(y_{i}=1 \mid x_{i}\right)}{\partial x_{i l}}=\beta_{l} \cong-0.046
+$$
+
+Probiy model:
+
+$$
+\frac{\partial P\left(y_{i}=1 \mid x_{i}\right)}{\partial x_{i l}} \cong-0.037
+$$
+
+We see that (in absolute terms), the linear model gives age the highest marginal effect, followed by the probit model. The logit gives age the lowest marginal effect.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+Let $f\left(x_{i}, \beta\right)=\exp \left(\beta_{1}+x_{i} \beta_{2}\right)$
+
+$$
+\begin{aligned}
+\Rightarrow \nabla f\left(x_{i}, \beta\right)&=\left[\begin{array}{l}
+\exp \left(\beta_{1}+x_{i} \beta_{2}\right) \\
+\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i}
+\end{array}\right]=\left[\begin{array}{l}
+f\left(x_{i}, \beta\right) \\
+f\left(x_{i}, \beta\right) x_{i}
+\end{array}\right] \\
+\Rightarrow \nabla f(\cdot) \cdot(\nabla f(\cdot))^{\prime}&=\left[\begin{array}{ll}
+f\left(x_{i}, \beta\right)^{2} & f\left(x_{i}, \beta\right)^{2} x_{i} \\
+f\left(x_{i}, \beta\right)^{2} x_{i} & f\left(x_{i}, \beta\right)^{2} x_{i}{ }^{2}
+\end{array}\right] \\
+& =\left[\begin{array}{ll}
+1 & x_{i} \\
+x_{i} & x_{i}^{2}
+\end{array}\right] f\left(x_{i}, \beta\right)^{2}
+\end{aligned}
+$$
+
+From lecture \& by heteroskedasticity:
+
+$$
+\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, \sigma^{2} \mathbb{E}\left\{\left[\begin{array}{ll}
+1 & x_{i} \\
+x_{i} & x_{i}^{2}
+\end{array}\right] f\left(x_{i}, \beta\right)^{2}\right\}^{-1}\right)
+$$
+}
+{\item 
+Assume efficient MoM, then we have
+
+$$
+\begin{aligned}
+\sqrt{n}(\hat{\beta}-\beta) & \xrightarrow{d} N\left(0, \mathbb{E}\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)^{-1} S \mathbb{E}\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)^{-1}\right) \\
+f\left(x_{i}, \beta\right) & =\left[\begin{array}{ll}
+y_{i}-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) \\
+y_{i}-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i}
+\end{array}\right] \equiv\left[\begin{array}{l}
+f_{1}(\cdot) \\
+f_{2}(\cdot)
+\end{array}\right] \\
+\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta} & =\left[\begin{array}{ll}
+\partial f_{1}(\cdot) / \partial \beta_{1} & \partial f_{1}(\cdot) / \partial \beta_{2} \\
+\partial f_{2}(\cdot) / \partial \beta_{1} & \partial f_{2}(\cdot) / \partial \beta_{2}
+\end{array}\right] \\
+& =\left[\begin{array}{ll}
+-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) & -\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i} \\
+-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i} & -\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i}^{2}
+\end{array}\right]
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathbb{E}\left[\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right]^{-1} & =\mathbb{E}\left[\begin{array}{ll}
+-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) & -\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i} \\
+-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i} & -\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i}^{2}
+\end{array}\right] \\
+S & =V\left[\begin{array}{ll}
+f\left(x_{i}, \beta\right)
+\end{array}\right]=V\left[\begin{array}{ll}
+y_{i}-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) \\
+y_{i}-\exp \left(\beta_{1}+x_{i} \beta_{2}\right) x_{i}
+\end{array}\right] \\
+& =V\left[\begin{array}{cc}
+\varepsilon_{i} \\
+\varepsilon_{i} x_{i}
+\end{array}\right]=\mathbb{E}\left[\begin{array}{cc}
+\varepsilon_{i}^{2} & x_{i} \varepsilon_{i}^{2} \\
+x_{i} \varepsilon_{i}^{2} & x_{i}^{2} \varepsilon_{i}^{2}
+\end{array}\right]=\sigma^{2} \mathbb{E}\left[\begin{array}{cc}
+1 & x_{i} \\
+x_{i} & x_{i}^{2}
+\end{array}\right]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 3}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+Synthetic controls are used to see if a treatment had an effect on some aggregate outcome (e.g. on city level). Since no two cities (or places) are identical, one might struggle to find a perfect control. Therefore, one might construct a synthetic (i.e. artificial) control by averaging other cities' characteristics (using weights if desired).
+}
+{\item 
+This is the average treatment effect for the complying subjects in a randomized experiment. One can estimate it using 2SLS where the treatment group is the instrument, and the treatment is the variable of interest. It is used if one is concerned with heterogenous \& unobservable treatment effects as well as if there is a reason to believe that there may be noncompliers.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+We assume that there are matches across treatment groups: $0<\operatorname{Pr}(D=1 \mid X)<1$. Also, we must assume that conditional on $X$ (which is age here), the treatment outcomes $\left(Y_{1}, Y_{0}\right)$ are independent of $D$ (which is assignment of treatment group).
+}
+{\item 
+
+$$
+\operatorname{ATET} = 3.5
+$$
+
+\begin{table}[!htp]
+    \centering
+    \begin{tabular}{cc|cc|c}
+        \multicolumn{2}{c}{Treated} & \multicolumn{2}{c}{Untreated}  & Differences \\
+        Age & $Y$ & Age & $Y$ & $\Delta Y$\\ \hline
+        25 & 100 & 25 & 80 & 20\\
+        30 & 50 & 30 & 60 & -10\\
+        35 & 40 & 35 & 40 & 0\\
+        40 & 40 & 40 & 32.5 & 7.5\\
+        45 & 25 & 45 & 25 & 0\\
+    \end{tabular}
+\end{table}
+}
+\end{enumerate}
+}
+}

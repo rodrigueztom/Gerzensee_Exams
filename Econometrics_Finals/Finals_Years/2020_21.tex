@@ -1,0 +1,292 @@
+\section{Econometrics Final 2020 / 21}
+
+{
+\subsection*{Watson}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+x_{t}=y_{t}+y_{t-2}
+$$
+
+(1) 
+
+$$
+\mathbb{E}\left(x_{t}\right)=\mathbb{E}\left(y_{t}\right)+\mathbb{E}\left(y_{t-2}\right)=\mu_{y}+\mu_{y}=2 \mu_{y} \quad \forall t
+$$
+
+(2)
+
+$$
+\begin{aligned}
+\operatorname{Cov}\left(x_{t}, x_{t+k}\right)= & \operatorname{Cov}\left(y_{t}+y_{t-2}, y_{t+k}+y_{t+k-2}\right) \\
+= & \operatorname{Cov}\left(y_{t}+y_{t-2}, y_{t+k}\right) +\operatorname{Cov}\left(y_{t}+y_{t-2}, y_{t+k-2}\right) \\
+= & \operatorname{Cov}\left(y_{t}, y_{t+k}\right)+\operatorname{Cov}\left(y_{t-2}, y_{t+k}\right) +\operatorname{Cov}\left(y_{t}, y_{t+k-2}\right)+\operatorname{Cov}\left(y_{t-2}, y_{t+k-2}\right) \\
+= & \lambda_{k}+\lambda_{k+2}+\lambda_{k-2}+\lambda_{k} \\
+= & 2 \lambda_{k}+\lambda_{k+2}+\lambda_{k-2} \quad \forall t
+\end{aligned}
+$$
+
+Where $\lambda_{k}=\operatorname{Cov}\left(y_{t}, y_{t+k}\right)$ does not depend on $t$ by stationarity of $y_{t}$. This concludes the proof.
+}
+{\item 
+I do not believe that $x_{t}$ is strictly stationary, since it is made up of stationary series: $x_{t}=y_{t}+y_{t-2}$.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\begin{aligned}
+\mathbb{E}\left(\left(\hat{x}_{t}-x_{t}\right)^{2}\right) & =\mathbb{E}\left[\left(\frac{1}{2}\left(2 x_{t}+e_{1 t}+e_{2 t}\right)-x_{t}\right)^{2}\right] \\
+& =\mathbb{E}\left[\left(\frac{1}{2}\left(e_{1t}+e_{2 t}\right)\right)^{2}\right] \\
+& =\frac{1}{4}\left(\mathbb{E}\left(e_{1 t}^{2}\right)+\mathbb{E}\left(e_{2 t}^{2}\right)+2 \mathbb{E}\left(e_{1 t} e_{2 t}\right)\right) \\
+& =\frac{1}{4}(1+4+0)=\frac{5}{4}
+\end{aligned}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+& \mathbb{E}\left(\left(\lambda_{1} y_{1 t}+\lambda_{2} y_{2 t}-x_{t}\right)^{2}\right) \\
+= & \mathbb{E}\left(\left(\lambda_{1}\left(x_{t}+e_{1 t}\right)+\lambda_{2}\left(x_{t}+e_{2 t}\right)-x_{t}\right)^{2}\right) \\
+= & \mathbb{E}\left(\left(\left(\lambda_{1}+\lambda_{2}-1\right) x_{t}+\lambda_{1} e_{1 t}+\lambda_{2} e_{2 t}\right)^{2}\right)
+\end{aligned}
+$$
+
+Let $\lambda_{1}+\lambda_{2}=1$, then:
+
+$$
+\begin{aligned}
+\text { MSE } & =\mathbb{E}\left(\left(\lambda_{1} e_{1}+\lambda_{2} e_{2 t}\right)^{2}\right) \\
+& =\lambda_{1}^{2}+4\left(1-\lambda_{1}\right)^{2}
+\end{aligned}
+$$
+
+FOC :
+
+$$
+\begin{aligned}
+& 2 \lambda_{1}+8\left(1-\lambda_{1}\right)(-1)=0 \\
+& \lambda_{1}=4 / 5 \longrightarrow \lambda_{2}=1 / 5
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 3}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\begin{aligned}
+\hat{\beta} & =\left(\frac{1}{T} \sum_{t=1}^{T} x_{t}^{2}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} x_{t}\left(\beta x_{t}+e_{t}\right)\right) \\
+& =\underbrace{\left(\frac{1}{T} \sum_{t=1}^{T} x_{t}^{2}\right)^{-1}}_{\xrightarrow{p} \mathbb{E}\left(x_{t}^{2}\right)^{-1}} \underbrace{\left(\frac{1}{T} \sum_{t=1}^{T} x_{t} e_{t}\right)}_{\xrightarrow{p} \mathbb{E}\left(x_{t} e_{t}\right)}+\beta
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathbb{E}\left(x_{t}^{2}\right)^{-1} & =8 / 3 \\
+\mathbb{E}\left(x_{t} e_{t}\right) & =\mathbb{E}\left(0.5 x_{t-1}+\varepsilon_{t}+\eta_{t}\right)\left(0.8 e_{t-1}+\eta_{t}\right) \\
+& =0.4 \mathbb{E}\left(x_{t-1} e_{t-1}\right)+\mathbb{E}\left(\eta_{t}^{2}\right) \neq 0
+\end{aligned}
+$$
+
+Since $x_{t}$ and $e_t$ are correlated, $\hat{\beta}$ is inconsistent!
+}
+{\item 
+$$
+\begin{aligned}
+\tilde{\beta} & =\left(\frac{1}{T} \sum_{t=1}^{T} z_{t} x_{t}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} z_{t} y_{t}\right) \\
+&=\left(\frac{1}{T} \sum_{t=1}^{T} z_{t} x_{t}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} z_{t}\left(\beta x_{t}+e_{t}\right)\right) \\
+&=\beta+\left(\frac{1}{T} \sum_{t=1}^{T} z_{t} x_{t}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} z_{t} e_{t}\right) \\
+\sqrt{T}(\tilde{\beta}-\beta) &= \left(\frac{1}{T} \sum_{t=1}^{T} z_{t} x_{t}\right)^{-1}\left(\frac{1}{\sqrt{T}} \sum_{t=1}^{T} z_{t} e_{t}\right)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\left(\frac{1}{T} \sum_{t=1}^{T} z_{t} x_{t}\right)^{-1} &\xrightarrow{p} \mathbb{E}\left(z_{t} x_{t}\right)^{-1} =\mathbb{E}\left(\left(\varepsilon_{t}+v_{t}\right)\left(0.5 x_{t-1}+\varepsilon_{t}+\eta_{t}\right)\right)^{-1} =\mathbb{E}\left(\varepsilon_{t}^{2}\right)^{-1}=1 \\
+\left(\frac{1}{\sqrt{T}} \sum_{t=1}^{T} z_{t} e_{t}\right) &\xrightarrow{d} N\left(0, \mathbb{E}\left(z_{t}^{2}\right) \mathbb{E}\left(e_{t}^{2}\right)\right) =N\left(0,2 \frac{1}{1-0.64}\right)
+\end{aligned}
+$$
+
+In combination, this tells us (using Slutsky):
+
+$$
+\sqrt{T}(\tilde{\beta}-\beta) \xrightarrow{d} N\left(0, \frac{2}{(1-0.64)}\right)=N(0,5.6)
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\begin{aligned}
+& P\left(\left.\bar{y}^{2}>\frac{\ln (T)}{T} \right\rvert\, y_{t}=\mu+\varepsilon_{t}\right)=P\left(\left.\left(\frac{1}{T} \sum_{t=1}^{T} y_{t}\right)^{2}>\frac{\ln (T)}{T} \right\rvert\, y_{t}=\mu+\varepsilon_{t}\right) \\
+&=P\left(\left(\frac{1}{T} \sum_{t=1}^{T} \mu+\varepsilon_{t}\right)^{2}>\frac{\ln (T)}{T}\right)=P\left(\left(\mu+\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t}\right)^{2}>\frac{\ln (T)}{T}\right) \\
+&=P\left(\left(\frac{\ln (T)}{T}\right)^{1 / 2}<\mu+\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t}\right)+P\left(\mu+\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t}<-\left(\frac{\ln (T)}{T}\right)^{1 / 2}\right) \\
+&=P\left(\frac{1}{\sqrt{T}} \sum_{t=1}^{T} \varepsilon_{t}<\sqrt{T} \mu-\ln (T)^{1 / 2}\right)+P\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t}<-\ln (T)^{1 / 2}-\sqrt{T} \mu\right)
+\end{aligned}
+$$
+
+Since $\frac{1}{\sqrt{T}} \sum \varepsilon_{t} \Rightarrow N(0,1)$ :
+
+$$
+=\Phi\left(\sqrt{T} \mu-\ln (T)^{T / 2}\right)+\Phi\left(-\ln (T)^{1 / 2}-\sqrt{T} \mu\right) \xrightarrow{T \rightarrow \infty} \Phi(\infty)+\Phi(-\infty)=1
+$$
+}
+{\item 
+$$
+\begin{aligned}
+P\left(\left.\bar{y}^{2}<\frac{\ln (T)}{T} \right\rvert\, y_{t}=\varepsilon_{t}\right)&=P\left(\left.\left(\frac{1}{T} \sum_{t=1}^{T} y_{t}\right)^{2}<\frac{\ln (T)}{T} \right\rvert\, y_{t}=\varepsilon_{t}\right) \\
+=P\left(\left(\frac{1}{T} \sum_{t=1}^{1} \varepsilon_{t}\right)^{2}<\frac{\ln (T)}{T}\right)&=P\left(\left(\frac{1}{\sqrt{T}} \sum_{t=1}^{T} \varepsilon_{t}\right)^{2}<\ln (T)\right) \\
+&\cong P\left(\chi_{1}^{2}<\ln (T)\right) \xrightarrow{T \rightarrow \infty} 1
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+}
+
+\newpage
+{
+\subsection*{Honor\'e}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+ MLE:
+
+$$
+\begin{aligned}
+L&=\prod_{i=1}^{n} P\left(y=y_{i} \mid x_{i}\right) \\
+&=\prod_{i=1}^{n} P\left(y=1 \mid x_{i}\right)^{y_{i}} \left(1-P\left(y=1 \mid x_{i}\right)\right)^{1-y_{i}} \\
+&=\prod_{i=1}^{n}\left[\frac{\exp \left(x_{i}^{\prime} \beta\right)}{1+\exp \left(x_{i}^{\prime} \beta\right)}\right]^{y_{i}}\left[\frac{1}{1+\exp \left(x_{i}^{\prime} \beta\right)}\right]^{1-y_{i}} \\
+l&=\sum_{i=1}^{n} y_{i} \ln \left(\frac{\exp \left(x_{i}^{\prime} \beta\right)}{1+\exp \left(x_{i}^{\prime} \beta\right)}\right)+\left(1-y_{i}\right) \ln \left(\frac{1}{1+\exp \left(x_{i}^{\prime} \beta\right)}\right) \\
+&=\sum_{i=1}^{n} y_{i} x_{i}^{\prime} \beta-\ln \left(1+\exp \left(x_{i}^{\prime} \beta\right)\right) \\
+\frac{\partial l}{\partial b} &=\sum_{i=1}^{n} y_{i} x_{i}^{\prime}-\frac{\exp \left(x_{i}^{\prime} b\right)}{1+\exp \left(x_{i}^{\prime} b\right)} x_{i}^{\prime} \stackrel{!}{=} 0 \\
+\frac{\partial^{2} l}{\partial b^{2}} &=-\sum_{i=1}^{n}\left[\frac{\exp \left(x_{i}^{\prime} b\right) x_{i}\left(1+\exp \left(x_{i}^{\prime} b\right)\right)-\exp \left(x_{i}^{\prime} b\right) x_{i} \exp \left(x_{i}^{\prime} b\right)}{\left(1+\exp \left(x_{i}^{\prime} b\right)\right)^{2}} x_{i}^{\prime}\right] \\
+&=-\sum_{i=1}^{n} \frac{\exp \left(x_{i}^{\prime} b\right) x_{i}}{1+\exp \left(x_{i}^{\prime} b\right)}\left(1-\frac{\exp \left(x_{i}^{\prime} b\right)}{1+\exp \left(x_{i}^{\prime} b\right)}\right) x_{i}^{\prime} \\
+&=-\sum_{i=1}^{n} \frac{\exp \left(x_{i}^{\prime} b\right)}{1+\exp \left(x_{i}^{\prime} b\right)} \frac{1}{1+\exp \left(x_{i}^{\prime} b\right)} x_{i} x_{i}^{\prime} \\
+-\mathbb{E}\left(\frac{\partial^{2} e}{\partial b^{2}}\right)^{-1}&=n \cdot \mathbb{E}\left[\frac{\exp \left(x_{i}^{\prime} b\right)}{1+\exp \left(x_{i}^{\prime} b\right)} \frac{1}{1+\exp \left(x_{i}^{\prime} b\right)} x_{i} x_{i}^{\prime}\right]^{-1}
+\end{aligned}
+$$
+
+Thus:
+
+$$
+\sqrt{\sqrt{n}(b-\beta) \xrightarrow{d} N\left(0, \mathbb{E}\left[\frac{\exp \left(x_{i}^{\prime} b\right)}{1+\exp \left(x_{\prime}^{i} b\right)} \frac{1}{1+\exp \left(x_{i}^{\prime} b\right)} x_{i} x_{i}^{\prime}\right]^{-1}\right)}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+& \sqrt{n}(b-\beta) \xrightarrow{d} N\left(O, A^{-1} B A^{-1}\right) \\
+\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta} &= \frac{\exp \left(x_{i}^{\prime} \beta\right)}{1+\exp \left(x_{i}^{\prime} \beta\right)} \frac{1}{1+\exp \left(x_{i}^{\prime} \beta\right)} x_{i} \\
+A &= \mathbb{E}\left[\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)^{\prime}\right]=\mathbb{E}\left[\frac{\exp \left(2 x_{i}^{\prime} \beta\right)}{\left(1+\exp \left(x_{i}^{\prime} \beta\right)\right)^{4}} x_{i} x_{i}^{\prime}\right] \\
+B &= \mathbb{E}\left[\mathbb{E}\left(\varepsilon_{i}^{2} \mid x_{i}\right)\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)^{\prime}\right] \\
+& =\mathbb{E}\left[\frac{\exp \left(x_{i}^{\prime} \beta\right)}{\left(1+\exp \left(x_{i}^{\prime} \beta\right)\right)^{2}} \frac{\exp \left(2 x_{i}^{\prime} \beta\right)}{\left(1+\exp \left(x_{i}^{\prime} \beta\right)\right)^{4}} x_{i}^{\prime} x_{i}^{\prime}\right]
+\end{aligned}
+$$
+}
+{\item 
+$\sqrt{n}(b-\beta) \xrightarrow{d} N(0, V)$
+
+Let it be efficient $G M M$ : $V=\left(G^{\prime} S^{-1} G\right)^{-1}$
+
+$$
+\begin{aligned}
+& G=\mathbb{E}\left(\frac{\partial f\left(x_{i}, \beta\right)}{\partial \beta}\right)=\mathbb{E}\left[\frac{\exp \left(x_{i}^{\prime} \beta\right)}{\left(1+\exp \left(x_{i}^{\prime} \beta\right)\right)^{2}} x_{i} x_{i}^{\prime}\right] \\
+& S=\mathbb{E}\left[\mathbb{E}\left(\varepsilon_{i}^{2} \mid x_{i}\right) x_{i} x_{i}^{\prime}\right]=\mathbb{E}\left[\frac{\exp \left(x_{i}^{\prime} \beta\right)}{\left(1+\exp \left(x_{i}^{\prime} \beta\right)\right)^{2}} x_{i} x_{i}^{\prime}\right] \\
+& \sqrt{n}(b-\beta) \xrightarrow{d} N\left(0, \mathbb{E}\left[\frac{\exp \left(x_{i}^{\prime} \beta\right)}{\left(1+\exp \left(x_{i}^{\prime} \beta\right)\right)^{2}} x_{i} x_{i}^{\prime}\right]^{-1}\right)
+\end{aligned}
+$$
+
+(same as in (1))
+}
+{\item 
+$\hat{\beta} \xrightarrow{p} \underset{b}{\operatorname{argmax}} \mathbb{E}\left(\ln \left(f\left(x_{i}^\prime b\right)\right)\right) \equiv \tilde{\beta} \neq \beta$
+
+$$
+\begin{aligned}
+& \sqrt{n}(\hat{\beta}-\tilde{\beta}) \xrightarrow{d} N\left(0, \mathbb{E}\left(\frac{\partial^{2} \ln \left(f\left(x_{i}^\prime \beta\right)\right)}{\partial \beta \partial \beta^{\prime}}\right)^{-1} V\left(\tilde{\varepsilon}_{i} \mid x_{i}\right) \mathbb{E}\left(\frac{\partial^{2} \ln \left(f\left(x_{i}^\prime \beta\right)\right)}{\partial \beta \partial \beta^{\prime}}\right)^{-1}\right)
+\end{aligned}
+$$
+
+It will be inconsistent but it will choose the "best" estimator in the class of $f(\cdot)$.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+This will lead to issues since we are actually regressing $y$ on its lagged values. This means we have an endogenous error term \& the estimator is not consistent.
+}
+{\item 
+We should take first differences:
+
+\begin{center}
+\begin{tabular}{l|l}
+$t$ & regression equation \\
+\hline 5 & $\Delta y_{i 5}=\Delta x_{i 5}^{\prime} \beta_{1}+\Delta y_{i 4} \beta_{2}+\Delta \varepsilon_{i 5}$ \\
+4 & $\Delta y_{i 4}=\Delta x_{i 4}^{\prime} \beta_{1}+\Delta y_{i 3} \beta_{2}+\Delta \varepsilon_{i 4}$ \\
+3 & $\Delta y_{i 3}=\Delta x_{i 3}^{\prime} \beta_{1}+\Delta y_{i 2} \beta_{2}+\Delta \varepsilon_{i 3}$
+\end{tabular}
+\end{center}
+
+We can then use the following instruments:
+
+\begin{center}
+\begin{tabular}{l|r r}
+$t$ & instruments & \\\hline
+5 & $y_{i 3}, y_{i 2}, y_{i 1}$ & $\left\{x_{i s}\right\}_{s=1}^5$ \\
+4 & $y_{i 2}, y_{i 1}$ & $\left\{x_{i s}\right\}_{s=1}^5$ \\
+3 & $y_{i 1}$ & $\left\{x_{i s}\right\}_{s=1}^5$
+\end{tabular}
+\end{center}
+
+Note: cannot use forward looking instrument due to exogeneity constraint.
+
+We must assume that the instruments are valid. The model is over-identified if there are more instruments than regressors.
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 3}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+Conditional on age, the assignment is independent of the outcomes that a person would have.
+}
+{\item 
+$$
+\begin{aligned}
+A T E & =\mathbb{E}\left(Y_{1}-Y_{0}\right)=\mathbb{E}\left(\mathbb{E}\left(Y_{1} \mid X_{1}, D=1\right)-\mathbb{E}\left(Y_{0} \mid X_{1}, D=0\right)\right) \\
+& =\frac{3}{17}\left(\frac{100+80}{2}-80\right) \\
+& +\frac{4}{17}\left(\frac{55+50}{2}-\frac{55+65}{2}\right) \\
+& +\frac{3}{17}\left(40-\frac{50+30}{2}\right) \\
+& +\frac{4}{17}\left(\frac{40+35}{2}-\frac{45+20}{2}\right) \\
+& +\frac{3}{17}\left(\frac{20+25}{2}-25\right) \\
+& \cong 0.735
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+}

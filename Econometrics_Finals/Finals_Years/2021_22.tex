@@ -1,0 +1,307 @@
+\section{Econometrics Final 2021 / 22}
+
+{
+\subsection*{Watson}
+
+{
+\subsubsection*{Exercise 1}
+
+First, notice that by $y_0 = 0$ we know that
+$$
+\begin{aligned}
+f\left(y_{1}\right) &= f\left(\varepsilon_{1}\right) \Rightarrow y_{1} \sim N(0,1) \\
+f\left(y_{t} \mid y_{t-1}\right) &= f\left(\varnothing y_{t-1}+\varepsilon_{t}\mid {y_{t-1}}\right) \Rightarrow y_{t} \mid y_{t-1} \sim N\left(\phi y_{t-1}, 1\right)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+f \left( Y_{1: 50}, Y_{52: 100}\right)= & f\left(Y_{52: 100} \mid Y_{1: 50}\right) f\left(Y_{1: 50}\right) \\
+= & f\left(Y_{52: 100} \mid Y_{1: 50}\right) \prod_{t=2}^{50} f\left(Y_{t}\mid Y_{t-1}\right) f\left(Y_{1}\right) \\
+= & f\left(Y_{52: 100} \mid Y_{1: 50}\right) f\left(Y_{1}\right) \prod_{t=2}^{50} f\left(Y_{t} \mid Y_{t-1}\right) \\
+= & f\left(Y_{52: 100} \mid Y_{1: 50}\right) \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2} Y_{1}^{2}\right) \prod_{t=2}^{50} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right) \\
+= & \prod_{t=53}^{100} f\left(Y_{t}\mid Y_{t-1}, Y_{1: 50}\right) f\left(Y_{52} \mid  Y_{1: 50}\right) \\
+&\cdot \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2} Y_{1}^{2}\right) \prod_{t=2}^{50} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right)\\
+=&f\left(Y_{52} \mid Y_{1: s 0}\right) \prod_{t=53}^{100} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right) \\
+&\cdot\frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2} Y_{1}^{2}\right) \prod_{t=2}^{50} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right)
+\end{aligned}
+$$
+
+At this point, we should find out how $Y_{52}$ is distributed:
+
+$$
+\begin{aligned}
+Y_{52}&=\phi Y_{51}+\varepsilon_{52} =\phi^{2} Y_{50}+\phi \varepsilon_{51}+\varepsilon_{52} \\
+\Rightarrow Y_{52}& \sim N\left(\phi^{2} Y_{50} , 1+\phi^{2}\right)
+\end{aligned}
+$$
+
+Use this information in the expression above to find:
+
+$$
+\begin{aligned}
+f \left( Y_{1: 50}, Y_{52: 100}\right) =&\frac{1}{\sqrt{2 \pi\left(1+\phi^{2}\right)}} \exp \left(-\frac{1}{2\left(1+\phi^{2}\right)}\left(Y_{52}-\phi^{2} Y_{50}\right)^{2}\right) \\
+& \cdot\prod_{t=53}^{100} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right) \\
+& \cdot\frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2} Y_{1}^{2}\right) \prod_{t=2}^{50} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right) \\
+=&\left(\frac{1}{\sqrt{2 \pi}}\right)^{99} \exp \left[-\frac{1}{2}\left(Y_{1}^{2}+\frac{\left(Y_{52}-\phi^{2} Y_{50}\right)^{2}}{1+\phi^{2}}\right) \right] \\
+& \cdot \prod_{t=2}^{50} \exp \left[-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right] \cdot \prod_{t=53}^{100} \exp \left[-\frac{1}{2}\left(Y_{t}-\phi Y_{t-1}\right)^{2}\right]
+\end{aligned}
+$$
+
+}
+{
+\subsubsection*{Exercise 2}
+$$
+\begin{aligned}
+y_{t}-\mu &= u_{t} \\
+\frac{1}{T} \sum_{t=1}^{T} y_{t}-\mu &= \frac{1}{T} \sum_{t=1}^{T} u_{t}=\frac{1}{T}\left(\sum_{t=1}^{T / 2} u_{t}+\sum_{t=T / 2+1}^{T} u_{t}\right) \\
+& =\frac{1}{T}\left(\sum_{t=1}^{T / 2} u_{t}+\sum_{t=T / 2+1}^{T} \varepsilon_{t}+\sum_{t=T / 2+1}^{T} \varepsilon_{t-1}\right) \\
+& =\frac{1}{T}\left(\sum_{t=1}^{T / 2} u_{t}+\sum_{t=T / 2+1}^{T} \varepsilon_{t}+\sum_{t=T / 2+1}^{T} \varepsilon_{t}+\varepsilon_{T / 2}-\varepsilon_{T}\right) \\
+& =\frac{1}{T} \sum_{t=1}^{T / 2} u_{t}+\frac{2}{T} \sum_{t=T / 2 +1}^{T} \varepsilon_{t}+\frac{\varepsilon_{T / 2}-\varepsilon_{T}}{T} \\
+\sqrt{T}(\bar{y}-\mu) &= \frac{1}{\sqrt{T}} \sum_{t=1}^{T / 2} u_{t}+\frac{2}{\sqrt{T}} \sum_{t=T / 2+1}^{T} \varepsilon_{t}+\frac{\varepsilon_{T / 2}-\varepsilon_{T}}{\sqrt{T}} \\
+& =\frac{1}{\sqrt{T}} \frac{\sqrt{2}}{\sqrt{2}} \sum_{t=1}^{T / 2} u_{t}+\frac{2}{\sqrt{T}} \frac{\sqrt{2}}{\sqrt{2}} \sum_{t=T / 2+1}^{T} \varepsilon_{t}+\frac{\varepsilon_{T / 2}-\varepsilon_{T}}{\sqrt{T}} \\
+& =\frac{1}{\sqrt{2}} \underbrace{\frac{1}{(T / 2)^{1 / 2}} \sum_{t=1}^{T / 2} u_t}_{\xrightarrow{d} N(0,1)} + \sqrt{2} \underbrace{\frac{1}{(T / 2)^{1 / 2}} \sum_{t=T / 2+1}^T \varepsilon_t}_{\xrightarrow{d} N(0,1)}+\underbrace{\frac{\varepsilon_{T / 2}-\varepsilon_T}{\sqrt{T}}}_{\xrightarrow{p}0} \\
+\sqrt{T}(\bar{y}-\mu) & \xrightarrow{d} N(0,\frac{1}{2}+2) = N(0,\frac{5}{2})
+\end{aligned}
+$$
+}
+{
+\subsubsection*{Exercise 3}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+
+\begin{align*}
+y_{t} & =\varepsilon_{t+1} \beta+u_{t} \\
+\hat{\beta} & =\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}^{2}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}\left(\varepsilon_{t+1} \beta+u_{t}\right)\right) \\
+& =\beta+\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}^{2}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1} v_{t}\right) \\
+\hat{\beta}-\beta & =\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}^{2}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1} u_{t}\right) \tag{1}
+\end{align*}
+
+
+We know
+
+\begin{align*}
+\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}^{2}\right)^{-1} \xrightarrow{P} \mathbb{E}\left(\varepsilon_{t+1}^{2}\right)^{-1}=1 \tag{2}
+\end{align*}
+
+Now, look at the other term. Note the following:
+
+\begin{align*}
+u_{t} &= u_{t-1}+\varepsilon_{t} \\
+\sum u_{t}^{2} &= \sum u_{t-1}^{2}+2 \sum u_{t-1} \varepsilon_{t}+\sum \varepsilon_{t}^{2} \\
+\frac{1}{T} \sum u_{t-1} \varepsilon_{t} &= \frac{1}{2}\left[\frac{1}{T} \sum u_{t}^{2}-\frac{1}{T} \sum u_{t-1}^{2}-\frac{1}{T} \sum \varepsilon_{t}^{2}\right] \\
+& =\frac{1}{2}\left[\underbrace{\frac{1}{T} u_{T}^{2}}_{\frac{1}{T}\left(\sum_{t=1}^T \varepsilon_t\right)^2}-\frac{1}{T} \sum \varepsilon_{t}^{2}\right] \xrightarrow{d} \frac{1}{2}\left(\chi_{1}^{2}-1\right)  \tag{3}
+\end{align*}
+
+Apply Slutsky in (1) using (2) \& (3):
+
+$$
+\hat{\beta}-\beta=\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}^{2}\right)^{-1}\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1} u_{t}\right) \xrightarrow{d} \frac{1}{2}\left(\chi_{1}^{2}-1\right)
+$$
+}
+{\item 
+First, note that (2) would change:
+
+$$
+\left(\frac{1}{T} \sum_{t=1}^{T} \varepsilon_{t+1}^{2}\right)^{-1} \xrightarrow{P} \mathbb{E}\left(\varepsilon_{t+1}^{2}\right)^{-1}=\frac{1}{5}
+$$
+
+Second, (3) would change:
+
+$$
+\frac{1}{T} \sum u_{t-1} \varepsilon_{t} \xrightarrow{d} \frac{1}{2}\left(s^{2}-5\right) \text{ where } \operatorname{s\sim N}(0,5)
+$$
+
+Thus: 
+
+$$
+\hat{\beta}-\beta \xrightarrow{d} \frac{1}{10}\left(s^2-5\right)=\frac{1}{2}\left(\chi_1^2-1\right)
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\begin{aligned}
+y_{t}=x_{t} \beta+u_{t} & \Longrightarrow \quad \sigma_{t}=x_{t} u_{t} \\
+\mathbb{E}\left(\sigma_{t} \mid \Omega_{t-1}\right) & =\mathbb{E}\left(x_{t} \mid \Omega_{t-1}\right) \mathbb{E}\left(u_{t} \mid \Omega_{t-1}\right) \\
+& =\mathbb{E}\left(e_{t}+\gamma e_{t-1} \mid \Omega_{t-1}\right) \mathbb{E}\left(\varepsilon_{t}+\theta \varepsilon_{t-1} \mid \Omega_{t-1}\right) \\
+& =\gamma e_{t-1} \theta \varepsilon_{t-1} \neq 0
+\end{aligned}
+$$
+
+Thus, $\sigma_{t}$ is not a MDS.
+
+$$
+\sqrt{T}(\beta-\beta)=\left[\frac{1}{T} \sum x_{t}^{2}\right]^{-1}\left[\frac{1}{\sqrt{T}} \sum \sigma_{t}\right]
+$$
+
+(1) $\left[\frac{1}{T} \sum x_{t}^{2}\right]^{-1} \xrightarrow{p} \Sigma_{x x}^{-1}=\mathbb{E}\left(x_{t}^{2}\right)^{-1}=\left(\sigma_{e}^{2}\left(1+\gamma^{2}\right)\right)^{-1}$
+
+(2) $\left[\frac{1}{\sqrt{T}} \sum \sigma_{t}\right] \xrightarrow{d} N\left(0, \sum_{j=-\infty}^{\infty} \lambda_{j}\right)$ where $\lambda_{j}$ is the $j$-th auto-covariance of $\sigma_{t}$.
+
+$$
+\begin{aligned}
+\lambda_{0} & =\mathbb{E}\left(\sigma_{t}^{2}\right)=\mathbb{E}\left(x_{t}^{2} u_{t}^{2}\right)=\mathbb{E}\left(x_{t}^{2}\right) \mathbb{E}\left(v_{t}^{2}\right)=\sigma_{e}^{2}\left(1+\gamma^{2}\right) \sigma_{\varepsilon}^{2}\left(1+\theta^{2}\right) \\
+\lambda_{1} & =\lambda_{-1}=\mathbb{E}\left(x_{t} x_{t-1} u_{t} u_{t-1}\right)=\mathbb{E}\left(x_{t} x_{t-1}\right) \mathbb{E}\left(u_{t} u_{t-1}\right) \\
+& =\gamma \mathbb{E}\left(e_{t-1}^{2}\right) \theta \mathbb{E}\left(\varepsilon_{t-1}^{2}\right)=\gamma \sigma_{e}^{2} \theta \sigma_{\varepsilon}^{2} \\
+\lambda_{j} & =\lambda_{-j}=0 \quad \forall j \geqslant 2
+\end{aligned}
+$$
+
+(3) by Slutsky:
+
+$$
+\begin{aligned}
+& \left[\frac{1}{T} \sum x_{t}^{2}\right]^{-1}\left[\frac{1}{\sqrt{T}} \sum \sigma_{t}\right] \xrightarrow{d} N(0, V) \\
+& V=\left(\sigma_{e}^{2}\left(1+\gamma^{2}\right)\right)^{-2}\left[2 \gamma \sigma_{e}^{2} \theta \sigma_{\varepsilon}^{2}+\sigma_{e}^{2}\left(1+\gamma^{2}\right) \sigma_{\varepsilon}^{2}\left(1+\theta^{2}\right)\right] \\
+& \quad=\frac{2 \gamma \sigma_{e}^{2} \theta \sigma_{\varepsilon}^{2}+\sigma_{e}^{2}\left(1+\gamma^{2}\right) \sigma_{\varepsilon}^{2}\left(1+\theta^{2}\right)}{\left(\sigma_{e}^{2}\left(1+\gamma^{2}\right)\right)^{2}}
+\end{aligned}
+$$
+}
+{\item 
+We saw, that $\lambda_{2}=\lambda_{-2}=0$. Therefore, we ignore it.
+
+$$
+\begin{aligned}
+C I_{g S} & =[\hat{\beta} \pm 1.96 \sqrt{\hat{V} / T}] \\
+& =\left[\hat{\beta} \pm 1.96 \frac{1}{\sqrt{T}} \sqrt{\left(\frac{1}{T} \sum x_{t}^{2}\right)^{-2}\left(\hat{\lambda}_{0}+2 \hat{\lambda}_{1}\right)}\right] \\
+& =\left[\hat{\beta} \pm 1.96 \frac{1}{\sqrt{T}} \sqrt{\left(\frac{1}{T} \sum x_{t}^{2}\right)^{-2}\left(\hat{\lambda}_{0}^{x} \hat{\lambda}_{0}^{u}+2 \hat{\lambda}_{1}^{x} \hat{\lambda}_{1}^{u}\right)}\right] \\
+& =\left[2.1 \pm 1.96 \frac{1}{10} \sqrt{5^{-2}(5 \cdot 4+2 \cdot 1 \cdot 1.4)}\right] \\
+& =\left[2.1 \pm 0.196\left(\frac{20+2.8}{25}\right)^{1 / 2}\right] \\
+& =[1.913 ; 2.287]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+}
+
+\newpage
+{
+\subsection*{Honor\'e}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\arabic*)]
+{\item 
+\color{white}asdf\color{black}
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$C I=[\hat{\beta} \pm 1.96 \cdot S \hat{E}(\hat{\beta})]=[-0.652 ;-0.214]$
+}
+{\item 
+Since 0.2 is outside the $C I$, reject.
+}
+\end{enumerate}
+}
+{\item 
+$$
+\begin{aligned}
+& x_{i}=\left(\begin{array}{c}
+-2 \\
+1 \\
+1
+\end{array}\right) \longrightarrow x_{i}^{\prime} \beta \cong-2.189 \\
+& P\left(y_{i}=1 \mid x_{i}\right)=\frac{\exp \left(x_{i}^{\prime} \beta\right)}{1+\exp \left(x_{i}^{\prime} \beta\right)} \cong 10.078 \%
+\end{aligned}
+$$
+}
+{\item 
+Linear: $\frac{\partial P\left(y_{x}=1\mid x_{1}\right)}{\partial x_{1}}=\hat{\beta}_{1} \cong 0.307$
+
+Logit: $\frac{\partial P\left(y_{x}=1\mid x_{1}\right)}{\partial x_{1}}=\hat{\beta}_{1} P\left(y_{i}=1 \mid x_{i}\right) P\left(y_{i}=0 \mid x_{i}\right) \cong 0.199$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+Use first differences. Also note that the exogeneity holds for forward looking instruments.
+
+Differences:
+
+$$
+\begin{aligned}
+& \Delta y_{i 4}=\gamma \cdot \Delta y_{i 3}+\beta \cdot \Delta x_{i 4}+\Delta \varepsilon_{i 4} \\
+& \Delta y_{i 3}=\gamma \cdot \Delta y_{i 2}+\beta \cdot \Delta x_{i 3}+\Delta \varepsilon_{i 3}
+\end{aligned}
+$$
+
+Moment condition: (since $\left.\mathbb{E}\left( x_{is} \Delta \varepsilon_{i t}\right)=0 \quad \forall t, s\right)$
+
+$$
+\begin{array}{lll}
+\mathbb{E}\left(x_{i s}\left(\Delta y_{i 4}-\gamma \cdot \Delta y_{i 3}-\beta \cdot \Delta x_{i 4}\right)\right)=0 ; & s=1,2,3,4 \\
+\mathbb{E}\left(x_{i s}\left(\Delta y_{i 3}-\gamma \cdot \Delta y_{i 2}-\beta \cdot \Delta x_{i 3}\right)\right)=0 ; & s=1,2,3,4
+\end{array}
+$$
+
+Thus we have 8 moment conditions.
+}
+{
+\subsubsection*{Exercise 3}
+
+This is a sequential estimator.
+
+Let $f\left(X_{i}, \mu, \psi\right)=\left(\begin{array}{l}\mu-X_{i} \\ \psi_{k}-\left(X_{i}-\mu\right)^{k}\end{array}\right)$
+
+Define 
+
+$$
+R_{1}=\mathbb{E}\left[\frac{\partial\left(\psi_{k}-\left(X_{i}-\mu\right)^{k}\right)}{\partial \mu}\right]=\mathbb{E}\left[k\left(X_{i}-\mu\right)^{k-1}\right]=k \mathbb{E}\left[\left(X_{i}-\mu\right)^{k-1}\right]
+$$
+
+As we saw in the lecture, $R_{1}=0$ would be sufficient for the limiting distributions to be the same. If $ \left\{X_{i}\right\}_{i=1}^{n}$ follow a symmetric distribution, then $R_{1}=0$ for all even $k$. For odd $k$, we would need to correct, i.e. the distributions won't be identical!
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$\sqrt{n}(\hat{\rho}-\beta) \xrightarrow{d} N\left(0, A^{-1} B A^{-1}\right)$
+
+where $A=\mathbb{E}\left[\left(\exp \left(x_{i} \beta\right) x_{i}\right)^{2}\right]=\mathbb{E}\left[\exp \left(2 x_{i} \beta\right) x_{i}^{2}\right]$
+
+$$
+\begin{aligned}
+B & =\mathbb{E}\left[\varepsilon_{i}^{2} \exp \left(2 x_{i} \beta\right) x_{i}^{2}\right] \\
+& =\mathbb{E}\left[\mathbb{E}\left(\varepsilon_{i}^{2} \mid x_{i}\right) \exp \left(2 x_{i} \beta\right) x_{i}^{2}\right] \\
+& =\mathbb{E}\left[\exp \left(x_{i} \beta\right) \cdot \exp \left(2 x_{i} \beta\right) x_{i}^{2}\right] \\
+& =\mathbb{E}\left[\exp \left(3 x_{i} \beta\right) x_{i}^{2}\right]
+\end{aligned}
+$$
+}
+{\item 
+$\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, G^{-1} S G^{-1}\right)$
+
+where
+
+$$
+\begin{aligned}
+G &= \mathbb{E}\left[-y_{i} x_{i} \exp \left(-x_{i} \beta\right)\right] \\
+& =\mathbb{E}\left[-\mathbb{E}\left(y_{i} \mid x_{i}\right) x_{i} \exp \left(-x_{i} \beta\right)\right] \\
+& =\mathbb{E}\left[-x_{i}\right] \\
+S & =V\left(f\left(x_{i}, \beta\right)\right)=V\left(y_{i} \exp \left(-x_{i} \beta\right)\right) \\
+& =\mathbb{E}\left[y_{i}^{2} \exp \left(-2 x_{i} \beta\right)\right]-\mathbb{E}\left[y_{i} \exp \left(-x_{i} \beta\right)\right]^{2} \\
+& =\mathbb{E}\left[\mathbb{E}\left(y_{i}^{2} \mid x_{i}\right) \exp \left(-2 x_{i} \beta\right)\right]-\mathbb{E}\left[\mathbb{E}\left(y_{i} \mid x_{i}\right) \exp \left(-x_{i} \beta\right)\right]^{2} \\
+& =\mathbb{E}\left[\left(\exp \left(x_{i} \beta\right)+\exp \left(2 x_{i} \beta\right)\right) \exp \left(-2 x_{i} \beta\right)\right]-\mathbb{E}[1]^{2} \\
+& =\mathbb{E}\left[\exp \left(-x_{i} \beta\right)+1\right]-1=\mathbb{E}\left[\exp \left(-x_{i} \beta\right)\right]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 5}
+When $\left(Y_{1}, Y_{0}\right)$, i.e. the outcome, is independent of $D$ conditional on $X$, then it is also independent of $D$ conditional an $P(X)$. Therefore, one can also match based on $P(x)$ instead of $x$.
+
+This does not rely on a functional form or parametric assumptions for identification.
+}
+}

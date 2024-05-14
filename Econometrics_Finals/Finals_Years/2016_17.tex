@@ -1,0 +1,430 @@
+\section{Econometrics Final 2016 / 17}
+
+{
+\subsection*{Watson}
+
+{
+\subsubsection*{Exercise 1}
+
+Kalman Filter equations:
+
+$$
+\begin{aligned}
+& F=0.9 ; \quad H=R=Q=1 \\
+& \operatorname{Var}\left(x_{t}\right)=\frac{1}{1-0.81} \cong 5.263
+\end{aligned}
+$$
+
+\begin{center}
+\begin{tabular}{|l|ll|l|l|}
+\hline \# & Variable & & Formula & Value \\
+\hline 1 & $x_{t|t-1}$ & $\left(\mu_{1}\right)$ & $F \cdot \mathbb{E}\left(x_{t-1} \mid y_{1: t-1}\right)$ & 0 \\
+2 & $y_{t|t-1}$ & $\left(\mu_{2}\right)$ & $H \cdot \mu_{1}$ & 0 \\
+3 & $P_{t|t-1}$ & $\left(\Sigma_{11}\right)$ & $F^{2} \cdot V\left(x_{t}\right)+Q$ & 5.263 \\
+4 & $h_{t}$ & $\left(\Sigma_{22}\right)$ & $H^{2} P_{t | t-1}+R$ & 6.263 \\
+5 & $K_{t}$ & $\left(\Sigma_{12} \Sigma_{22}^{-1}\right)$ & $P_{t| t-1} \cdot H \cdot h_{t}^{-1}$ & 0.840 \\
+6 & $\eta_{t}$ & $\left(z_{2}-\mu_{2}\right)$ & $y_{t}-y_{t | t-1}$ & 1 \\
+7 & $x_{t|t}$ & $\left(\mathbb{E}\left(z_{1} | z_{2}\right)\right)$ & $x_{t | t-1}+K_{t} \eta_{t}$ & 0.840 \\
+8 & $P_{t|t}$ & $\left(V\left(z_{1} | z_{2}\right)\right)$ & $P_{t | t-1}-K_{t} H P_{t | t-1}$ & 0.841 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+Since everything is normally distributed, we find:
+
+$$
+\begin{aligned}
+f\left(y_{t} \mid x_{t-1}=0, y_{t-1}=2\right) & =\frac{1}{\sqrt{2 \pi h_{t}}} \exp \left[-\frac{1}{2} \frac{\eta_{t}^{2}}{h_{t}}\right] \\
+& \cong \frac{1}{\sqrt{2 \pi 6.263}} \exp \left[-\frac{1}{2} \frac{y_{t}^{2}}{6.263}\right]
+\end{aligned}
+$$
+
+Remember, we don't know $y_t$ in (a).
+}
+{\item 
+Also a normal distribution. Thus:
+
+$$
+\begin{aligned}
+f\left(x_{t} \mid y_{t}=1, x_{t-1}=0, y_{t-1}=2\right) & =\frac{1}{\sqrt{2 \pi P_{t|t}}} \exp \left[-\frac{1}{2} \frac{\left(x_{t}-x_{t|t}\right)^{2}}{P_{t|t}}\right] \\
+& \cong \frac{1}{\sqrt{2 \pi 0.841}} \exp \left[-\frac{1}{2} \frac{\left(x_{t}-0.84\right)^{2}}{0.841}\right]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\color{red} Could not solve this, here's what I did: \color{black}
+
+$$
+y_{t}\left|x_{t-1}=x_{t}\right| x_{t-1}+v_{t}
+$$
+
+$$
+\begin{aligned}
+& P\left(x_{t}=1 \mid x_{t-1}=0\right)=0.2  \\
+& P\left(x_{t}=0 \mid x_{t-1}=0\right)=0.8 \\
+\Rightarrow &f\left(x_{t} \mid x_{t-1}=0\right)=0.2^{x_{t}} \cdot 0.8^{1-x_{t}}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+f\left(y_{t} \mid y_{1: t-1}\right)= & f\left(y_{t} \mid x_{t}=1\right) P\left(x_{t}=1 \mid y_{1: t-1}\right) \\
+& +f\left(y_{t} \mid x_{t}=0\right) P\left(x_{t}=0 \mid y_{1: t-1}\right) \\
+= & f\left(1+v_{t}\right) \cdot 0.2+f\left(v_{t}\right) \cdot 0.8 \\
+= & \frac{0.2}{\sqrt{2 \pi}} \exp \left[-\frac{1}{2}\left(y_{t}-1\right)^{2}\right]+\frac{0.8}{\sqrt{2 \pi}} \exp \left[-\frac{1}{2} y_{t}^{2}\right]
+\end{aligned}
+$$
+}
+{
+\subsubsection*{Exercise 3}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+
+$$
+\begin{aligned}
+    \operatorname{Var}\left(x_{t}\right)=1+4=5 &\text{ from } \varepsilon_{t} \stackrel{\text{iid}}{\sim} N(0,1) \\
+    \operatorname{Var} \left(x_{t}\right) =\left(1+\theta^{2}\right) \sigma_{\eta}^{2} &\text{ from } M A(1)
+\end{aligned}
+$$
+
+Combine the two:
+
+\begin{equation*}
+5=\left(1+\theta^{2}\right) \sigma_{\eta}^{2} \tag{1}
+\end{equation*}
+
+Also get auto-covariance:
+
+$$
+\begin{aligned}
+\operatorname{Cov}\left(x_{t}, x_{t+1}\right) & =\operatorname{Cov}\left(\varepsilon_{t}+2 \varepsilon_{t-1}, \varepsilon_{t+1}+2 \varepsilon_{t}\right) \\
+& =2 \operatorname{Cov}\left(\varepsilon_{t}, \varepsilon_{t}\right)=2 \\
+\operatorname{Cov}\left(x_{t}, x_{t+1}\right) & =\operatorname{Cov}\left(\eta_{t}+\theta \eta_{t-1}, \eta_{t+1}+\theta \eta_{t}\right) \\
+& =\theta \operatorname{Cov}\left(\eta_{t}, \eta_{t}\right)=\theta \sigma_{\eta}^{2}
+\end{aligned}
+$$
+
+Combine the two:
+
+\begin{equation*}
+2=\theta \sigma_{\eta}^{2} \tag{2}
+\end{equation*}
+
+Plug (2) into (1):
+
+$$
+\begin{aligned}
+5 &= \left(1+\theta^{2}\right) \frac{2}{\theta} \\
+\Leftrightarrow \quad 0 &= 2 \theta^{2}-5 \theta+2 \\
+\Leftrightarrow \quad 0 &= \theta^{2}-2.5 \theta+1 \\
+\Leftrightarrow \theta_{1 / 2} &= \frac{2.5 \pm \sqrt{2.25}}{2}=\frac{2.5 \pm 1.5}{2}=\{1 / 2 ; 2\}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+    \theta_{1}= \frac{1}{2} & \quad \text{By invertibility} \\
+    \sigma_{\eta}^{2}=4 & \quad \text{By (2)}
+\end{aligned}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+& \eta_{t}+\theta \eta_{t-1}=(1+\theta L) \eta_{t}=\varepsilon_{t}+2 \varepsilon_{t-1}=(1+2 L) \varepsilon_{t} \\
+& \begin{aligned}
+\eta_{t} & =\frac{1+2 L}{1+\theta L} \varepsilon_{t}=(1+2 L)\left(1-\theta L+\theta^{2} L^{2}-\theta^{3} L^{3}+\ldots\right) \varepsilon_{t} \\
+& =\left(1+2 L-\theta L-2 \theta L^{2}+\theta^{2} L^{2}+2 \theta^{2} L^{3}-\theta^{3} L^{3}-2 \theta^{3} L^{4}+\ldots\right) \varepsilon_{t} \\
+& =\left(1+(2-\theta) L+\left(-2 \theta+\theta^{2}\right) L^{2}+\left(2 \theta^{2}-\theta^{3}\right) L^{3}+\ldots\right) \varepsilon_{t} \\
+& =\left(1+(2-\theta) L+(2-\theta)(-\theta) L^{2}+(2-\theta)(-\theta)^{2} L^{3}+\ldots\right) \varepsilon_{t} \\
+\eta_{t} & =\varepsilon_{t}+(2-\theta) \sum_{i=0}^{t}(-\theta)^{i} \varepsilon_{t-1-i}
+\end{aligned}
+\end{aligned}
+$$
+
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 4}
+
+\color{red} Did not cover this in lectures. \color{black}
+}
+{
+\subsubsection*{Exercise 5}
+
+\begin{enumerate}[label=(\alph*)]
+{\item \color{white} asdf \color{black} % necessary for format of enumerate
+\begin{enumerate}[label=(\roman*)]
+{\item 
+$$
+\begin{aligned}
+\sqrt{T}(\hat{\alpha}-\alpha) &= \left(\frac{1}{T} \sum x_{t-1}^{2}\right)^{-1}\left(\frac{1}{\sqrt{T}} \sum x_{t-1} \varepsilon_{t}\right) \\
+\left(\frac{1}{T} \sum x_{t-1}^{2}\right)^{-1} &\xrightarrow{p} \mathbb{E}\left(x_{t-1}^{2}\right)^{-1}=\frac{1-\phi^{2}}{2} \\
+\left(\frac{1}{\sqrt{T}} \sum x_{t-1} \varepsilon_{t}\right) &\xrightarrow{d} N\left(0, \mathbb{E}\left(x_{t-1}^{2} \varepsilon_{t}^{2}\right)\right)
+\end{aligned}
+$$
+
+Use the fact that $x_{t} \perp \varepsilon_{t} \forall t$
+
+$$
+\begin{aligned}
+\left(\frac{1}{\sqrt{T}} \sum x_{t-1} \varepsilon_{t}\right) \xrightarrow{d} & N\left(0, \mathbb{E}\left(x_{t-1}^{2}\right) \mathbb{E}\left(\varepsilon_{t}^{2}\right)\right)
+\end{aligned}
+$$
+
+Combine the two: (Slutsky)
+
+$$
+\begin{aligned}
+& \sqrt{T}(\hat{\alpha}-\alpha) \xrightarrow{d} N\left(0, \frac{1-\phi^{2}}{2}\right)
+\end{aligned}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+\sqrt{T}(\hat{\phi}-\phi) &= \left(\frac{1}{T} \sum x_{t-1}^{2}\right)^{-1}\left(\frac{1}{\sqrt{T}} \sum x_{t-1} v_{t}\right) \\
+\left(\frac{1}{T} \sum x_{t-1}^{2}\right)^{-1}  &\xrightarrow{p} \mathbb{E}\left(x_{t-1}^{2}\right)^{-1}=\frac{1-\phi^{2}}{2} \\
+\left(\frac{1}{\sqrt{T}} \sum x_{t-1} v_{t}\right) &\xrightarrow{d} N\left(0, \mathbb{E}\left(x_{t-1}^{2} v_{t}^{2}\right)\right)
+\end{aligned}
+$$
+
+Use the fact that $x_{t} \perp v_{t} \forall t$
+
+$$
+\begin{aligned}
+\left(\frac{1}{\sqrt{T}} \sum x_{t-1} v_{t}\right) \xrightarrow{d} & N\left(0, \mathbb{E}\left(x_{t-1}^{2}\right) \mathbb{E}\left(v_{t}^{2}\right)\right)
+\end{aligned}
+$$
+
+Combine the two: (Slutsky)
+
+$$
+\sqrt{T}(\hat{\phi}-\phi) \xrightarrow{d} N\left(0, \frac{1-\phi^{2}}{2}\right)
+$$
+}
+{\item 
+Write in matrix notation:
+
+$$
+\left[\begin{array}{l}
+y_{t} \\
+x_{t}
+\end{array}\right]=\underbrace{\left[\begin{array}{ll}
+x_{t-1} & 0 \\
+0 & x_{t-1}
+\end{array}\right]}_{X}\left[\begin{array}{l}
+\alpha \\
+\phi
+\end{array}\right]+\underbrace{\left[\begin{array}{l}
+\varepsilon_{t} \\
+v_{t}
+\end{array}\right]}_{\eta_{t}}
+$$
+
+Apply GMM:
+
+$$
+\sqrt{T}\left(\begin{array}{l}
+\hat{\alpha}-\alpha \\
+\hat{\phi}-\phi
+\end{array}\right) \xrightarrow{\alpha} N(0, \Omega)
+$$
+
+And $\Omega=\mathbb{E}\left(X X^{\prime}\right)^{-1} \mathbb{E}\left(\left(\eta^{\prime} X\right)^{\prime}(\eta X)^{\prime}\right) \mathbb{E}\left(X X^{\prime}\right)^{-1}$
+
+$$
+\begin{aligned}
+\mathbb{E}(X X^\prime)^{-1} & =\left[\begin{array}{cc}
+\mathbb{E}\left(x_{t-1}^{2}\right)^{-1} & 0 \\
+0 & \mathbb{E}\left(x_{t-1}^{2}\right)^{-1}
+\end{array}\right]=\frac{1-\phi^{2}}{2}\left[\begin{array}{ll}
+1 & 0 \\
+0 & 1
+\end{array}\right] \\
+\eta^{\prime} X & =\left[\begin{array}{ll}
+\varepsilon_{t} \\
+v_{t}
+\end{array}\right]^{\prime}\left[\begin{array}{cc}
+x_{t-1} & 0 \\
+0 & x_{t-1}
+\end{array}\right]=\left[\begin{array}{ll}
+\varepsilon_{t} x_{t-1} & v_{t} x_{t-1}
+\end{array}\right] \\
+\mathbb{E}\left(\left(\eta^{\prime} X\right)^{\prime}(\eta X)^{\prime}\right) & =\left[\begin{array}{ll}
+\mathbb{E}\left(\varepsilon_{t}^{2} x_{t-1}^{2}\right) & \mathbb{E}\left(\varepsilon_{t} v_{t} x_{t-1}^{2}\right) \\
+\mathbb{E}\left(\varepsilon_{t} v_{t} x_{t-1}^{2}\right) & \mathbb{E}\left(v_{t}^{2} x_{t-1}^{2}\right)
+\end{array}\right] \\
+& =\left[\begin{array}{ll}
+\mathbb{E}\left(\varepsilon_{t}^{2}\right) \mathbb{E}\left(x_{t-1}^{2}\right) & \mathbb{E}\left(\varepsilon_{t}\right) \mathbb{E}\left(v_{t}\right) \mathbb{E}\left(x_{t-1}^{2}\right) \\
+\mathbb{E}\left(\varepsilon_{t}\right) \mathbb{E}\left(v_{t}\right) \mathbb{E}\left(x_{t-1}^{2}\right) & \mathbb{E}\left(v_{t}^{2}\right) \mathbb{E}\left(x_{t-1}^{2}\right)
+\end{array}\right] \\
+& =\left[\begin{array}{ll}
+1 & 0 \\
+0 & 2
+\end{array}\right] \cdot \frac{2}{1-\phi^{2}} \\
+\Omega & =\frac{1-\phi^{2}}{2}\left[\begin{array}{ll}
+1 & 1 \\
+1 & 2
+\end{array}\right]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{\item 
+$$
+C I=\left[\hat{\hat{\alpha}} \pm 1.96 \frac{1}{\sqrt{T}} \sqrt{\frac{1-\hat{\phi}^{2}}{2}}\right]=[1.203 ; 1.396]
+$$
+}
+\end{enumerate}
+}
+}
+
+\newpage
+{
+\subsection*{Honor\'e}
+
+{
+\subsubsection*{Exercise 1}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+The issue is that the asymptotics for OLS only hold for $n \rightarrow \infty$, with a fixed number of parameters. But as $n \rightarrow \infty$, the number of the $\alpha_{i}$ also goes to infinity.
+
+Then, we cannot say anything about the distributions of $(\beta, \gamma, \delta)$.
+}
+{\item 
+We should use first differences ( $\alpha_{i}$ drop out):
+
+$$
+\Delta y_{i t}=\Delta x_{i t}^{\prime} \beta+\Delta x_{i t-1}^{\prime} \gamma+\Delta x_{i t-2}^{\prime} \delta+\Delta \varepsilon_{i t}
+$$
+
+We need to start at $T=4$, otherwise the explanatory variables are not well defined. Also note, that by assumption:
+
+$$
+\mathbb{E}\left(\Delta \varepsilon_{i t} \mid x_{i t}, x_{i t-1}, x_{i t-2}, \ldots\right)=0
+$$
+
+Thus, the errors are uncorrelated, and OLS should recover the coefficients.
+
+\color{red}
+Not super sure if GMM would be better with moment conditions:
+
+$$
+\mathbb{E}\left(\Delta \varepsilon_{i t} x_{i t}\right)=\mathbb{E}\left(\left(\Delta y_{i t}-\Delta x_{i t}^{\prime} \beta-\Delta x_{i t-1}^{\prime} \gamma-\Delta x_{i t-2}^{\prime} \delta\right) x_{i t}\right)=0
+$$
+\color{black}
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 2}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+$$
+\begin{aligned}
+& \sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, A^{-1} B A^{-1}\right) \\
+& A=\mathbb{E}\left(x_{i}^{2} \exp \left(x_{i} \beta\right)^{2}\right)=\mathbb{E}\left(x_{i}^{2} \exp \left(2 x_{i}\beta\right)\right) \\
+& B=\mathbb{E}\left(\varepsilon_{i}^{2} x_{i}^{2} \exp \left(2 x_{i} \beta\right)\right)=\mathbb{E}\left(\mathbb{E}\left(\varepsilon_{i}^{2} \mid x_{i}\right) x_{i}^{2} \exp \left(2 \beta x_{i}\right)\right) \\
+& \quad=\mathbb{E}\left(x_{i}^{2} \exp \left(3 \beta x_{i}\right)\right) \\
+& \sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, \frac{\mathbb{E}\left(x_{i}^{2} \exp \left(3 \beta x_{i}\right)\right)}{\left[\mathbb{E}\left(x_{i}^{2} \exp \left(2 x_{i}\beta\right)\right)\right]^{2}}\right)
+\end{aligned}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+& \sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, \Gamma^{-1} S \Gamma^{-1}\right) \\
+& \Gamma=\mathbb{E}\left(-x_{i} \exp \left(x_{i} \beta\right)\right) \\
+& S=V\left(f\left(x_{i}, \beta\right)\right)=V\left(y_{i}-\exp \left(x_{i} \beta\right)\right)=V\left(\varepsilon_{i}\right)=\mathbb{E}\left(\exp \left(x_{i} \beta\right)\right) \\
+& \sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0, \frac{\mathbb{E}\left(\exp \left(x_{i} \beta\right)\right)}{\left[\mathbb{E}\left(x_{i} \exp \left(x_{i} \beta\right)\right)\right]^{2}}\right)
+\end{aligned}
+$$
+}
+{\item 
+$$
+\begin{aligned}
+& \sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N\left(0,\left(G^{\prime} S^{-1} G\right)^{-1}\right) \\
+& G=\mathbb{E}\left[\begin{array}{l}
+-x_{i} \exp \left(x_{i} \beta\right) \\
+-x_{i}^{2} \exp \left(x_{i} \beta+2\right)
+\end{array}\right] \\
+& S^{-1}=V\left[\begin{array}{l}
+\varepsilon_{i} \\
+\left(y_{i}-\exp \left(x_{i} \beta\right) \underbrace{\exp (2)}_{\text {\color{red}WTF?\color{black}}} x_{i}\right)
+\end{array}\right]
+\end{aligned}
+$$
+}
+\end{enumerate}
+}
+{
+\subsubsection*{Exercise 3}
+
+Approximately: (Nonparametrics, slide 11)
+
+$$
+\begin{aligned}
+\operatorname{Bias}(\hat{f}(x)) & \cong \frac{1}{2} h^{2} f^{\prime \prime}(x) \int v^{2} K(v) d v \\
+& =\frac{1}{2} h^{2} f^{\prime \prime}(x) \int v^{2} \frac{1}{2} d v \\
+& =\frac{1}{2} h^{2} \frac{1}{4} \exp \left(-\frac{x}{2}\right)\left(\frac{x^{2}}{2}-1\right) \frac{1}{2}\left[\frac{1}{3} v^{3}\right]_{-1}^{1} \\
+& =\frac{1}{2} h^{2} \frac{1}{4} \exp \left(-\frac{x}{2}\right)\left(\frac{x^{2}}{2}-1\right) \frac{1}{3} \\
+\operatorname{Bias}(\hat{f}(1)) & \cong \frac{1}{n^{1 / 4}} \exp \left(-\frac{1}{2}\right)\left(-\frac{1}{16}\right)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V(\hat{f}(x)) & \cong \frac{1}{n h} f(x) \int K(v)^{2} d v \\
+& =\frac{1}{3 n^{3 / 4}} \frac{1}{2} \exp \left(-\frac{x}{2}\right) \int_{-1}^{1} \frac{1}{4} d v \\
+& =\frac{1}{3 n^{3 / 4}} \frac{1}{2} \exp \left(-\frac{x}{2}\right) \frac{1}{2} \\
+V(\hat{f}(1)) & =\frac{1}{12} \frac{1}{n^{3 / 4}} \exp \left(-\frac{1}{2}\right) \\
+\operatorname{MSE}(\hat{f}(1)) & =\left[\frac{1}{n^{1 / 4}} \exp \left(-\frac{1}{2}\right)\left(-\frac{1}{16}\right)\right]^{2}+\frac{1}{12} \frac{1}{n^{3 / 4}} \exp \left(-\frac{1}{2}\right) \\
+& =n^{-1 / 2} \exp (-1) 2^{-8}+n^{-3 / 4} \frac{1}{12} \exp \left( -\frac{1}{2} \right) \\
+& =\operatorname{const}_1 n^{-1 / 2}+\operatorname{const}_2 n^{-3 / 4}
+\end{aligned}
+$$
+}
+{
+\subsubsection*{Exercise 4}
+
+\begin{enumerate}[label=(\alph*)]
+{\item 
+It is given by $\phi\left(x_{0}^{\prime} \beta\right) \beta_{l}$, where $\phi(\cdot)$ is the pdf of a standard normal, and $\beta_{l}$ the coefficient on the explanatory variable.
+}
+{\item 
+We can estimate the marginal effect by:
+
+$$
+g(\hat{\beta})=\phi\left(x_{0}^{\prime} \hat{\beta}\right) \hat{\beta}_{l}
+$$
+
+Also recall from the lecture that
+
+$$
+\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N(0, \Sigma)
+$$
+
+Now, we can apply the delta-method as $g(\cdot)$ is a non-linear function of $\beta$.
+
+$$
+\sqrt{n}(g(\hat{\beta})-g(\beta)) \xrightarrow{d} N\left(0,\left(\frac{\partial g(\beta)}{\partial \beta}\right)^{\prime} \Sigma \frac{\partial{g}(\beta)}{\partial \beta}\right)
+$$
+}
+{\item 
+\color{red} Very long answer... \color{black}
+}
+\end{enumerate}
+}
+}

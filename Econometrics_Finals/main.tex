@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+%allows you to neatly integrate an abstract once you start with the actual content
+\usepackage{abstract}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% SETTING THE GEOMETRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%borders and such
+\usepackage
+[
+margin=1.5in
+%a4paper,% other options: a3paper, a5paper, etc
+%left=2.5cm,
+%right=2.5cm, top=5cm,
+% use vmargin=2cm to make vertical margins equal to 2cm.
+% us  hmargin=3cm to make horizontal margins equal to 3cm.
+% use margin=3cm to make all margins  equal to 3cm.
+]
+{geometry}
+%makes for onehalfspacing in the whole document
+\usepackage{setspace} 
+\onehalfspacing
+% \doublespacing
+% allows to enter other margins for big figures or tables
+\usepackage{changepage}
+% disallow footnotes to extend over more than one page
+\interfootnotelinepenalty=10000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% FONTS & COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Obviously colors. Usage: \color{red} Red text. This also allows you to make custom colors
+\usepackage{xcolor}      
+%if you want to start a multicolomns part inside your normally one columned article
+\usepackage{multicol}
+%titlesec allows you to change the way, titles are presented in latex
+% \usepackage{titlesec}
+%lets you change the style of your (sub)section headers
+\usepackage{sectsty}
+%I chose to make my headers cyan-colored
+\sectionfont{\fontsize{16}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+\subsubsectionfont{\fontsize{12}{15}\selectfont}
+% \subsectionfont{\color{cyan}}
+% \subsubsectionfont{\color{cyan}}  
+% \paragraphfont{\color{cyan}} 
+
+% superscript 1st, 2nd, 3rd, 4th ... use \nth{8}
+\usepackage[super]{nth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% CITATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+\usepackage[authordate,backend=biber,uniquename=false,uniquelist=false]{biblatex-chicago}
+\bibliography{references}
+
+\ExecuteBibliographyOptions{
+    giveninits=true,
+    % isbn=false,
+    url=true,
+    doi=true,
+    % uniquename=init
+    }
+    
+\DeclareBibliographyAlias{webpage}{online} 
+\AtEveryBibitem{\clearlist{language}}
+\AtEveryBibitem{%
+      \ifentrytype{online}
+        {}
+        {\clearfield{urlyear}\clearfield{urlmonth}\clearfield{urlday}}
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% INSERTING PICTURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%very useful if you want to add a jpfg or png file. Usage: \includegraphics{path/to/file}
+\usepackage{grffile}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[format=plain,
+            % labelfont=it,
+            font=footnotesize,
+            % width=0.85\textwidth,
+            % textfont=it,
+            % singlelinecheck=on
+            ]{caption}
+% Figures can't live outside the section
+\usepackage[section]{placeins}
+% and then also \FloatBarrier at the end of a section to enforce harder.
+
+% For figures turned 90 degrees
+\usepackage{rotating}
+% For uppercase subfigure panels
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
+
+
+% Draw pictures, like game trees
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usetikzlibrary{calc}
+
+% Node styles
+\tikzset{
+% Two node styles for game trees: solid and hollow
+solid node/.style={circle,draw,inner sep=1.5,fill=black},
+hollow node/.style={circle,draw,inner sep=1.5,fill=white}
+}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% INSERTING TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\newcolumntype{x}[1]{>{\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{y}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{s}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand*{\arraystretch}{1.2}
+
+\usepackage{multirow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% LINKS AND WWW
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Provides clickable links in the PDF-document for \ref and the TOC
+\usepackage[]{hyperref} %you can remove the hidelinks option to make the hyperrefs visible. looks very ugly to me, but might be useful to less experienced readers of pdfs
+% Lets you typeset urls with linebreak. Usage: \url{http://...}  
+\usepackage{url}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% CODE INTEGRATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Source Code Listings. Usage: \begin{lstlisting}...\end{lstlisting}
+\usepackage{listings}
+%this defines a lot of parameters for code. makes it look nice IMO
+\lstset{ 
+	breaklines=true,                 % sets automatic line breaking
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}         
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% MATH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%some very useful packages for writing down beautiful formulas
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{mathrsfs}  
+\usepackage{bm}
+\usepackage{empheq}
+% Nice rules for tables. Usage \begin{tabular}\toprule ... \midrule ... \bottomrule
+\usepackage{booktabs}   
+
+% for nice boxes around important stuff
+\newcommand*{\boxcolor}{blue}
+\makeatletter
+\renewcommand{\boxed}[1]{\textcolor{\boxcolor}{%
+\tikz[baseline={([yshift=-1ex]current bounding box.center)}] \node [rectangle, minimum width=1ex,rounded corners,draw] {\normalcolor\m@th$\displaystyle#1$};}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\usepackage{appendix}
+% Change numbering of figures, tabels etc. in Appendix
+\usepackage{chngcntr} 
+
+\usepackage{titletoc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% ALL ABOUT YOU
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\title{22BDP Macroeconomics week 4}
+\author{Tom Rodriguez, Bénédicte Droz}
+\date{06.08.2023}
+
+%start your document with \begin{document} and type everything inbetween \begin{document} and \end{document}
+\begin{document}
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+% 	\includegraphics{Figures/UZH.eps} \\[1.5cm] 
+    %	\textsc{\LARGE University of Zurich}\\[1.5cm] % Name of your university/college and the size of the distance to the next line. \LARGE is used to make really big fonts
+	\textsc{\large Beginning Doctoral Program Gerzensee}\\[0.5cm] % Major heading such as course name
+	{\large Lectures held by Mark Watson and Bo Honor\'e}\\[1cm] % you can the name(s) of your instructor(s)
+	
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[1.0cm]
+	{ \LARGE \bfseries Econometrics Finals Solutions}\\[0.4cm] % Title of your document, and yes, I am aware that it is stupid to have to list it twice. I don't know how to work around this.
+	\HRule \\[2cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+
+	
+	\begin{flushleft}
+        \Large List of Contributors:
+        
+		{\large 
+            \href{https://rodrigueztom.github.io}{Tom Rodriguez (University of Fribourg)}
+        }
+	\end{flushleft}
+	
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \today} % Date, change the \today to a set date if you want to be precise
+	
+	% Fill the rest of the page with whitespace
+	\vfill 
+	
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% GEOMETRY according to university guidelines
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%This line can be used to adjust the geometry of the document according to the university guidelines for borders and such
+% \newgeometry{margin=1.5in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%\thispagestyle{empty} %suppresses the footer and header since I want to start show them after the TOC, optional
+\pagenumbering{roman}	
+% \tableofcontents
+
+% The \clearpage command is a pagebreak to separate the abstract from the content
+%\clearpage
+\newpage
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % ACTUAL CONTENT 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\input{Finals_Years/2015_16}\newpage
+\input{Finals_Years/2016_17}\newpage
+\input{Finals_Years/2017_18}\newpage
+\input{Finals_Years/2018_19}\newpage
+\input{Finals_Years/2019_20}\newpage
+\input{Finals_Years/2020_21}\newpage
+\input{Finals_Years/2021_22}\newpage
+\input{Finals_Years/2022_23}\newpage
+\input{Finals_Years/2023_24}\newpage
+
+\end{document}
